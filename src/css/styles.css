@@ -1,0 +1,161 @@
+body {
+  font-family: "Merriweather", serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.header {
+  background-color: white;
+  padding: 10px 0;
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  padding: 0 40px;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 65px;
+  width: 170px;
+}
+
+.title {
+  margin-left: 15px;
+  text-align: left;
+}
+
+.university-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #1e3a8a;
+  white-space: nowrap;
+}
+
+.university-subtitle {
+  font-size: 1.125rem;
+  color: #dc2626;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.login-section {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.login-label {
+  font-size: 17px;
+  color: #333;
+  white-space: nowrap;
+}
+
+.login-input {
+  width: 120px;
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 2;
+  font-size: 15px;
+}
+
+.login-button {
+  background-color: white;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: white;
+}
+
+.navigation {
+  background-color: #1e3a8a;
+  padding: 8px 0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  color: white;
+}
+
+.nav-container a:hover {
+  text-decoration: underline;
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 24px auto;
+}
+.swiper {
+  width: 100%;
+  max-width: 900px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.banner-image {
+  width: 100%;
+  height: auto;
+}
+.event-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #dc2626;
+}
+
+.event-name {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #dc2626;
+}
+
+.event-date {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #dc2626;
+}
+
+.event-year {
+  font-size: 1.125rem;
+  color: #4b5563;
+}
