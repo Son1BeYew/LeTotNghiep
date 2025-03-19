@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Ho Chi Minh City University of Education</title>
+    <title>Ho Chi Minh City University of Technology</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/Dangki.css" />
   </head>
   <header class="header">
     <div class="header-container">
@@ -42,22 +43,34 @@
         <a href="#">TRỢ GIÚP</a>
       </div>
     </nav>
-    <main class="nhapten">
-      <div class="ten">
+    <main class="content">
+      <h1>Thông Tin Sinh Viên</h1>
+      <form class="form">
         <label for="MSSV">Mã Số Sinh Viên</label>
-        <input
-          type="text"
-          class="w-full p-1 border rounded"
-          placeholder="Mã Số SV"
-        />
+        <input type="text" id="MSSV" placeholder="MSSV" />
         <label for="tenSinhVien">Tên Sinh Viên</label>
-        <input
-          type="text"
-          class="w-full p-1 border rounded"
-          placeholder="Nhập Tên"
-          required
-        />
-      </div>
+        <input type="text" id="tenSinhVien" placeholder="Tên" />
+        <label for="Khoa">Khoa</label>
+        <input type="text" id="tenKhoa" placeholder="Khoa" />
+        <label for="ChuyenNganh">Chuyên Ngành</label>
+        <input type="text" id="ChuyenNganh" placeholder="Chuyên Ngành" />
+        <label for="upload">Tải Lên Ảnh</label>
+        <input type="file" id="upload" accept="image/*" />
+        <div class="preview-container">
+          <img id="preview" class="hidden" />
+        </div>
+        <button type="submit">Tạo Ảnh</button>
+      </form>
     </main>
+    <div class="background-container">
+      <h1 class="background-title">Chọn Background </h1>
+      <div class="background-wrapper">
+          <button id="prevBg" class="bg-button">◀</button>
+          <img id="bgPreview" src="bg1.jpg" class="background-image">
+          <button id="nextBg" class="bg-button">▶</button>
+      </div>
+  </div>
+    
+  </main>
   </body>
 </html>
