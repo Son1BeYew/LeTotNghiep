@@ -101,6 +101,7 @@ body {
   justify-content: center;
   gap: 30px;
   color: white;
+  margin-bottom: -10;
 }
 
 .nav-container a:hover {
@@ -137,24 +138,6 @@ body {
   width: 100%;
   height: auto;
 }
-.event-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #dc2626;
-}
-
-.event-name {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #dc2626;
-}
-
-.event-date {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #dc2626;
-}
-
 .event-year {
   font-size: 1.125rem;
   color: #4b5563;
