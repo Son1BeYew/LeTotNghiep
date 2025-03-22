@@ -91,6 +91,27 @@ body {
   background-color: white;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px;
+  display: block;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 .navigation {
   background-color: #1e3a8a;
   padding: 8px 0;
@@ -99,7 +120,7 @@ body {
 .nav-container {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 50px;
   color: white;
   margin-bottom: -10;
 }

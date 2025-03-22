@@ -7,6 +7,28 @@
   margin-left: 90px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px;
+  display: block;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 .form label {
   font-weight: bold;
   display: block;
