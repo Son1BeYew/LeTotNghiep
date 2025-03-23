@@ -1,25 +1,42 @@
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const { route } = require("../routes/authRoutes");
-const { Router } = require("express");
-const users = [
-  { id: 1, username: "admin", password: bcrypt.hashSync("123", 10) },
-  { id: 2, username: "user", password: bcrypt.hashSync("123", 10) },
-];
+const { poolPromise } = require("../config/db");
 
-const login = (req, res) => {
-  const { username, password } = req.body;
-  const user = users.find((u) => u.username === username);
-  if (!user)
-    return res.status(400).json({ message: "Tài khoản không tồn tại!" });
+const login = async (req, res) => {
+  let { username, password } = req.body;
+  console.log("Kiểm tra đăng nhập cho:", username);
 
-  const isMatch = bcrypt.compareSync(password, user.password);
-  if (!isMatch) return res.status(400).json({ message: "Sai mật khẩu!" });
-  const token = jwt.sign(
-    { id: user.id, username: user.username },
-    "SECRET_KEY",
-    { expiresIn: "1h" }
-  );
-  res.json({ message: "Đăng nhập thành công!", token });
+  try {
+    const pool = await poolPromise;
+    username =
+      username.charAt(0).toUpperCase() + username.slice(1).toLowerCase();
+
+    const result = await pool
+      .request()
+      .input("username", username)
+      .query("SELECT * FROM Account WHERE Username = @username");
+
+    console.log(" Kết quả:", result.recordset);
+
+    if (result.recordset.length === 0) {
+      console.log("Không tìm thấy tài khoản!");
+      return res.status(401).json({ error: "Sai tài khoản hoặc mật khẩu!" });
+    }
+    const user = result.recordset[0];
+    console.log("Mật khẩu trong Database:", user.Password);
+    const passwordMatch = await bcrypt.compare(password, user.Password);
+    console.log("Kết quả so sánh mật khẩu:", passwordMatch);
+
+    if (!passwordMatch) {
+      console.log("Mật khẩu không đúng!");
+      return res.status(401).json({ error: "Sai tài khoản hoặc mật khẩu!" });
+    }
+
+    console.log("Đăng nhập thành công!");
+    res.json({ message: "Đăng nhập thành công!", user });
+  } catch (err) {
+    console.error("Lỗi server:", err);
+    res.status(500).json({ error: "Lỗi server: " + err.message });
+  }
 };
+
 module.exports = { login };
