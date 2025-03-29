@@ -1,19 +1,13 @@
-const sql = require("mssql/msnodesqlv8");
+const mongoose = require("mongoose");
+require("dotenv").config();
 
-const config = {
-  driver: "msnodesqlv8",
-  connectionString:
-    "Driver={ODBC Driver 18 for SQL Server};Server=SON1;Database=GraduationDB;Trusted_Connection=Yes;TrustServerCertificate=Yes;",
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB Connected...");
+  } catch (error) {
+    console.error("MongoDB Connection Failed:", error);
+    process.exit(1);
+  }
 };
-
-const poolPromise = new sql.ConnectionPool(config)
-  .connect()
-  .then((pool) => {
-    console.log("SQL Done");
-    return pool;
-  })
-  .catch((err) => {
-    console.error("Lỗi kết nối SQL Server:", err);
-  });
-
-module.exports = { sql, poolPromise };
+module.exports = connectDB;
