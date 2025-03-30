@@ -17,6 +17,7 @@
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.13.0",
+    "mongoose-sequence": "^6.0.1",
     "msnodesqlv8": "^4.5.0",
     "mssql": "^11.0.1"
   }

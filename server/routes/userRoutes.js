@@ -1,14 +1,18 @@
-let express = require("express");
-let User = require("../models/users");
-let router = express.Router();
-router.get("/", async (req, res) => {
-  try {
-    const users = await User.find();
-    res.status(200).json(users);
-  } catch (error) {
-    console.error("Error fetching users:", error);
-    res.status(500).json({ message: "Internal server error" });
-  }
-});
+const express = require("express");
+const {
+  getAllUsers,
+  getUser,
+  createUser,
+  updateUser,
+  deleteUser,
+} = require("../controllers/userController");
+
+const router = express.Router();
+
+router.get("/", getAllUsers);
+router.get("/:username", getUser);
+router.post("/", createUser);
+router.put("/:id", updateUser);
+router.delete("/:id", deleteUser);
 
 module.exports = router;

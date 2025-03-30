@@ -14,11 +14,9 @@ exports.login = async (req, res) => {
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
-
     if (user.password !== password) {
       return res.status(400).json({ message: "Invalid password" });
     }
-
     const token = jwt.sign(
       { id: user._id, username: user.username },
       "your_secret_key",
