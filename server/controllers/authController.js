@@ -4,7 +4,7 @@ const User = require("../models/users");
 
 exports.login = async (req, res) => {
   try {
-    console.log("Request body:", req.body);
+    console.log("Yêu cầu:", req.body);
 
     const { username, password } = req.body;
     const user = await User.findOne({
@@ -12,10 +12,10 @@ exports.login = async (req, res) => {
     });
     console.log("User :", user);
     if (!user) {
-      return res.status(400).json({ message: "User not found" });
+      return res.status(400).json({ message: "Không tìm thấy người dùng" });
     }
     if (user.password !== password) {
-      return res.status(400).json({ message: "Invalid password" });
+      return res.status(400).json({ message: "Mật khẩu không hợp lệ" });
     }
     const token = jwt.sign(
       { id: user._id, username: user.username },
@@ -24,12 +24,12 @@ exports.login = async (req, res) => {
     );
 
     res.status(200).json({
-      message: "Login successful",
+      message: "Đăng nhập thành công",
       token,
       user: { id: user._id, username: user.username, role: user.role },
     });
   } catch (error) {
-    console.error("Login error:", error);
-    res.status(500).json({ message: "Internal server error", error });
+    console.error("Lỗi đăng nhập :", error);
+    res.status(500).json({ message: "Lỗi server", error });
   }
 };
