@@ -13,3 +13,15 @@ document.querySelector(".login-button").addEventListener("click", function () {
     })
     .catch((error) => console.error("Lỗi:", error));
 });
+
+
+function logoutUser() {
+
+  document.getElementById("userinfo").style.display = "none";
+  document.querySelector(".login-label").style.display = "block";
+  document.querySelectorAll(".login-label")[1].style.display = "block";
+
+  
+  window.location.href = "/LETOTNGHIEP";
+  applyRoleBasedAccess();
+}
