@@ -10,7 +10,8 @@
   <link rel="stylesheet" href="../client/css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
-<header class="header">
+
+<header class="header" id="trangchuForm">
   <div class="header-container">
     <div class="left-section">
       <div class="logo-section">
@@ -36,14 +37,14 @@
         <button class="login-button">Đăng nhập</button>
       </div>
       <div class="user-info" id="userinfo">
-        <button class="login-label" onclick="logoutUser()">Đăng xuất</button>
         <i class="fas fa-user-circle"></i> <span id="usernameDisplay"></span>
+        <button class="login-button" onclick="logoutUser()">Đăng xuất</button>
       </div>
     </div>
   </div>
 </header>
 
-<body class="bg-gray-100">
+<body class="bg-gray-100" id="trangchuForm">
   <nav class="navigation">
     <div class="nav-container">
       <a href="/client/">TRANG CHỦ</a>

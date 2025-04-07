@@ -163,3 +163,18 @@ body {
   font-size: 1.125rem;
   color: #4b5563;
 }
+.user-info {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+}
+
+.user-info i {
+  font-size: 24px;
+  color: rgb(0, 0, 0);
+  background: rgb(255, 255, 255);
+  border-radius: 50%;
+  padding: 5px;
+}
