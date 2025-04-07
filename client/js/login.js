@@ -21,16 +21,6 @@ document.querySelector(".login-button").addEventListener("click", function () {
 });
 
 
-
-function logoutUser() {
-
-  document.getElementById("userinfo").style.display = "none";
-  document.querySelector(".login-section").style.display = "block";
-
-  
-  window.location.href = "http://127.0.0.1:5500/client/index.html";
-}
-
 function loginUser(username) {
   localStorage.setItem("loggedInUser", username);
   // Hiển thị thông tin user
@@ -50,3 +40,18 @@ function showUser(username) {
 }
 
 
+window.onload = function () {
+  const loggedInUser = localStorage.getItem("loggedInUser");
+
+  if (loggedInUser) {
+    showUser(loggedInUser);
+    loginUser(loggedInUser);
+  }
+};
+
+function logoutUser() {
+  localStorage.removeItem("loggedInUser");
+  document.getElementById("userinfo").style.display = "none"; 
+  document.querySelector(".login-section").style.display = "block";
+  window.location.href = "http://127.0.0.1:5500/client/index.html";
+}
