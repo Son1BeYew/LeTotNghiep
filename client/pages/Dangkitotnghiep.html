@@ -30,7 +30,22 @@
         </div>
       </div>
     </div>
+    <div class="right-section">
+        <div class="login-section">
+          <label for="username" class="login-label">Tài khoản:</label>
+          <input type="text" id="username" class="login-input" />
+
+          <label for="password" class="login-label">Mật khẩu:</label>
+          <input type="password" id="password" class="login-input" />
+          <button class="login-button">Đăng nhập</button>
+        </div>
+        <div class="user-info" id="userinfo">
+          <i class="fas fa-user-circle"></i> <span id="usernameDisplay"></span>
+          <button class="login-button" onclick="logoutUser()">Đăng xuất</button>
+        </div>
+      </div>
   </div>
+
 </header>
 
 <body class="bg-gray-100">
@@ -82,6 +97,7 @@
     </div>
   </div>
   </main>
+  <script src="../js/login.js"></script>
+  <script src="../js/createImg.js"></script>
 </body>
-
 </html>

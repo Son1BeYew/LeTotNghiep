@@ -17,9 +17,7 @@
     <link rel="stylesheet" href="../css/thongtinletotnghiep.css" />
     <link rel="stylesheet" href="../css//thongtin.css" />
   </head>
-
   <body class="bg-gray-100">
-    <!-- Header -->
     <header class="header">
       <div class="header-container">
         <div class="left-section">
@@ -37,6 +35,23 @@
                 Ho Chi Minh City University of Technology
               </h2>
             </div>
+          </div>
+        </div>
+        <div class="right-section">
+          <div class="login-section">
+            <label for="username" class="login-label">Tài khoản:</label>
+            <input type="text" id="username" class="login-input" />
+
+            <label for="password" class="login-label">Mật khẩu:</label>
+            <input type="password" id="password" class="login-input" />
+            <button class="login-button">Đăng nhập</button>
+          </div>
+          <div class="user-info" id="userinfo">
+            <i class="fas fa-user-circle"></i>
+            <span id="usernameDisplay"></span>
+            <button class="login-button" onclick="logoutUser()">
+              Đăng xuất
+            </button>
           </div>
         </div>
       </div>
@@ -118,7 +133,6 @@
           </div>
         </div>
       </div>
-
       <div class="item">
         <img
           src="https://file1.hutech.edu.vn/file/editor/homepage1/Phoi%20canh%20co%20so%20Hutech_co%20so%20DBP%20%20.jpg"
@@ -148,5 +162,6 @@
         </div>
       </div>
     </main>
+    <script src="../js/login.js"></script>
   </body>
 </html>

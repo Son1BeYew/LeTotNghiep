@@ -55,7 +55,6 @@ exports.updateUser = async (req, res) => {
   }
 };
 
-// Xóa user theo ID
 exports.deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
