@@ -23,8 +23,8 @@ if (
           localStorage.setItem("mssv", data.mssv);
 
           showUser(username);
-          // Chuyển trang sau khi đăng nhập thành công
-          window.location.href = "/client/pages/Dangkitotnghiep.html";
+
+          window.location.href="/client/index.html"
         }
       })
       .catch((error) => console.error("Lỗi:", error));
@@ -58,14 +58,13 @@ function logoutUser() {
 // Khi load trang, kiểm tra trạng thái đăng nhập
 window.onload = function () {
   const loggedInUser = localStorage.getItem("loggedInUser");
-  const mssv = localStorage.getItem("mssv");
 
   if (loggedInUser) {
     showUser(loggedInUser);
 
     const mssvField = document.getElementById("MSSV");
-    if (mssvField && mssv) {
-      mssvField.value = mssv;
+    if (mssvField && loggedInUser) {
+      mssvField.value = loggedInUser;
       mssvField.readOnly = true;
     }
   } else {
