@@ -1,92 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Ho Chi Minh City University of Education</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../client/css/styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
 
-  <header class="header" id="trangchuForm">
-    <div class="header-container">
-      <div class="left-section">
-        <div class="logo-section">
-          <img
-            src="https://file1.hutech.edu.vn/file/editor/homepage/stories/hinh34/logo%20CMYK-01.png"
-            alt="University Logo"
-            class="logo"
-          />
-          <div class="title">
-            <h1 class="university-name">
-              TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÀNH PHỐ HỒ CHÍ MINH
-            </h1>
-            <h2 class="university-subtitle">
-              Ho Chi Minh City University of Technology
-            </h2>
-          </div>
-        </div>
-      </div>
-      <div class="right-section">
-        <div class="login-section">
-          <label for="username" class="login-label">Tài khoản:</label>
-          <input type="text" id="username" class="login-input" />
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Ho Chi Minh City University of Education</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../client/css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
 
-          <label for="password" class="login-label">Mật khẩu:</label>
-          <input type="password" id="password" class="login-input" />
-          <button class="login-button">Đăng nhập</button>
-        </div>
-        <div class="user-info" id="userinfo">
-          <i class="fas fa-user-circle"></i> <span id="usernameDisplay"></span>
-          <button class="login-button" onclick="logoutUser()">Đăng xuất</button>
+<header class="header" id="trangchuForm">
+  <div class="header-container">
+    <div class="left-section">
+      <div class="logo-section">
+        <img src="https://file1.hutech.edu.vn/file/editor/homepage/stories/hinh34/logo%20CMYK-01.png"
+          alt="University Logo" class="logo" />
+        <div class="title">
+          <h1 class="university-name">
+            TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÀNH PHỐ HỒ CHÍ MINH
+          </h1>
+          <h2 class="university-subtitle">
+            Ho Chi Minh City University of Technology
+          </h2>
         </div>
       </div>
     </div>
-  </header>
+    <div class="right-section">
+      <div class="login-section">
+        <label for="username" class="login-label">Tài khoản:</label>
+        <input type="text" id="username" class="login-input" />
 
-  <body class="bg-gray-100">
-    <nav class="navigation">
-      <div class="nav-container">
-        <a href="/client/">TRANG CHỦ</a>
-        <a href="/client/pages/Dangkitotnghiep.html">ĐĂNG KÍ LỄ TỐT NGHIỆP</a>
-        <a href="/client/pages/thongtinletotnghiep.html"
-          >THÔNG TIN LỄ TỐT NGHIỆP</a
-        >
-        <div class="dropdown">
-          <a href="#">GIỚI THIỆU <i class="fa fa-chevron-down"></i></a>
-          <div class="dropdown-content">
-            <a href="#">Về HUTECH</a>
-            <a href="#">Khoa - Viện</a>
-            <a href="#">Cơ sở vật chất</a>
-          </div>
-        </div>
-        <div class="dropdown">
-          <a href="#">TRỢ GIÚP <i class="fa fa-chevron-down"></i></a>
-          <div class="dropdown-content">
-            <a href="#">Hỏi đáp</a>
-            <a href="#">Liên hệ</a>
-            <a href="#">Hỗ trợ kỹ thuật</a>
-          </div>
+        <label for="password" class="login-label">Mật khẩu:</label>
+        <input type="password" id="password" class="login-input" />
+        <button class="login-button">Đăng nhập</button>
+      </div>
+      <div class="user-info" id="userinfo">
+        <i class="fas fa-user-circle"></i> <span id="usernameDisplay"></span>
+        <button class="login-button" onclick="logoutUser()">Đăng xuất</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<body class="bg-gray-100">
+  <nav class="navigation">
+    <div class="nav-container">
+      <a href="/client/">TRANG CHỦ</a>
+      <a href="/client/pages/Dangkitotnghiep.html">ĐĂNG KÍ LỄ TỐT NGHIỆP</a>
+      <a href="/client/pages/thongtinletotnghiep.html">THÔNG TIN LỄ TỐT NGHIỆP</a>
+      <div class="dropdown">
+        <a href="#">GIỚI THIỆU <i class="fa fa-chevron-down"></i></a>
+        <div class="dropdown-content">
+          <a href="#">Về HUTECH</a>
+          <a href="#">Khoa - Viện</a>
+          <a href="#">Cơ sở vật chất</a>
         </div>
       </div>
-    </nav>
-    <main class="main-content">
-      <div class="banner">
-        <img
-          src="https://file1.hutech.edu.vn/file/editor/homepage1/816153-dsc03278jpg.jpg"
-          alt="Celebration Banner"
-          class="banner-image"
-        />
+      <div class="dropdown">
+        <a href="#">TRỢ GIÚP <i class="fa fa-chevron-down"></i></a>
+        <div class="dropdown-content">
+          <a href="#">Hỏi đáp</a>
+          <a href="#">Liên hệ</a>
+          <a href="#">Hỗ trợ kỹ thuật</a>
+        </div>
       </div>
-    </main>
-    <script src="../client/js/login.js"></script>
-  </body>
+    </div>
+  </nav>
+  <main class="main-content">
+    <div class="banner">
+      <img src="https://file1.hutech.edu.vn/file/editor/homepage1/816153-dsc03278jpg.jpg" alt="Celebration Banner"
+        class="banner-image" />
+    </div>
+  </main>
+  <script src="../client/js/login.js"></script>
+</body>
+
 </html>

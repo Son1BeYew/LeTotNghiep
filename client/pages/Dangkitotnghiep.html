@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
   <meta charset="utf-8" />
@@ -31,19 +31,19 @@
       </div>
     </div>
     <div class="right-section">
-        <div class="login-section">
-          <label for="username" class="login-label">Tài khoản:</label>
-          <input type="text" id="username" class="login-input" />
+      <div class="login-section">
+        <label for="username" class="login-label">Tài khoản:</label>
+        <input type="text" id="username" class="login-input" />
 
-          <label for="password" class="login-label">Mật khẩu:</label>
-          <input type="password" id="password" class="login-input" />
-          <button class="login-button">Đăng nhập</button>
-        </div>
-        <div class="user-info" id="userinfo">
-          <i class="fas fa-user-circle"></i> <span id="usernameDisplay"></span>
-          <button class="login-button" onclick="logoutUser()">Đăng xuất</button>
-        </div>
+        <label for="password" class="login-label">Mật khẩu:</label>
+        <input type="password" id="password" class="login-input" />
+        <button class="login-button">Đăng nhập</button>
       </div>
+      <div class="user-info" id="userinfo">
+        <i class="fas fa-user-circle"></i> <span id="usernameDisplay"></span>
+        <button class="login-button" onclick="logoutUser()">Đăng xuất</button>
+      </div>
+    </div>
   </div>
 
 </header>
@@ -78,8 +78,8 @@
     <form class="form">
       <label for="MSSV">Mã Số Sinh Viên</label>
       <input type="text" id="MSSV" placeholder="MSSV" />
-      <label for="tenSinhVien">Tên Sinh Viên</label>
-      <input type="text" id="tenSinhVien" placeholder="Tên" />
+      <label for="tenSinhVien">Họ và tên sinh viên</label>
+      <input type="text" id="tenSinhVien" placeholder="Họ và tên" />
       <label for="Khoa">Khoa</label>
       <input type="text" id="tenKhoa" placeholder="Khoa" />
       <label for="ChuyenNganh">Chuyên Ngành</label>
@@ -94,10 +94,32 @@
   </main>
   <div class="background-container">
     <div class="background-wrapper">
+      <img id="fullscreen-img" src="/client/Hình ảnh/letotnghiep1.jpg" alt="Ảnh phóng to">
+      <div id="close-btn" onclick="closeImage()">✖</div>
     </div>
+    <button class="xemanh" onclick="showImage()">Xem ảnh</button>
   </div>
+
+
   </main>
+  <script>
+    function showImage() {
+      const img = document.getElementById("fullscreen-img");
+      img.style.display = "block";
+    }
+
+    function showImage() {
+      document.getElementById("fullscreen-img").style.display = "block";
+      document.getElementById("close-btn").style.display = "block";
+    }
+
+    function closeImage() {
+      document.getElementById("fullscreen-img").style.display = "none";
+      document.getElementById("close-btn").style.display = "none";
+    }
+  </script>
   <script src="../js/login.js"></script>
   <script src="../js/createImg.js"></script>
 </body>
+
 </html>
