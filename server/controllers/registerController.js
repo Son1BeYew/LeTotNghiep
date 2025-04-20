@@ -17,5 +17,20 @@ const createRegister = async (req, res) => {
     res.status(500).json({ message: "Lỗi server", error: err.message });
   }
 };
+const getRegisterByMSSV = async (req, res) => {
+  try {
+    const { mssv } = req.params;
 
-module.exports = { createRegister };
+    const student = await Register.findOne({ mssv });
+    if (!student) {
+      return res.status(404).json({ message: "Không tìm thấy sinh viên." });
+    }
+
+    res.status(200).json(student);
+  } catch (err) {
+    res.status(500).json({ message: "Lỗi server", error: err.message });
+  }
+};
+
+module.exports = { createRegister, getRegisterByMSSV };
+
