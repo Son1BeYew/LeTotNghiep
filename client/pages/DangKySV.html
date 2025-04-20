@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Ho Chi Minh City University of Education</title>
+  <title>Ho Chi Minh City University of Technology</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../client/css/styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
-</head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/DangKySV.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-<header class="header" id="trangchuForm">
+
+</head>
+<header class="header">
   <div class="header-container">
     <div class="left-section">
       <div class="logo-section">
@@ -45,16 +48,17 @@
       </div>
     </div>
   </div>
+
 </header>
 
 <body class="bg-gray-100">
   <nav class="navigation">
     <div class="nav-container">
-      <a href="/client/">TRANG CHỦ</a>
+      <a href="/client/index.html">TRANG CHỦ</a>
       <a href="/client/pages/Dangkitotnghiep.html">ĐĂNG KÍ LỄ TỐT NGHIỆP</a>
       <a href="/client/pages/thongtinletotnghiep.html">THÔNG TIN LỄ TỐT NGHIỆP</a>
       <div class="dropdown">
-        <a href="#">GIỚI THIỆU <i class="fa fa-chevron-down"></i></a>
+        <a href="#">GIỚI THIỆU <i class=" fa fa-chevron-down"></i></a>
         <div class="dropdown-content">
           <a href="#">Về HUTECH</a>
           <a href="#">Khoa - Viện</a>
@@ -71,13 +75,48 @@
       </div>
     </div>
   </nav>
-  <main class="main-content">
-    <div class="banner">
-      <img src="https://file1.hutech.edu.vn/file/editor/homepage1/816153-dsc03278jpg.jpg" alt="Celebration Banner"
-        class="banner-image" />
-    </div>
+
+  <main class="formDangKySV">
+    <h2>Đăng ký thông tin sinh viên</h2>
+    <form id="studentForm">
+      <label>Họ và tên:</label><br />
+      <input type="text" name="fullname" required /><br />
+
+      <label>MSSV:</label><br />
+      <input type="text" name="mssv" id="mssv" required /><br />
+
+      <label>Chuyên ngành:</label><br />
+      <input type="text" name="major" required /><br />
+
+      <label>Khoa:</label><br />
+      <input type="text" name="faculty" required /><br />
+
+      <label>Lớp:</label><br />
+      <input type="text" name="class" required /><br />
+
+      <button type="submit">Đăng ký</button>
+    </form>
   </main>
-  <script src="../client/js/login.js"></script>
+
+  <script>
+    function showImage() {
+      const img = document.getElementById("fullscreen-img");
+      img.style.display = "block";
+    }
+
+    function showImage() {
+      document.getElementById("fullscreen-img").style.display = "block";
+      document.getElementById("close-btn").style.display = "block";
+    }
+
+    function closeImage() {
+      document.getElementById("fullscreen-img").style.display = "none";
+      document.getElementById("close-btn").style.display = "none";
+    }
+  </script>
+
+  <script src="../js/login.js"></script>
+  <script src="../js/formDK.js"></script>
 </body>
 
 </html>

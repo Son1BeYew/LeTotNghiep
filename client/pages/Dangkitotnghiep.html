@@ -39,9 +39,12 @@
         <input type="password" id="password" class="login-input" />
         <button class="login-button">Đăng nhập</button>
       </div>
-      <div class="user-info" id="userinfo">
+      <div class="user-info" id="userinfo" onclick="showDropDownSV()">
         <i class="fas fa-user-circle"></i> <span id="usernameDisplay"></span>
-        <button class="login-button" onclick="logoutUser()">Đăng xuất</button>
+        <div class="dropdownSV" id="ID_dropdownSV">
+          <a href="#" onclick="showDangKySVForm()">Đăng ký thông tin</a>
+        </div>
+        <button class="login-button" onclick="logoutUser(event)">Đăng xuất</button>
       </div>
     </div>
   </div>
@@ -118,7 +121,7 @@
       document.getElementById("close-btn").style.display = "none";
     }
   </script>
-  
+
   <script src="../js/login.js"></script>
   <script src="../js/createImg.js"></script>
 </body>

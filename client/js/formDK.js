@@ -4,7 +4,7 @@ document
     e.preventDefault();
     const data = {
       tenSV: this.fullname.value,
-      mssv: this.mssv.value,
+      mssv: loggedInUser,
       chuyenNganh: this.major.value,
       khoa: this.faculty.value,
       lop: this.class.value,
@@ -22,3 +22,20 @@ document
       alert("Gửi dữ liệu thất bại: " + error);
     }
   });
+
+  const loggedInUser = localStorage.getItem("loggedInUser");
+
+  window.onload = function () {
+    if (loggedInUser) {
+      const mssvField = document.getElementById("mssv");
+      if (mssvField) {
+        mssvField.value = loggedInUser;
+        mssvField.readOnly = true;  // Không cho phép nhập mssv
+      }
+      showUser(loggedInUser);
+    } else {
+      if (!document.querySelector(".login-section")) {
+        window.location.href = "/client/index.html";
+      }
+    }
+  };

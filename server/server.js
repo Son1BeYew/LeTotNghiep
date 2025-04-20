@@ -6,6 +6,8 @@ let authRoutes = require("./routes/authRoutes");
 let userRoutes = require("./routes/userRoutes");
 let connectDB = require("./config/db");
 const registerRoutes = require("./routes/registerRoutes");
+
+
 const app = express();
 app.use(cors());
 app.use(express.json());

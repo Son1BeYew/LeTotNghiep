@@ -49,7 +49,8 @@ function showUser(username) {
 }
 
 // Hàm đăng xuất
-function logoutUser() {
+function logoutUser(event) {
+  event.stopPropagation();
   localStorage.removeItem("loggedInUser");
   localStorage.removeItem("mssv");
   window.location.href = "/client/index.html";
@@ -73,3 +74,24 @@ window.onload = function () {
     }
   }
 };
+
+function showDangKySVForm() {
+  window.location.href = '/client/pages/DangKySV.html';
+}
+
+function showDropDownSV() {
+  const dropdown = document.getElementById("ID_dropdownSV");
+  if (dropdown.style.display === "block") {
+    dropdown.style.display = "none";
+  } else {
+    dropdown.style.display = "block";
+  }
+}
+document.addEventListener("click", function (event) {
+  const userInfo = document.getElementById("userinfo");
+  const dropdown = document.getElementById("ID_dropdownSV");
+
+  if (!userInfo.contains(event.target)) {
+    dropdown.style.display = "none";
+  }
+});
