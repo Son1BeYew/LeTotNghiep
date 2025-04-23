@@ -3,9 +3,9 @@ document
   .addEventListener("submit", async function (e) {
     e.preventDefault();
     const data = {
-      tenSV: this.fullname.value,
+      fullName: this.fullname.value,
       mssv: loggedInUser,
-      chuyenNganh: this.major.value,
+      nganh: this.major.value,
       khoa: this.faculty.value,
       lop: this.class.value,
     };
@@ -23,19 +23,19 @@ document
     }
   });
 
-  const loggedInUser = localStorage.getItem("loggedInUser");
+const loggedInUser = localStorage.getItem("loggedInUser");
 
-  window.onload = function () {
-    if (loggedInUser) {
-      const mssvField = document.getElementById("mssv");
-      if (mssvField) {
-        mssvField.value = loggedInUser;
-        mssvField.readOnly = true;  // Không cho phép nhập mssv
-      }
-      showUser(loggedInUser);
-    } else {
-      if (!document.querySelector(".login-section")) {
-        window.location.href = "/client/index.html";
-      }
+window.onload = function () {
+  if (loggedInUser) {
+    const mssvField = document.getElementById("mssv");
+    if (mssvField) {
+      mssvField.value = loggedInUser;
+      mssvField.readOnly = true;
     }
-  };
+    showUser(loggedInUser);
+  } else {
+    if (!document.querySelector(".login-section")) {
+      window.location.href = "/client/index.html";
+    }
+  }
+};

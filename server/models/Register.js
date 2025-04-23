@@ -6,10 +6,25 @@ const registerSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  fullName: String,
-  lop: String,
-  khoa: String,
-  nganh: String,
+  fullName: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  lop: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  khoa: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  nganh: {
+    type: String,
+    required: true,
+    unique: true,
+  },
 });
-
 module.exports = mongoose.model("Register", registerSchema);
