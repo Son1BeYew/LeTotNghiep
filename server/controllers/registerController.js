@@ -18,7 +18,7 @@ const createRegister = async (req, res) => {
     res.status(500).json({ message: "Lỗi server", error: err.message });
   }
 };
-
+  
 const getRegisterByMSSV = async (req, res) => {
   try {
     const { mssv } = req.params;
