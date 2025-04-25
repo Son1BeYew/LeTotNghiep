@@ -6,13 +6,13 @@ const createRegister = async (req, res) => {
 
     const existing = await Register.findOne({ mssv });
     if (existing) {
-      return res.status(400).json({ message: "MSSV đã tồn tại." });
+      return res.status(400).json({ message: "MSSV đã tồn tại!!!" });
     }
 
     const newRegister = new Register({ mssv, fullName, lop, khoa, nganh });
     await newRegister.save();
 
-    res.status(201).json({ message: "Đăng ký thành công!", data: newRegister });
+    res.status(201).json({ message: "Đăng ký thành công!!!", data: newRegister });
   } catch (err) {
     console.error("Lỗi khi tạo sinh viên:", err); // ⚠️ thêm dòng này để hiện lỗi chi tiết
     res.status(500).json({ message: "Lỗi server", error: err.message });

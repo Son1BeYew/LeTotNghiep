@@ -1,20 +1,19 @@
 .formDangKySV {
     max-width: 900px;
-    padding: 30px;
+    padding: 20px;
     border-radius: 15px;
-    margin: 20px auto;
+    margin: 30px auto;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
     background-color: white;
 }
 
 .formDangKySV label {
     font-weight: bold;
-    margin-bottom: 5px;
 }
 
 .formDangKySV input {
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     margin-bottom: 15px;  
     border: 1px solid #ccc;
     border-radius: 15px;
@@ -26,12 +25,17 @@
     background-color: #1e3a8a;
     color: white;
     padding: 10px;
-    border: none;
     border-radius: 5px;
     margin-top: 15px;
     cursor: pointer;
     font-size: 16px;
 }
+.formDangKySV button:hover{
+    transition: 0.3s;
+    background-color: #294eb3;
+    color: white;
+    cursor: pointer;
+  }
 .formDangKySV h2 {
     font-size: 25px;
     font-weight: bold;

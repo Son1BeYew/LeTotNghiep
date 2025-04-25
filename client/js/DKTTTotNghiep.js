@@ -1,30 +1,24 @@
-document
-  .getElementById("registerForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
+document.getElementById("letotnghiepForm").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-    const mssv = document.getElementById("MSSV").value;
-    const fullName = document.getElementById("fullname").value;
-    const khoa = document.getElementById("tenKhoa").value;
-    const nganh = document.getElementById("ChuyenNganh").value;
+  const form = e.target;
+  const formData = new FormData(form);
 
-    const studentData = { mssv, fullName, khoa, nganh };
-    fetch("http://localhost:5000/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(studentData),
+  fetch("http://localhost:5000/api/DKLeTotNghiep", {
+    method: "POST",
+    body: formData,
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.success) {
+        alert("Đã lưu thông tin lễ tốt nghiệp!!!");
+      } else {
+        alert("Lỗi: " + data.message);
+      }
     })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.message === "Đăng ký thành công!") {
-          alert("Đăng ký thành công");
-        } else {
-          alert("Đã xảy ra lỗi: " + data.message);
-        }
-      })
-      .catch((error) => {
-        console.log("Lỗi:", error);
-      });
-  });
+    .catch((err) => {
+      console.error("Lỗi gửi form:", err);
+      alert("Lỗi khi gửi biểu mẫu!");
+    });
+});
+

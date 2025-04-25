@@ -83,7 +83,7 @@ window.onload = function () {
   }
 
   // Gọi API để lấy thông tin sinh viên
-  fetch(`http://localhost:5000/api/students/${loggedInUser}`)
+  fetch(`http://localhost:5000/api/registers/${loggedInUser}`)
     .then(response => {
       if (!response.ok) throw new Error("Không tìm thấy sinh viên");
       return response.json();
@@ -91,7 +91,7 @@ window.onload = function () {
     .then(data => {
       const tenField = document.getElementById("tenSinhVien");
       const khoaField = document.getElementById("tenKhoa");
-      const nganhField = document.getElementById("ChuyenNganh");
+      const nganhField = document.getElementById("chuyenNganh");
 
       if (tenField) {
         tenField.value = data.fullName || "";
@@ -110,7 +110,7 @@ window.onload = function () {
     })
     .catch(err => {
       console.error("Lỗi tải dữ liệu sinh viên:", err.message);
-      alert("Không thể tải thông tin sinh viên.");
+      alert("Bạn cần đăng ký thông tin trước!!!");
     });
 };
 
