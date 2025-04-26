@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sinh viên</title>
+    <link href="../css/QuanLySinhVien.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="../Hình ảnh/logo-hutech-1.png" alt="" />
+        </div>
+    </header>
+    <div class="sidebar">
+        <div class="text">
+            <span>HỆ THỐNG HUTECH</span>
+        </div>
+        <a href="#" onclick="showTrangChuForm()">Trang chủ</a>
+        <a href="#" onclick="showQLSVForm()">Quản lý tài khoản sinh viên</a>
+        <a href="#" onclick="showQLSVForm()">Quản lý thông tin sinh viên</a>
+    </div>
+    <div class="content">
+        <div class="form_SV">
+            <h1 class="text-2xl font-bold mb-4">Quản lý sinh viên</h1>
+            <form id="studentForm" class="space-y-4">
+                <input type="text" id="name" placeholder="Họ và tên" required class="border p-2 w-full" />
+                <input type="text" id="studentId" placeholder="Mã sinh viên" required class="border p-2 w-full" />
+                <input type="text" id="classId" placeholder="Mã lớp" required class="border p-2 w-full" />
+                <input type="text" id="majorId" placeholder="Mã ngành" required class="border p-2 w-full" />
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2">Thêm sinh viên</button>
+            </form>
+            <table id="studentTable" class="mt-4 border-collapse border border-gray-300 w-full">
+                <thead>
+                    <tr>
+                        <th class="border border-gray-300 p-2">Họ và tên</th>
+                        <th class="border border-gray-300 p-2">Mã sinh viên</th>
+                        <th class="border border-gray-300 p-2">Mã lớp</th>
+                        <th class="border border-gray-300 p-2">Mã ngành</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        function showTrangChuForm() {
+            window.location.href = "QuanLy.html";
+        }
+        function showQLSVForm() {
+            window.location.href = "QuanLySinhVien.html";
+        }
+    </script>
+</body>
+
+</html>

@@ -16,14 +16,23 @@
         <div class="text">
             <span>HỆ THỐNG HUTECH</span>
         </div>
-        <a href="#">Trang chủ</a>
-        <a href="#">Quản lý sinh viên</a>
+        <a href="#" onclick="showTrangChuForm()">Trang chủ</a>
+        <a href="#" onclick="showQLSVForm()">Quản lý tài khoản sinh viên</a>
+        <a href="#" onclick="showQLSVForm()">Quản lý thông tin sinh viên</a>
     </div>
     <div class="content">
         <div class="welcome">
             <span>W</span><span>E</span><span>L</span><span>C</span><span>O</span><span>M</span><span>E</span>
         </div>
     </div>
+    <script>
+        function showTrangChuForm() {
+            window.location.href = "QuanLy.html";
+        }
+        function showQLSVForm() {
+            window.location.href = "QuanLySinhVien.html";
+        }
+    </script>
 </body>
 
 </html>

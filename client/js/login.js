@@ -1,9 +1,7 @@
 // Xử lý đăng nhập (chỉ trang index mới có form login)
 const loginButton = document.querySelector(".login-button");
 if (
-  loginButton &&
-  document.getElementById("username") &&
-  document.getElementById("password")
+  loginButton && document.getElementById("username") && document.getElementById("password")
 ) {
   loginButton.addEventListener("click", function () {
     const username = document.getElementById("username").value;
@@ -18,15 +16,21 @@ if (
       .then((data) => {
         alert(data.message);
         if (data.token) {
-          // Lưu vào localStorage
+          // Lưu token và username
           localStorage.setItem("loggedInUser", username);
           localStorage.setItem("mssv", data.mssv);
-
+          localStorage.setItem("role", data.user.role);
+      
           showUser(username);
-
-          window.location.href="/client/index.html"
+      
+          if (data.user.role === "admin") { 
+          window.location.href = "/client/pages/QuanLy.html";
+          } else {
+            window.location.href = "/client/index.html";
+          }
         }
       })
+      
       .catch((error) => console.error("Lỗi:", error));
   });
 }
