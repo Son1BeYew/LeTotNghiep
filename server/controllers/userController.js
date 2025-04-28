@@ -26,17 +26,32 @@ exports.getUser = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
-    if (!req.body.username || !req.body.password) {
+    const { username, password, email } = req.body;
+
+    if (!username || !password) {
       return res.status(400).json({ message: "Thiếu username hoặc password" });
     }
 
-    let newUser = new User(req.body);
+    // Kiểm tra username đã tồn tại chưa
+    const existingUsername = await User.findOne({ username });
+    if (existingUsername) {
+      return res.status(400).json({ message: "Username đã tồn tại" });
+    }
+
+    // Kiểm tra email đã tồn tại chưa
+    const existingEmail = await User.findOne({ email });
+    if (existingEmail) {
+      return res.status(400).json({ message: "Email đã tồn tại" });
+    }
+
+    let newUser = new User({ username, password, email });
     await newUser.save();
     res.json(newUser);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 exports.updateUser = async (req, res) => {
   try {
@@ -64,7 +79,7 @@ exports.deleteUser = async (req, res) => {
       return res.status(404).json({ message: "User không tồn tại" });
     }
 
-    res.json({ message: "User đã bị xóa" });
+    res.json({ message: "User đã xóa!!!" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

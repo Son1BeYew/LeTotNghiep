@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý sinh viên</title>
-    <link href="../css/QuanLySinhVien.css" rel="stylesheet">
     <link href="../css/QuanLy.css" rel="stylesheet">
+    <link href="../css/QuanLyTaiKhoanSV.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
@@ -14,14 +14,14 @@
 
 <body>
     <header class="header">
-        <h1>QUẢN LÝ THÔNG TIN SINH VIÊN</h1>
+        <h1>QUẢN LÝ TÀI KHOẢN SINH VIÊN</h1>
         <div class="logout" onclick="logoutUser(event)">
             <i class="fas fa-sign-out-alt"></i>
             <span>Đăng xuất</span>
         </div>
     </header>
 
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
         <div class="logo">
             <img src="../Hình ảnh/logo-hutech-1.png" alt="" />
         </div>
@@ -35,29 +35,24 @@
     <div class="content_QLSV">
         <div class="form_TKSV">
             <form id="studentForm" class="studentForm">
-                <input type="text" id="mssv" name="mssv" placeholder="MSSV" />
-                <input type="text" id="hovaten" name="hovaten" placeholder="Họ và tên" />
-                <input type="text" id="lop" name="lop" placeholder="Lớp" />
-                <input type="text" id="khoa" name="khoa" placeholder="Khoa" />
-                <input type="text" id="nganh" name="nganh" placeholder="Chuyên ngành" />
-                <input type="file" id="anh" name="image" accept="image/*" />
+                <input type="text" id="username" placeholder="Tài khoản">
+                <input type="text" id="password" placeholder="Mật khẩu">
+                <input type="text" id="email" placeholder="Email">
+                <button type="submit" class="button">Thêm</button>
                 <button type="submit" class="button">Cập nhật</button>
             </form>
 
             <div class="table-container">
-                <table id="studentDS" class="studentDS">
+                <table id="studentDSTK" class="studentDSTK">
                     <thead>
                         <tr>
-                            <th>MSSV</th>
-                            <th>Họ và tên</th>
-                            <th>Lớp</th>
-                            <th>Khoa</th>
-                            <th>Chuyên ngành</th>
-                            <th>Ảnh</th>
+                            <th>Tài khoản</th>
+                            <th>Mật khẩu</th>
+                            <th>Email</th>
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody id="studentDSTable"></tbody>
+                    <tbody id="studentDSTKTable"></tbody>
                 </table>
             </div>
         </div>
@@ -83,7 +78,7 @@
             window.location.href = "/client/index.html";
         }
     </script>
-    <script src="../js/QuanLySinhVien.js"></script>
+    <script src="../js/QuanLyTaiKhoanSV.js"></script>
 </body>
 
 </html>

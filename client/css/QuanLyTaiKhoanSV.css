@@ -20,7 +20,7 @@
     justify-content: center;
     gap: 20px;
     width: 100%;
-    max-width: max-content;
+    max-width: 1000px;
     margin-bottom: 20px;
 }
 
@@ -50,18 +50,18 @@
 
 .table-container {
     width: 100%;
-    max-width: max-content;
+    max-width: 1000px;
     max-height: 480px;
     overflow-y: auto; 
 }
 
 
-.studentDS {
+.studentDSTK {
     width: 100%;
     border-collapse: collapse;
 }
 
-.studentDS thead {
+.studentDSTK thead {
     background-color: #808080;
     color: #fff;
     display: table;
@@ -72,14 +72,14 @@
     z-index: 1;
 }
 
-.studentDS tbody {
+.studentDSTK tbody {
     display: table;
     width: 100%;
     table-layout: fixed;
 }
 
 /* Các cột */
-.studentDS th, .studentDS td {
+.studentDSTK th, .studentDSTK td {
     border: 1px solid #333;
     padding: 10px;
     text-align: center;
@@ -88,12 +88,12 @@
 }
 
 /* Hover cho hàng */
-.studentDS tbody tr:hover {
+.studentDSTK tbody tr:hover {
     background-color: #e0e0e0;
 }
 
 /* Nút Xóa và Sửa */
-.studentDS td button {
+.studentDSTK td button {
     padding: 5px 10px;
     border: none;
     border-radius: 4px;
@@ -102,44 +102,35 @@
     transition: background-color 0.2s;
 }
 
-.studentDS td button:first-child {
+.studentDSTK td button:first-child {
     background-color: #ff4d4d;
     color: #fff;
     margin-right: 5px;
 }
 
-.studentDS td button:first-child:hover {
+.studentDSTK td button:first-child:hover {
     background-color: #e60000;
 }
 
-.studentDS td button:last-child {
+.studentDSTK td button:last-child {
     background-color: #4da8ff;
     color: #fff;
 }
 
-.studentDS td button:last-child:hover {
+.studentDSTK td button:last-child:hover {
     background-color: #1a8cff;
 }
 
 /* Chỉnh độ rộng các cột */
-.studentDS th:nth-child(1), .studentDS td:nth-child(1) {
-    width: 20%;
-}
-.studentDS th:nth-child(2), .studentDS td:nth-child(2) {
-    width: 30%;
-}
-.studentDS th:nth-child(3), .studentDS td:nth-child(3) {
-    width: 20%;
-}
-.studentDS th:nth-child(4), .studentDS td:nth-child(4) {
+.studentDSTK th:nth-child(1), .studentDSTK td:nth-child(1) {
     width: 25%;
 }
-.studentDS th:nth-child(5), .studentDS td:nth-child(5) {
+.studentDSTK th:nth-child(2), .studentDSTK td:nth-child(2) {
     width: 25%;
 }
-.studentDS th:nth-child(6), .studentDS td:nth-child(6) {
+.studentDSTK th:nth-child(3), .studentDSTK td:nth-child(3) {
     width: 30%;
 }
-.studentDS th:nth-child(7), .studentDS td:nth-child(7) {
+.studentDSTK th:nth-child(4), .studentDSTK td:nth-child(4) {
     width: 20%;
 }

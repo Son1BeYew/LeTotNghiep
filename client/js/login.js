@@ -18,12 +18,11 @@ if (
         if (data.token) {
           // Lưu token và username
           localStorage.setItem("loggedInUser", username);
-          localStorage.setItem("mssv", data.mssv);
           localStorage.setItem("role", data.user.role);
       
           showUser(username);
       
-          if (data.user.role === "admin") { 
+          if (data.user.role === "admin") { // kiểm tra role từ data.user
           window.location.href = "/client/pages/QuanLy.html";
           } else {
             window.location.href = "/client/index.html";
@@ -96,6 +95,7 @@ window.onload = function () {
       const tenField = document.getElementById("tenSinhVien");
       const khoaField = document.getElementById("tenKhoa");
       const nganhField = document.getElementById("chuyenNganh");
+      const lopField = document.getElementById("lop");
 
       if (tenField) {
         tenField.value = data.fullName || "";
@@ -110,6 +110,10 @@ window.onload = function () {
       if (nganhField) {
         nganhField.value = data.nganh || "";
         nganhField.readOnly = true;
+      }
+      if (lopField) {
+        lopField.value = data.lop || "";
+        lopField.readOnly = true;
       }
     })
     .catch(err => {

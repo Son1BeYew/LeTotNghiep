@@ -7,17 +7,27 @@
     <title>Quản lý sinh viên</title>
     <link href="../css/QuanLy.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
 </head>
 
 <body>
-    <div class="sidebar">
-        <img src="../Hình ảnh/logo-hutech-1.png" alt="" class="logo" />
+    <header class="header">
+        <div class="logout" onclick="logoutUser(event)">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Đăng xuất</span>
+        </div>
+    </header>
+
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <img src="../Hình ảnh/logo-hutech-1.png" alt="" />
+        </div>
         <div class="text">
             <span>HỆ THỐNG HUTECH</span>
         </div>
         <a href="#" onclick="showTrangChuForm()">Trang chủ</a>
-        <a href="#" onclick="showQLSVForm()">Quản lý tài khoản sinh viên</a>
+        <a href="#" onclick="showQLTKSVForm()">Quản lý tài khoản sinh viên</a>
         <a href="#" onclick="showQLSVForm()">Quản lý thông tin sinh viên</a>
     </div>
     <div class="content">
@@ -26,11 +36,25 @@
         </div>
     </div>
     <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
         function showTrangChuForm() {
             window.location.href = "QuanLy.html";
         }
         function showQLSVForm() {
             window.location.href = "QuanLySinhVien.html";
+        }
+        function showQLTKSVForm() {
+            window.location.href = "QuanLyTaiKhoanSV.html";
+        }
+
+        function logoutUser(event) {
+            event.stopPropagation();
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "/client/index.html";
         }
     </script>
 </body>
