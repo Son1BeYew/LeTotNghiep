@@ -51,7 +51,7 @@
 .table-container {
     width: 100%;
     max-width: 1000px;
-    max-height: 480px;
+    max-height: 500px;
     overflow-y: auto; 
 }
 
@@ -133,4 +133,37 @@
 }
 .studentDSTK th:nth-child(4), .studentDSTK td:nth-child(4) {
     width: 20%;
+}
+
+.input-group {
+    position: relative;
+    width: 240px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 10px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.input-group label {
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    background: white;
+    padding: 0 4px;
+    color: #888;
+    font-size: 16px;
+    pointer-events: none;
+    transition: 0.2s ease all;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+    top: -10px;
+    font-size: 15px;
+    color: #000000;
 }

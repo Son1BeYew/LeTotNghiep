@@ -6,7 +6,6 @@
     min-height: calc(100vh - 80px);
     background: #ffffff;
 }
-
 .form_TKSV {
     width: 100%;
     display: flex;
@@ -18,14 +17,14 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 5px 15px;
     width: 100%;
     max-width: max-content;
     margin-bottom: 20px;
 }
 
-.studentForm input {
-    min-width: 240px;
+.studentForm input, .searchForm input {
+    min-width: 140px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -34,7 +33,7 @@
 
 .studentForm button {
     min-width: 100px;
-    padding: 12px;
+    padding: 15px;
     background-color: #258eff;
     color: white;
     font-size: 16px;
@@ -43,7 +42,18 @@
     cursor: pointer;
     transition: background-color 0.3s;
 }
-
+.searchForm button {
+    min-width: 100px;
+    padding: 15px;
+    background-color: #258eff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 15px;
+}
 .studentForm button:hover {
     background-color: #1a63b2;
 }
@@ -51,7 +61,7 @@
 .table-container {
     width: 100%;
     max-width: max-content;
-    max-height: 480px;
+    max-height: 430px;
     overflow-y: auto; 
 }
 
@@ -142,4 +152,40 @@
 }
 .studentDS th:nth-child(7), .studentDS td:nth-child(7) {
     width: 20%;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+    width: 200px;
+}
+
+.form-group input {
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    background-color: transparent;
+}
+
+.form-group label {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    background: white;
+    padding: 0 5px;
+    color: #999;
+    font-size: 16px;
+    transition: 0.2s ease all;
+    pointer-events: none;
+}
+
+/* Khi input có focus hoặc có giá trị, label di chuyển lên */
+.form-group input:focus + label,
+.form-group input:not(:empty) + label {
+    top: -10px;
+    left: 8px;
+    font-size: 15px;
+    color: #000000; /* Màu khi label di chuyển lên */
 }

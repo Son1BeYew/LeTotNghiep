@@ -3,9 +3,13 @@ let editingStudentMSSV = null;
 document.addEventListener("DOMContentLoaded", function () {
     fetchStudents();
 
-    const form = document.getElementById("studentForm");
-    form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Ngăn reload trang
+    // Gắn sự kiện riêng cho form cập nhật (form lớn)
+    document.getElementById("studentForm").addEventListener("submit", function (event) {
+        // Kiểm tra xem submit là từ nút "Cập nhật" hay không
+        const isUpdate = event.submitter && event.submitter.textContent === "Cập nhật";
+        if (!isUpdate) return;
+
+        event.preventDefault();
 
         const mssv = document.getElementById("mssv").value.trim();
         const hovaten = document.getElementById("hovaten").value.trim();
@@ -15,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const imageInput = document.getElementById("anh");
 
         if (!mssv || !hovaten || !khoa || !nganh) {
-            alert("Vui lòng nhập đầy đủ MSSV, họ tên, khoa và chuyên ngành!");
+            alert("Vui lòng nhập đầy đủ MSSV, họ và tên, khoa và chuyên ngành!!!");
             return;
         }
 
@@ -36,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
 
 // Hàm lấy danh sách sinh viên
 function fetchStudents() {
@@ -70,7 +75,9 @@ function fetchStudents() {
 
                 const imageCell = document.createElement("td");
                 if (student.image) {
-                    imageCell.innerHTML = `<img src="${student.image}" width="80" height="100"/>`;
+                    imageCell.style.textAlign = "center";
+                    imageCell.innerHTML = `<img src="${student.image}" width="100" height="100" style="display: block; margin: auto;" />`;
+
                 } else {
                     imageCell.textContent = "Không có ảnh";
                 }
@@ -161,3 +168,88 @@ function resetForm() {
     document.getElementById("studentForm").reset();
     editingStudentMSSV = null;
 }
+
+//Tìm kiếm sinh viên
+async function searchStudent() {
+    const searchMSSV = document.getElementById("searchMSSV").value.trim();
+
+    if (!searchMSSV) {
+        alert("Vui lòng nhập MSSV cần tìm!");
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:5000/api/DKLeTotNghiep/${searchMSSV}`);
+        const res = await response.json();
+
+        if (response.ok) {
+            const student = res.data;
+            const tableBody = document.getElementById("studentDSTable");
+            tableBody.innerHTML = "";
+
+            const row = document.createElement("tr");
+
+            const mssvCell = document.createElement("td");
+            mssvCell.textContent = student.mssv;
+            row.appendChild(mssvCell);
+
+            const hovatenCell = document.createElement("td");
+            hovatenCell.textContent = student.hovaten;
+            row.appendChild(hovatenCell);
+
+            const lopCell = document.createElement("td");
+            lopCell.textContent = student.lop || "";
+            row.appendChild(lopCell);
+
+            const khoaCell = document.createElement("td");
+            khoaCell.textContent = student.khoa;
+            row.appendChild(khoaCell);
+
+            const nganhCell = document.createElement("td");
+            nganhCell.textContent = student.nganh;
+            row.appendChild(nganhCell);
+
+            const imageCell = document.createElement("td");
+            if (student.image) {
+                imageCell.style.textAlign = "center";
+                imageCell.innerHTML = `<img src="${student.image}" width="80" height="100" style="display: block; margin: auto;" />`;
+            } else {
+                imageCell.textContent = "Không có ảnh";
+            }
+            row.appendChild(imageCell);
+
+            const actionCell = document.createElement("td");
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Xóa";
+            deleteButton.style.marginRight = "5px";
+            deleteButton.onclick = function () {
+                if (confirm("Bạn có chắc chắn muốn xóa sinh viên này không?")) {
+                    deleteStudent(student.mssv);
+                }
+            };
+            actionCell.appendChild(deleteButton);
+
+            const editButton = document.createElement("button");
+            editButton.textContent = "Sửa";
+            editButton.onclick = function () {
+                loadStudentToForm(student.mssv);
+            };
+            actionCell.appendChild(editButton);
+
+            row.appendChild(actionCell);
+            tableBody.appendChild(row);
+
+        } else {
+            alert(res.message || "Không tìm thấy sinh viên!");
+            // Nếu MSSV không tìm thấy, reset bảng về trống
+            document.getElementById("studentDSTable").innerHTML = "";
+        }
+    } catch (error) {
+        console.error("Lỗi tìm sinh viên:", error);
+        alert("Đã xảy ra lỗi khi tìm sinh viên.");
+    }
+}
+document.getElementById("searchButton").addEventListener("click", function () {
+    searchStudent();
+});

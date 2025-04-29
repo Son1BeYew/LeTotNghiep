@@ -35,9 +35,18 @@
     <div class="content_QLSV">
         <div class="form_TKSV">
             <form id="studentForm" class="studentForm">
-                <input type="text" id="username" placeholder="Tài khoản">
-                <input type="text" id="password" placeholder="Mật khẩu">
-                <input type="text" id="email" placeholder="Email">
+                <div class="input-group">
+                    <input type="text" id="username" required>
+                    <label for="username">Tài khoản</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="password" required>
+                    <label for="password">Mật khẩu</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="email" required>
+                    <label for="email">Email</label>
+                </div>
                 <button type="submit" class="button">Thêm</button>
                 <button type="submit" class="button">Cập nhật</button>
             </form>

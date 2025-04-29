@@ -35,14 +35,35 @@
     <div class="content_QLSV">
         <div class="form_TKSV">
             <form id="studentForm" class="studentForm">
-                <input type="text" id="mssv" name="mssv" placeholder="MSSV" />
-                <input type="text" id="hovaten" name="hovaten" placeholder="Họ và tên" />
-                <input type="text" id="lop" name="lop" placeholder="Lớp" />
-                <input type="text" id="khoa" name="khoa" placeholder="Khoa" />
-                <input type="text" id="nganh" name="nganh" placeholder="Chuyên ngành" />
+                <div class="form-group">
+                    <input type="text" id="mssv" name="mssv" required />
+                    <label for="mssv">MSSV</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="hovaten" name="hovaten" required />
+                    <label for="hovaten">Họ và tên</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lop" name="lop" required />
+                    <label for="lop">Lớp</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="khoa" name="khoa" required />
+                    <label for="khoa">Khoa</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="nganh" name="nganh" required />
+                    <label for="nganh">Chuyên ngành</label>
+                </div>
                 <input type="file" id="anh" name="image" accept="image/*" />
                 <button type="submit" class="button">Cập nhật</button>
+
+                <div id="searchForm" class="searchForm">
+                    <input type="text" id="searchMSSV" placeholder="Nhập mssv để tìm kiếm" />
+                    <button type="button" id="searchButton">Tìm kiếm</button>
+                </div>
             </form>
+
 
             <div class="table-container">
                 <table id="studentDS" class="studentDS">
