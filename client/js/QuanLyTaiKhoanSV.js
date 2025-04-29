@@ -156,3 +156,71 @@ function resetForm() {
     document.getElementById("studentForm").reset();
     editingUserId = null; // Reset trạng thái
 }
+
+async function searchUsers() {
+    const searchMSSV = document.getElementById("searchMSSV").value.trim();
+
+    if (!searchMSSV) {
+        fetchUsers(); 
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:5000/api/users/${searchMSSV}`);
+        const res = await response.json();
+
+        if (response.ok) {
+            const user = res.data;
+            const tableBody = document.getElementById("studentDSTKTable");
+            tableBody.innerHTML = "";
+
+            const row = document.createElement("tr");
+
+                const usernameCell = document.createElement("td");
+                usernameCell.textContent = user.username;
+                row.appendChild(usernameCell);
+
+                const passwordCell = document.createElement("td");
+                passwordCell.textContent = user.password;
+                row.appendChild(passwordCell);
+
+                const emailCell = document.createElement("td");
+                emailCell.textContent = user.email;
+                row.appendChild(emailCell);
+
+                const actionCell = document.createElement("td");
+
+                // Nút Xóa
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Xóa";
+                deleteButton.style.marginRight = "5px";
+                deleteButton.onclick = function () {
+                    if (confirm("Bạn có chắc chắn muốn xóa tài khoản này không?")) {
+                        deleteUser(user._id);
+                    }
+                };
+                actionCell.appendChild(deleteButton);
+
+                // Nút Sửa
+                const editButton = document.createElement("button");
+                editButton.textContent = "Sửa";
+                editButton.onclick = function () {
+                    loadUserToForm(user);
+                };
+                actionCell.appendChild(editButton);
+
+                row.appendChild(actionCell);
+                tableBody.appendChild(row);
+            } else {
+                alert(res.message || "Không tìm thấy sinh viên!");
+                document.getElementById("studentDSTKTable").innerHTML = "";
+            }
+        } catch (error) {
+            console.error("Lỗi tìm sinh viên:", error);
+            alert("Đã xảy ra lỗi khi tìm sinh viên.");
+        }
+    }
+    document.getElementById("searchButton").addEventListener("click", function () {
+        searchUsers();
+    });
+    

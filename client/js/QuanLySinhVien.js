@@ -174,7 +174,7 @@ async function searchStudent() {
     const searchMSSV = document.getElementById("searchMSSV").value.trim();
 
     if (!searchMSSV) {
-        alert("Vui lòng nhập MSSV cần tìm!");
+        fetchStudents();
         return;
     }
 

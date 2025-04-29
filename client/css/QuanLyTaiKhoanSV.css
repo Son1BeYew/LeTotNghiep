@@ -51,12 +51,12 @@
 .table-container {
     width: 100%;
     max-width: 1000px;
-    max-height: 500px;
+    max-height: 440px;
     overflow-y: auto; 
 }
 
 
-.studentDSTK {
+.studentDSTK {  
     width: 100%;
     border-collapse: collapse;
 }

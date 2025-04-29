@@ -12,15 +12,22 @@ exports.getAllUsers = async (req, res) => {
 exports.getUser = async (req, res) => {
   try {
     const { username } = req.params;
-    let user = await User.findOne({ username });
+    const user = await User.findOne({ username });
 
     if (!user) {
       return res.status(404).json({ message: "User không tồn tại" });
     }
-
-    res.json(user);
+   
+    res.json({
+      data: {
+        username: user.username,
+        password: user.password,
+        email: user.email,
+      }
+    });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("Lỗi:", error);
+    res.status(500).json({ message: "Lỗi server." });
   }
 };
 
