@@ -13,6 +13,3 @@ router.put("/:mssv", upload.single("image"), controller.updateDKLeTotNghiep); //
 router.delete("/:mssv", controller.deleteDKLeTotNghiep);
 
 module.exports = router;
-
-
-module.exports = router;

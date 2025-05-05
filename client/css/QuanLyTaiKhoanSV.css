@@ -51,7 +51,7 @@
 .table-container {
     width: 100%;
     max-width: 1000px;
-    max-height: 440px;
+    max-height: 430px;
     overflow-y: auto; 
 }
 
@@ -147,6 +147,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     outline: none;
+    color: #000000;
 }
 
 .input-group label {
@@ -155,15 +156,15 @@
     top: 12px;
     background: white;
     padding: 0 4px;
-    color: #888;
+    color: #727272;
     font-size: 16px;
     pointer-events: none;
     transition: 0.2s ease all;
 }
 
-.input-group input:focus + label,
-.input-group input:valid + label {
+.input-group input + label{
     top: -10px;
+    left: 15px;
     font-size: 15px;
-    color: #000000;
+    color: #727272;
 }

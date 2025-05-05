@@ -9,7 +9,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/styles.css" />
-  <link rel="stylesheet" href="../css/DangKySV.css" />
+  <link rel="stylesheet" href="../css/ThongTinSV.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 
@@ -43,7 +43,7 @@
         <i class="fas fa-user-circle"></i> <span id="usernameDisplay"></span>
         <i class="fas fa-caret-down"></i>
         <div class="dropdownSV" id="ID_dropdownSV">
-          <a href="#" onclick="showDangKySVForm()">Đăng ký thông tin</a>
+          <a href="#" onclick="showThongTinSV()">Thông tin sinh viên</a>
           <a href="#" onclick="logoutUser(event)">Đăng xuất</a>
         </div>
       </div>
@@ -77,47 +77,31 @@
     </div>
   </nav>
 
-  <main class="formDangKySV">
-    <h2>Đăng ký thông tin sinh viên</h2>
+  <main class="formThongTinSV">
+    <h2>Thông tin sinh viên</h2>
     <form id="studentForm">
       <label>Mã số sinh viên</label><br />
       <input type="text" name="mssv" id="mssv" required /><br />
 
       <label>Họ và tên</label><br />
-      <input type="text" name="fullname" required /><br />
+      <input type="text" name="fullname" id="fullname" required /><br />
 
       <label>Khoa</label><br />
-      <input type="text" name="faculty" required /><br />
+      <input type="text" name="faculty" id="faculty" required /><br />
 
       <label>Chuyên ngành</label><br />
-      <input type="text" name="major" required /><br />
+      <input type="text" name="major" id="major" required /><br />
 
       <label>Lớp</label><br />
-      <input type="text" name="class" required /><br />
+      <input type="text" name="class" id="class" required /><br />
 
-      <button type="submit">Đăng ký</button>
+      <label>Email</label><br />
+      <input type="text" name="email" id="email" required /><br />
     </form>
   </main>
 
-  <script>
-    function showImage() {
-      const img = document.getElementById("fullscreen-img");
-      img.style.display = "block";
-    }
-
-    function showImage() {
-      document.getElementById("fullscreen-img").style.display = "block";
-      document.getElementById("close-btn").style.display = "block";
-    }
-
-    function closeImage() {
-      document.getElementById("fullscreen-img").style.display = "none";
-      document.getElementById("close-btn").style.display = "none";
-    }
-  </script>
-
   <script src="../js/login.js"></script>
-  <script src="../js/formDK.js"></script>
+  <script src="../js/ThongTinSV.js"></script>
 </body>
 
 </html>

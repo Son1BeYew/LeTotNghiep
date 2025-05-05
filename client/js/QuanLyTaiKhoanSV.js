@@ -33,6 +33,12 @@ function fetchUsers() {
             const tableBody = document.getElementById("studentDSTKTable");
             tableBody.innerHTML = "";
 
+            data.sort((a, b) => {
+                if (!a.username) return 1;
+                if (!b.username) return -1;
+                return a.username.localeCompare(b.username);
+            });
+
             data.forEach(user => {
                 const row = document.createElement("tr");
 

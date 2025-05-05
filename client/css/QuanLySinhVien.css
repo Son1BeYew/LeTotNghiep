@@ -167,6 +167,7 @@
     border-radius: 4px;
     outline: none;
     background-color: transparent;
+    color: #000000;
 }
 
 .form-group label {
@@ -175,17 +176,14 @@
     left: 10px;
     background: white;
     padding: 0 5px;
-    color: #999;
     font-size: 16px;
     transition: 0.2s ease all;
     pointer-events: none;
 }
 
-/* Khi input có focus hoặc có giá trị, label di chuyển lên */
-.form-group input:focus + label,
-.form-group input:not(:empty) + label {
+.form-group input + label{
     top: -10px;
-    left: 8px;
+    left: 15px;
     font-size: 15px;
-    color: #000000; /* Màu khi label di chuyển lên */
+    color: #727272; 
 }

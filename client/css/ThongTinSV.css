@@ -1,0 +1,28 @@
+.formThongTinSV {
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 25px auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    background-color: white;
+}
+
+.formThongTinSV label {
+    font-weight: bold;
+}
+
+.formThongTinSV input {
+    width: 100%;
+    padding: 5px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+  }
+  
+.formThongTinSV h2 {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+}

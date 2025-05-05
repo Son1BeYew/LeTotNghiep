@@ -4,21 +4,18 @@ const multer = require("multer");
 const storage = multer.memoryStorage(); // Lưu ảnh vào RAM
 const upload = multer({ storage: storage });
 
-exports.upload = upload.single("image"); // Middleware xử lý file
-
 // Tạo đăng ký lễ tốt nghiệp
 exports.createDKLeTotNghiep = async (req, res) => {
   try {
     const { MSSV, tenSinhVien, lop, tenKhoa, chuyenNganh } = req.body;
-    console.log("Body:", req.body);
-    console.log("File:", req.file);
 
-    // ✅ Sửa lỗi ở đây (dùng mssv thường, trùng schema)
+    // Kiểm tra MSSV đã tồn tại chưa
     const existed = await DKLeTotNghiep.findOne({ mssv: MSSV });
     if (existed) {
-      return res.status(400).json({ message: "Sinh viên đã đăng ký!" });
+      return res.status(400).json({ message: "Bạn đã đăng ký rồi!" });
     }
 
+    // Tạo mới sinh viên
     const newDK = new DKLeTotNghiep({
       mssv: MSSV,
       hovaten: tenSinhVien,
@@ -27,8 +24,9 @@ exports.createDKLeTotNghiep = async (req, res) => {
       nganh: chuyenNganh,
     });
 
+    // Nếu có ảnh thì lưu vào buffer
     if (req.file) {
-      newDK.image = req.file.buffer; // Lưu ảnh dạng Buffer
+      newDK.image = req.file.buffer;
     }
 
     await newDK.save();
@@ -38,7 +36,8 @@ exports.createDKLeTotNghiep = async (req, res) => {
     res.status(500).json({ success: false, message: "Lỗi server!" });
   }
 };
-// API lấy 1 sinh viên theo MSSV
+
+// Lấy thông tin 1 sinh viên theo MSSV
 exports.getSingleDKLeTotNghiep = async (req, res) => {
   try {
     const { mssv } = req.params;
@@ -48,10 +47,8 @@ exports.getSingleDKLeTotNghiep = async (req, res) => {
       return res.status(404).json({ message: "Không tìm thấy sinh viên." });
     }
 
-    let imageBase64 = "";
-    if (student.image) {
-      imageBase64 = `data:image/jpeg;base64,${student.image.toString("base64")}`;
-    }
+    // Chuyển ảnh thành base64 nếu có
+    let imageBase64 = student.image ? `data:image/jpeg;base64,${student.image.toString("base64")}` : "";
 
     res.json({
       data: {
@@ -69,25 +66,19 @@ exports.getSingleDKLeTotNghiep = async (req, res) => {
   }
 };
 
+// Lấy tất cả sinh viên
 exports.getAllDKLeTotNghiep = async (req, res) => {
   try {
     const students = await DKLeTotNghiep.find();
 
-    const studentList = students.map(student => {
-      let imageBase64 = "";
-      if (student.image) {
-        imageBase64 = `data:image/jpeg;base64,${student.image.toString("base64")}`;
-      }
-
-      return {
-        mssv: student.mssv,
-        hovaten: student.hovaten,
-        lop: student.lop,
-        khoa: student.khoa,
-        nganh: student.nganh,
-        image: imageBase64,
-      };
-    });
+    const studentList = students.map(student => ({
+      mssv: student.mssv,
+      hovaten: student.hovaten,
+      lop: student.lop,
+      khoa: student.khoa,
+      nganh: student.nganh,
+      image: student.image ? `data:image/jpeg;base64,${student.image.toString("base64")}` : "",
+    }));
 
     res.json(studentList);
   } catch (error) {
@@ -96,7 +87,7 @@ exports.getAllDKLeTotNghiep = async (req, res) => {
   }
 };
 
-// Cập nhật sinh viên theo MSSV
+// Cập nhật thông tin sinh viên theo MSSV
 exports.updateDKLeTotNghiep = async (req, res) => {
   try {
     const mssv = req.params.mssv;
@@ -106,38 +97,38 @@ exports.updateDKLeTotNghiep = async (req, res) => {
       return res.status(404).json({ message: "Không tìm thấy sinh viên." });
     }
 
-    // Cập nhật các trường
+    // Cập nhật các trường thông tin
     student.hovaten = req.body.hovaten || student.hovaten;
     student.lop = req.body.lop || student.lop;
     student.khoa = req.body.khoa || student.khoa;
     student.nganh = req.body.nganh || student.nganh;
 
-    // Nếu upload ảnh mới, cập nhật ảnh
+    // Cập nhật ảnh nếu có
     if (req.file) {
       student.image = req.file.buffer;
     }
 
     await student.save();
-
-    res.json({ message: "Cập nhật sinh viên thành công." });
+    res.json({ message: "Cập nhật thành công!" });
   } catch (error) {
-    console.error("Lỗi updateStudentByMSSV:", error);
+    console.error("Lỗi update:", error);
     res.status(500).json({ message: "Lỗi server." });
   }
 };
 
+// Xóa sinh viên theo MSSV
 exports.deleteDKLeTotNghiep = async (req, res) => {
   try {
-    const { mssv } = req.params; // sửa lại thành mssv, không phải MSSV
-    const result = await DKLeTotNghiep.findOneAndDelete({ mssv: mssv });
+    const { mssv } = req.params;
+    const result = await DKLeTotNghiep.findOneAndDelete({ mssv });
 
     if (!result) {
-      return res.status(404).json({ success: false, message: "Không tìm thấy sinh viên để xóa!" });
+      return res.status(404).json({ message: "Không tìm thấy sinh viên để xóa!" });
     }
 
-    res.json({ success: true, message: "Xóa thành công!" });
+    res.json({ message: "Xóa thành công!" });
   } catch (error) {
     console.error("Lỗi xóa sinh viên:", error);
-    res.status(500).json({ success: false, message: "Lỗi server!" });
+    res.status(500).json({ message: "Lỗi server!" });
   }
 };

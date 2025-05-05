@@ -49,7 +49,13 @@ function fetchStudents() {
         .then(data => {
             const tableBody = document.getElementById("studentDSTable");
             tableBody.innerHTML = "";
-
+            
+            data.sort((a, b) => {
+                if (!a.lop) return 1;
+                if (!b.lop) return -1;
+                return a.lop.localeCompare(b.lop);
+            });
+            
             data.forEach(student => {
                 const row = document.createElement("tr");
 

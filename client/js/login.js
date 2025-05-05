@@ -84,47 +84,11 @@ window.onload = function () {
     mssvField.value = loggedInUser;
     mssvField.readOnly = true;
   }
-
-  // Gọi API để lấy thông tin sinh viên
-  fetch(`http://localhost:5000/api/registers/${loggedInUser}`)
-    .then(response => {
-      if (!response.ok) throw new Error("Không tìm thấy sinh viên");
-      return response.json();
-    })
-    .then(data => {
-      const tenField = document.getElementById("tenSinhVien");
-      const khoaField = document.getElementById("tenKhoa");
-      const nganhField = document.getElementById("chuyenNganh");
-      const lopField = document.getElementById("lop");
-
-      if (tenField) {
-        tenField.value = data.fullName || "";
-        tenField.readOnly = true;
-      }
-
-      if (khoaField) {
-        khoaField.value = data.khoa || "";
-        khoaField.readOnly = true;
-      }
-
-      if (nganhField) {
-        nganhField.value = data.nganh || "";
-        nganhField.readOnly = true;
-      }
-      if (lopField) {
-        lopField.value = data.lop || "";
-        lopField.readOnly = true;
-      }
-    })
-    .catch(err => {
-      console.error("Lỗi tải dữ liệu sinh viên:", err.message);
-      alert("Bạn cần đăng ký thông tin trước!!!");
-    });
 };
 
 
-function showDangKySVForm() {
-  window.location.href = '/client/pages/DangKySV.html';
+function showThongTinSV() {
+  window.location.href = '/client/pages/ThongTinSV.html';
 }
 
 function showDropDownSV() {
