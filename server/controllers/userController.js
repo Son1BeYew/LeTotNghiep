@@ -86,7 +86,7 @@ exports.deleteUser = async (req, res) => {
       return res.status(404).json({ message: "User không tồn tại" });
     }
 
-    res.json({ message: "User đã xóa!!!" });
+    res.json({ message: "Tài khoản đã được xóa!!!" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
