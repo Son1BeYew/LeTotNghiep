@@ -9,7 +9,7 @@ const upload = multer({ storage: storage });
 router.get("/", controller.getAllDKLeTotNghiep);
 router.get("/:mssv", controller.getSingleDKLeTotNghiep);
 router.post("/", upload.single("image"), controller.createDKLeTotNghiep);
-router.put("/:mssv", upload.single("image"), controller.updateDKLeTotNghiep); // ✅ thêm upload ở đây
+router.put("/:mssv", upload.single("image"), controller.updateDKLeTotNghiep);
 router.delete("/:mssv", controller.deleteDKLeTotNghiep);
 
 module.exports = router;

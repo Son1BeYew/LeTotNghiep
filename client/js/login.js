@@ -1,7 +1,8 @@
-// Xử lý đăng nhập (chỉ trang index mới có form login)
 const loginButton = document.querySelector(".login-button");
 if (
-  loginButton && document.getElementById("username") && document.getElementById("password")
+  loginButton &&
+  document.getElementById("username") &&
+  document.getElementById("password")
 ) {
   loginButton.addEventListener("click", function () {
     const username = document.getElementById("username").value;
@@ -16,25 +17,23 @@ if (
       .then((data) => {
         alert(data.message);
         if (data.token) {
-          // Lưu token và username
           localStorage.setItem("loggedInUser", username);
           localStorage.setItem("role", data.user.role);
-      
+
           showUser(username);
-      
-          if (data.user.role === "admin") { // kiểm tra role từ data.user
-          window.location.href = "/client/pages/QuanLy.html";
+
+          if (data.user.role === "admin") {
+            window.location.href = "/client/pages/QuanLy.html";
           } else {
             window.location.href = "/client/index.html";
           }
         }
       })
-      
+
       .catch((error) => console.error("Lỗi:", error));
   });
 }
 
-// Hàm hiển thị user info và cập nhật UI
 function showUser(username) {
   const userInfo = document.getElementById("userinfo");
   const usernameDisplay = document.getElementById("usernameDisplay");
@@ -50,8 +49,6 @@ function showUser(username) {
     loginForm.style.display = "none";
   }
 }
-
-// Hàm đăng xuất
 function logoutUser(event) {
   event.stopPropagation();
   localStorage.removeItem("loggedInUser");
@@ -59,26 +56,23 @@ function logoutUser(event) {
   window.location.href = "/client/index.html";
 }
 
-// Khi load trang, kiểm tra trạng thái đăng nhập
+// kiểm tra trạng thái đăng nhập
 window.onload = function () {
   if (!requireLogin()) return;
 
   const loggedInUser = localStorage.getItem("loggedInUser");
 
   if (!loggedInUser) {
-    // Nếu không đăng nhập và không phải ở trang đăng nhập, chuyển hướng
     if (!document.querySelector(".login-section")) {
       window.location.href = "/client/index.html";
     }
     return;
   }
 
-  // Hiển thị người dùng nếu có
   if (typeof showUser === "function") {
     showUser(loggedInUser);
   }
 
-  // Lấy các input và gán dữ liệu từ localStorage
   const mssvField = document.getElementById("MSSV");
   if (mssvField) {
     mssvField.value = loggedInUser;
@@ -86,9 +80,8 @@ window.onload = function () {
   }
 };
 
-
 function showThongTinSV() {
-  window.location.href = '/client/pages/ThongTinSV.html';
+  window.location.href = "/client/pages/ThongTinSV.html";
 }
 
 function showDropDownSV() {
@@ -108,21 +101,21 @@ document.addEventListener("click", function (event) {
   }
 });
 
-// Hàm kiểm tra đăng nhập, chỉ hiển thị thông báo khi người dùng chưa đăng nhập
 function requireLogin() {
   const loggedInUser = localStorage.getItem("loggedInUser");
 
   if (!loggedInUser || loggedInUser.trim() === "") {
-    return false; // Không thực hiện chuyển hướng tại đây
+    return false;
   }
   return true;
 }
 
-document.getElementById("linkDKLTN")?.addEventListener("click", function(event) {
-  // Kiểm tra nếu chưa đăng nhập
-  if (!requireLogin()) {
-    alert("Bạn cần đăng nhập để có thể đăng ký lễ tốt nghiệp!!!.");
-    window.location.href = "/client/index.html"; // Chuyển hướng đến trang đăng nhập
-    event.preventDefault(); // Ngừng hành động mặc định (chuyển hướng đến trang Đăng ký lễ tốt nghiệp)
-  }
-});
+document
+  .getElementById("linkDKLTN")
+  ?.addEventListener("click", function (event) {
+    if (!requireLogin()) {
+      alert("Bạn cần đăng nhập để có thể đăng ký lễ tốt nghiệp!!!.");
+      window.location.href = "/client/index.html";
+      event.preventDefault();
+    }
+  });

@@ -1,31 +1,30 @@
-document.getElementById("letotnghiepForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+document
+  .getElementById("letotnghiepForm")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  const form = e.target;
-  const formData = new FormData(form);
-  const mssv = formData.get("MSSV");
-
-  // Gửi dữ liệu mới đến server để tạo mới hoặc cập nhật
-  fetch("http://localhost:5000/api/DKLeTotNghiep", {
-    method: "POST",
-    body: formData,
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.success) {
-        alert("Đã lưu thông tin lễ tốt nghiệp!");
-        fetchStudentData(mssv); 
-      } else {
-        alert(data.message || "Đã xảy ra lỗi khi đăng ký.");
-      }
+    const form = e.target;
+    const formData = new FormData(form);
+    const mssv = formData.get("MSSV");
+    fetch("http://localhost:5000/api/DKLeTotNghiep", {
+      method: "POST",
+      body: formData,
     })
-    .catch((err) => {
-      console.error("Lỗi gửi form:", err);
-      alert("Lỗi khi gửi biểu mẫu!");
-    });
-});
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          alert("Đã lưu thông tin lễ tốt nghiệp!");
+          fetchStudentData(mssv);
+        } else {
+          alert(data.message || "Đã xảy ra lỗi khi đăng ký.");
+        }
+      })
+      .catch((err) => {
+        console.error("Lỗi gửi form:", err);
+        alert("Lỗi khi gửi biểu mẫu!");
+      });
+  });
 
-// Hàm lấy và hiển thị dữ liệu sinh viên
 function fetchStudentData(mssv) {
   fetch(`http://localhost:5000/api/DKLeTotNghiep/${mssv}`)
     .then((res) => res.json())
@@ -47,17 +46,14 @@ function fetchStudentData(mssv) {
         document.getElementById("tenKhoa").value = student.khoa;
         document.getElementById("chuyenNganh").value = student.nganh;
 
-        // Hiển thị ảnh nếu có
         if (student.image) {
           const preview = document.getElementById("preview");
-
-          // Kiểm tra xem có phải là base64 hợp lệ không
-          if (student.image.startsWith('data:image')) {
-            preview.src = student.image; 
+          if (student.image.startsWith("data:image")) {
+            preview.src = student.image;
           } else {
-            preview.src = `data:image/jpeg;base64,${student.image}`;  
+            preview.src = `data:image/jpeg;base64,${student.image}`;
           }
-          
+
           preview.classList.remove("hidden");
         }
       } else {
@@ -73,19 +69,26 @@ function showBackdrop(info) {
   const backgroundWrapper = document.querySelector(".background-wrapper");
   backgroundWrapper.innerHTML = `
     <div class="backdrop-content">
-      <h2>🎓 Chúc mừng lễ tốt nghiệp! 🎓</h2>
-      <p><strong>MSSV:</strong> ${info.mssv}</p>
-      <p><strong>Họ và tên:</strong> ${info.hovaten}</p>
-      <p><strong>Lớp:</strong> ${info.lop}</p>
-      <p><strong>Khoa:</strong> ${info.khoa}</p>
-      <p><strong>Chuyên ngành:</strong> ${info.nganh}</p>
-      ${info.imageBase64 ? `<img class="student-photo" src="${info.imageBase64}" alt="" />` : ""}
+      <p class="school-header">Bộ Giáo dục và Đào tạo </p>
+      <p class="school-header-1">Trường Đại Học Công Nghệ TP. HCM </p>
+      <img src="https://img5.thuthuatphanmem.vn/uploads/2021/07/14/logo-dai-hoc-hutech_012634748.png" class="logoInBackDrop" alt="Logo" />
+      <h2 class="graduation-title">🎓 Chúc mừng tốt nghiệp! 🎓</h2>
+      <div class="student-info">
+        <p><strong>MSSV:</strong> ${info.mssv}</p>
+        <p><strong>Họ và tên:</strong> ${info.hovaten}</p>
+        <p><strong>Lớp:</strong> ${info.lop}</p>
+        <p><strong>Khoa:</strong> ${info.khoa}</p>
+        <p><strong>Chuyên ngành:</strong> ${info.nganh}</p>
+      </div>
+      ${
+        info.imageBase64
+          ? `<img class="student-photo" src="${info.imageBase64}" alt="" />`
+          : ""
+      }
     </div>
   `;
   document.querySelector(".background-container").style.display = "flex";
 }
-
-
 
 window.addEventListener("load", function () {
   const mssvInput = document.getElementById("MSSV");
@@ -96,3 +99,12 @@ window.addEventListener("load", function () {
   }
 });
 
+function exportToImage() {
+  const backdrop = document.querySelector(".background-wrapper");
+  html2canvas(backdrop).then((canvas) => {
+    const link = document.createElement("a");
+    link.download = "anhtotnghiep.png";
+    link.href = canvas.toDataURL();
+    link.click();
+  });
+}

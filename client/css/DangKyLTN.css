@@ -42,9 +42,9 @@
   border: 1px solid #ccc;
   border-radius: 15px;
 }
-.content h1{
+.content h1 {
   font-weight: bold;
-  font-size: 20px;  
+  font-size: 20px;
   text-align: center;
 }
 .letotnghiepForm button {
@@ -58,7 +58,7 @@
   margin-left: 20%;
   margin-top: 10px;
 }
-.letotnghiepForm button:hover{
+.letotnghiepForm button:hover {
   transition: 0.3s;
   background-color: #294eb3;
   color: white;
@@ -81,7 +81,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px; 
+  gap: 10px;
   margin-left: 20px;
 }
 .background-title {
@@ -90,7 +90,7 @@
   margin-bottom: 20px;
 }
 
-.background-wrapper{
+.background-wrapper {
   position: relative;
   width: 970px;
   height: 525px;
@@ -100,20 +100,66 @@
   align-items: center;
   justify-content: center;
 }
-.xemanh{
+.xemanh {
   width: 100px;
   padding: 3px;
   color: white;
-  background-color:  #1e3a8a;
+  background-color: #1e3a8a;
   border-radius: 2;
   border-radius: 5px;
   font-size: 15px;
   align-self: flex-end;
 }
-.xemanh:hover{
+.xemanh:hover {
   transition: 0.3s;
   background-color: #294eb3;
   color: white;
   cursor: pointer;
 }
+.logoInBackDrop {
+  height: 100px;
+  margin-left: -650px;
+  margin-top: -200px;
+}
+.student-photo {
+  position: absolute;
+  left: 50px;
+  top: 150px;
+}
+.graduation-title {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: right;
+  margin-right: -50px;
+}
 
+.student-info {
+  text-align: left;
+  margin-right: 20px;
+  font-size: 18px;
+  color: white;
+}
+.school-header {
+  position: absolute;
+  top: 10px;
+  left: 230px;
+  right: 0;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  z-index: 10;
+}
+.school-header-1 {
+  position: absolute;
+  top: 40px;
+  left: 230px;
+  right: 0;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  z-index: 0;
+}
