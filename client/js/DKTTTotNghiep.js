@@ -101,10 +101,12 @@ window.addEventListener("load", function () {
 
 function exportToImage() {
   const backdrop = document.querySelector(".background-wrapper");
-  html2canvas(backdrop).then((canvas) => {
+  html2canvas(backdrop, {
+    scale: 2,
+  }).then((canvas) => {
     const link = document.createElement("a");
     link.download = "anhtotnghiep.png";
-    link.href = canvas.toDataURL();
+    link.href = canvas.toDataURL("image/png");
     link.click();
   });
 }
