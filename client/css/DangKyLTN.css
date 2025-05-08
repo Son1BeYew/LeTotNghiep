@@ -79,7 +79,7 @@
 
 .background-container {
   flex-direction: row;
-  gap: 10px;
+  gap: 5px;
   margin-left: 20px;
   align-items: flex-end;
   }

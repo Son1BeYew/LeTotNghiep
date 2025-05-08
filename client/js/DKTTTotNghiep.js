@@ -76,8 +76,8 @@ function showBackdrop(info) {
         <h2 class="graduation-title">🎓Chúc mừng🎓</h2>
         <h2 class="graduation-title1">Tân cử nhân</h2>
         <p class="hovaten"> ${info.hovaten}</p>
-        <p class="khoa">Khoa: ${info.khoa}</p>
-        <p class="chuyenganh">Chuyên ngành: ${info.nganh}</p>
+        <p class="khoa">Khoa ${info.khoa}</p>
+        <p class="chuyenganh">Chuyên ngành ${info.nganh}</p>
       </div>
       <img class="gaubong" src="../Hình ảnh/gaubongtotnghiep.png" alt="" />
       <img class="mu" src="../Hình ảnh/mutotnghiep.png" alt="" />
