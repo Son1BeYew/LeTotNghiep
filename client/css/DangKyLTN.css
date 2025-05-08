@@ -78,12 +78,12 @@
 }
 
 .background-container {
-  display: flex;
   flex-direction: row;
-  align-items: center;
   gap: 10px;
   margin-left: 20px;
-}
+  align-items: flex-end;
+  }
+  
 .background-title {
   font-size: 24px;
   font-weight: bold;
@@ -100,7 +100,7 @@
   align-items: center;
   justify-content: center;
 }
-.xemanh {
+.xemanh, .taianh {
   width: 100px;
   padding: 3px;
   color: white;
@@ -116,50 +116,9 @@
   color: white;
   cursor: pointer;
 }
-.logoInBackDrop {
-  height: 100px;
-  margin-left: -650px;
-  margin-top: -200px;
-}
-.student-photo {
-  position: absolute;
-  left: 50px;
-  top: 150px;
-}
-.graduation-title {
-  font-size: 32px;
-  font-weight: bold;
-  text-align: right;
-  margin-right: -50px;
-}
-
-.student-info {
-  text-align: left;
-  margin-right: 20px;
-  font-size: 18px;
-  color: white;
-}
-.school-header {
-  position: absolute;
-  top: 10px;
-  left: 230px;
-  right: 0;
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-  color: white;
-  text-transform: uppercase;
-  z-index: 10;
-}
-.school-header-1 {
-  position: absolute;
-  top: 40px;
-  left: 230px;
-  right: 0;
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-  color: white;
-  text-transform: uppercase;
-  z-index: 0;
+.button-wrapper {
+  display: flex;
+  flex-direction: column; /* xếp dọc */
+  align-items: flex-end;  /* căn phải */
+  gap: 10px;               /* khoảng cách giữa 2 nút */
 }

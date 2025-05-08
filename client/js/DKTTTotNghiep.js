@@ -71,20 +71,20 @@ function showBackdrop(info) {
     <div class="backdrop-content">
       <p class="school-header">Bộ Giáo dục và Đào tạo </p>
       <p class="school-header-1">Trường Đại Học Công Nghệ TP. HCM </p>
-      <img src="https://img5.thuthuatphanmem.vn/uploads/2021/07/14/logo-dai-hoc-hutech_012634748.png" class="logoInBackDrop" alt="Logo" />
-      <h2 class="graduation-title">🎓 Chúc mừng tốt nghiệp! 🎓</h2>
+      <img src="../Hình ảnh/logo-hutech-1.png" class="logoInBackDrop" alt="Logo" />
       <div class="student-info">
-        <p><strong>MSSV:</strong> ${info.mssv}</p>
-        <p><strong>Họ và tên:</strong> ${info.hovaten}</p>
-        <p><strong>Lớp:</strong> ${info.lop}</p>
-        <p><strong>Khoa:</strong> ${info.khoa}</p>
-        <p><strong>Chuyên ngành:</strong> ${info.nganh}</p>
+        <h2 class="graduation-title">🎓Chúc mừng🎓</h2>
+        <h2 class="graduation-title1">Tân cử nhân</h2>
+        <p class="hovaten"> ${info.hovaten}</p>
+        <p class="khoa">Khoa: ${info.khoa}</p>
+        <p class="chuyenganh">Chuyên ngành: ${info.nganh}</p>
       </div>
-      ${
-        info.imageBase64
-          ? `<img class="student-photo" src="${info.imageBase64}" alt="" />`
-          : ""
-      }
+      <img class="gaubong" src="../Hình ảnh/gaubongtotnghiep.png" alt="" />
+      <img class="mu" src="../Hình ảnh/mutotnghiep.png" alt="" />
+      <div class="student-photo-container">
+          <img class="khungvien" src="../Hình ảnh/khungvien.png" alt="" />
+          ${info.imageBase64? `<img class="student-photo" src="${info.imageBase64}" alt="" />`: ""}      
+      </div>
     </div>
   `;
   document.querySelector(".background-container").style.display = "flex";

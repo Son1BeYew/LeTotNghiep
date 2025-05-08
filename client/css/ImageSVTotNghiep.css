@@ -14,23 +14,133 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.5);
   }
-  
-  .backdrop-content h2 {
-    font-size: 28px;
-    margin-bottom: 15px;
+  .logoInBackDrop {
+    position: absolute;
+    height: 50px;
+    margin-left: -700px;
+    top: 20px;
   }
-  
-  .backdrop-content p {
-    margin: 5px 0;
+
+  .student-info {
+    position: absolute;
+    top: 100px;
+    left: 230px;
+    right: 0;
+    text-align: center;
+    margin-right: 20px;
     font-size: 18px;
+    color: white;
+  }
+  .student-info {
+    position: absolute;
+    top: 100px;
+    left: 230px;
+    right: 0;
+    text-align: center;
+    margin-right: 20px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
+  /* Tiêu đề "Chúc mừng" */
+  .graduation-title {
+    font-size: 48px;
+    color: #FFD700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    margin-bottom: 5px;
+    font-family: "Dancing Script", cursive;
+  }
+  
+  /* Tiêu đề "Tân cử nhân" */
+  .graduation-title1 {
+    font-size: 28px;
+    font-weight: bold;
+    font-family:  "Righteous", sans-serif;
+  }
+  
+  /* Họ và tên */
+  .hovaten {
+    font-size: 24px;
+    font-weight: bold;
+    color: #00FFCC;
+    margin-bottom: 10px;
+  }
+  
+  /* Khoa và chuyên ngành */
+  .khoa, .chuyenganh {
+    font-size: 20px;
+    margin: 5px 0;
+    color: #f0f0f0;
+  }
+  
+  /* header */
+  .school-header {
+    position: absolute;
+    top: 10px;
+    left: 230px;
+    right: 0;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    z-index: 10;
+  }
+  .school-header-1 {
+    position: absolute;
+    top: 40px;
+    left: 230px;
+    right: 0;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    z-index: 0;
+  }
+
+/* Khung ảnh */
+  .student-photo-container {
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    width: 250px;
+    height: 300px;
+  }
+  .khungvien {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2
+  }
   .student-photo {
-    width: 150px;
-    height: 150px;
+    width: 185px;
+    height: 235px;
     object-fit: cover;
-    border-radius: 10px;
-    margin-top: 15px;
     border: 2px solid white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
   }
-  
+  .gaubong{
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    top: 290px;
+    left: 7px;
+    transform: rotate(-20deg);
+    z-index: 3;
+  }
+  .mu{
+    position: absolute;
+    width: 190px;
+    height: 170px;
+    top: 50px;
+    left: 170px;
+    transform: rotate(35deg);
+    z-index: 3;
+  }
