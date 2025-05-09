@@ -117,11 +117,22 @@
       <div class="background-wrapper"></div>
 
       <div class="button-wrapper">
+        <button class="taianh" onclick="exportToImage()">
+          <i class="fa-solid fa-down-long"></i> Tải ảnh
+        </button>
 
-        <button class="taianh" onclick="exportToImage()"><i class="fa-solid fa-down-long"></i> Tải ảnh</button>
-        <button class="xemanh" onclick="showImage()"><i class="fa-solid fa-magnifying-glass"></i> Xem ảnh</button>
+        <button class="xemanh" onclick="openBackdropZoom()">
+          <i class="fa-solid fa-magnifying-glass"></i> Xem ảnh
+        </button>
+
       </div>
     </div>
+
+    <!-- Overlay hiển thị ảnh phóng to -->
+    <div id="imageOverlay" class="image-overlay hidden" onclick="closeImage()">
+      <div id="fullBackdrop" class="full-backdrop"></div>
+    </div>
+
 
   </div>
 

@@ -118,7 +118,31 @@
 }
 .button-wrapper {
   display: flex;
-  flex-direction: column; /* xếp dọc */
-  align-items: flex-end;  /* căn phải */
-  gap: 10px;               /* khoảng cách giữa 2 nút */
+  flex-direction: column;
+  align-items: flex-end;  
+  gap: 10px;              
+}
+
+.image-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: auto;
+}
+
+.image-overlay.hidden {
+  display: none;
+}
+
+.full-backdrop {
+  transform: scale(1.2);
+  transform-origin: center center;
+  display: inline-block;
 }

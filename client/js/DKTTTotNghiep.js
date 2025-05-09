@@ -110,3 +110,26 @@ function exportToImage() {
     link.click();
   });
 }
+
+//Xem ảnh lớn
+function openBackdropZoom() {
+  const backdrop = document.querySelector(".background-wrapper");
+  const fullBackdrop = document.getElementById("fullBackdrop");
+  const overlay = document.getElementById("imageOverlay");
+
+  if (backdrop && fullBackdrop) {
+    const clone = backdrop.cloneNode(true); // clone toàn bộ node
+    fullBackdrop.innerHTML = ""; // clear cũ
+    fullBackdrop.appendChild(clone); // thêm bản sao DOM thật sự
+
+    overlay.classList.remove("hidden");
+  }
+}
+
+function closeImage() {
+  const overlay = document.getElementById("imageOverlay");
+  const fullBackdrop = document.getElementById("fullBackdrop");
+
+  fullBackdrop.innerHTML = "";
+  overlay.classList.add("hidden");
+}
