@@ -116,6 +116,12 @@
   color: white;
   cursor: pointer;
 }
+.taianh:hover {
+  transition: 0.3s;
+  background-color: #294eb3;
+  color: white;
+  cursor: pointer;
+}
 .button-wrapper {
   display: flex;
   flex-direction: column;
