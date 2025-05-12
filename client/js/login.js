@@ -17,6 +17,7 @@ if (
       .then((data) => {
         alert(data.message);
         if (data.token) {
+          localStorage.setItem("token", data.token);
           localStorage.setItem("loggedInUser", username);
           localStorage.setItem("role", data.user.role);
 
