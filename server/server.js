@@ -22,7 +22,11 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/DKLeTotNghiep", DKLeTotNghiepRoutes);
 app.use("/api/thumoi", thuMoiRoutes);
-app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
+const uploadsPath = path.join(__dirname, "..", "uploads");
+
+app.use("/uploads", express.static(uploadsPath));
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server started `);

@@ -17,7 +17,13 @@ const createInvitation = async (req, res) => {
     });
     await invitation.save();
 
-    res.status(201).json({ message: "Tạo thành công", invitation });
+    res.status(201).json({
+      message: "Tạo thành công",
+      invitation: {
+        fullname: invitation.fullname,
+        imagePath: "uploads/" + req.file.filename, // hoặc: path.basename(invitation.imagePath)
+      },
+    });
   } catch (error) {
     res.status(500).json({ message: "Lỗi server", error });
   }
@@ -50,8 +56,10 @@ const getMyInvitation = async (req, res) => {
     if (!invitation) {
       return res.status(404).json({ message: "Chưa có thư mời nào." });
     }
-
-    res.json(invitation);
+    res.json({
+      fullname: invitation.fullname,
+      imagePath: "uploads/" + require("path").basename(invitation.imagePath),
+    });
   } catch (error) {
     res.status(500).json({ message: "Lỗi server", error });
   }

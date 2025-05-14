@@ -57,7 +57,6 @@ function logoutUser(event) {
   window.location.href = "/client/index.html";
 }
 
-// kiểm tra trạng thái đăng nhập
 window.onload = function () {
   if (!requireLogin()) return;
 

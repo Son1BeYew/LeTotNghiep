@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  console.log("DOMContentLoaded triggered");
+
   const token = localStorage.getItem("token");
 
   if (!token) {
@@ -13,11 +15,30 @@ document.addEventListener("DOMContentLoaded", async () => {
   const createButton = document.getElementById("createButton");
   const preview = document.getElementById("image_ThuMoi");
 
+  // Hiển thị ảnh xem trước khi chọn ảnh mới
   imageInput.addEventListener("change", () => {
-    filePathInput.value = imageInput.files[0]?.name || "";
+    const file = imageInput.files[0];
+    filePathInput.value = file?.name || "";
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        preview.innerHTML = `
+          <img src="${e.target.result}" 
+               alt="Xem trước ảnh"
+               class="max-w-full h-auto mt-4 border rounded opacity-0" 
+               id="thumoi_img" />
+        `;
+        setTimeout(() => {
+          const img = document.getElementById("thumoi_img");
+          if (img) img.classList.remove("opacity-0");
+        }, 100);
+      };
+      reader.readAsDataURL(file);
+    }
   });
 
-  // Tải thư mời nếu đã có
+  // Tải thư mời nếu người dùng hiện tại đã tạo
   try {
     const res = await fetch("http://localhost:5000/api/thumoi/me", {
       headers: {
@@ -27,27 +48,34 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (res.ok) {
       const data = await res.json();
-      if (data.invitation?.imagePath) {
-        preview.innerHTML = `<img src="http://localhost:5000/${data.invitation.imagePath}" alt="Ảnh thư mời" class="max-w-full h-auto mt-4 border rounded opacity-0" id="thumoi_img" />`;
-        fullnameInput.value = data.invitation.fullname;
 
-        // Hiệu ứng fade in
+      if (data.imagePath) {
+        fullnameInput.value = data.fullname;
+        preview.innerHTML = `
+          <img src="http://localhost:5000/${data.imagePath}" 
+               alt="Ảnh thư mời" 
+               class="max-w-full h-auto mt-4 border rounded opacity-0" 
+               id="thumoi_img" />
+        `;
         setTimeout(() => {
           const img = document.getElementById("thumoi_img");
           if (img) img.classList.remove("opacity-0");
         }, 100);
 
-        // Vô hiệu hóa nút
+        // Disable button nếu đã tạo rồi
         createButton.disabled = true;
         createButton.style.backgroundColor = "#a1a1a1";
         createButton.style.cursor = "not-allowed";
       }
+    } else {
+      // Nếu chưa có thư mời => không làm gì
+      console.log("Chưa có thư mời");
     }
   } catch (err) {
     console.error("Không thể tải thư mời:", err);
   }
 
-  // Xử lý tạo thư mời
+  // Tạo thư mời
   createButton.addEventListener("click", async () => {
     if (createButton.disabled) return;
 
@@ -76,19 +104,24 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       if (!response.ok) {
         alert(data.message || "Lỗi tạo thư mời.");
-      } else {
-        alert("Tạo thư mời thành công!");
-        preview.innerHTML = `<img src="http://localhost:5000/${data.invitation.imagePath}" alt="Ảnh thư mời" class="max-w-full h-auto mt-4 border rounded opacity-0" id="thumoi_img" />`;
-
-        setTimeout(() => {
-          const img = document.getElementById("thumoi_img");
-          if (img) img.classList.remove("opacity-0");
-        }, 100);
-
-        createButton.disabled = true;
-        createButton.style.backgroundColor = "#a1a1a1";
-        createButton.style.cursor = "not-allowed";
+        return;
       }
+
+      alert("Tạo thư mời thành công!");
+      preview.innerHTML = `
+        <img src="http://localhost:5000/${data.invitation.imagePath}" 
+             alt="Ảnh thư mời" 
+             class="max-w-full h-auto mt-4 border rounded opacity-0" 
+             id="thumoi_img" />
+      `;
+      setTimeout(() => {
+        const img = document.getElementById("thumoi_img");
+        if (img) img.classList.remove("opacity-0");
+      }, 100);
+
+      createButton.disabled = true;
+      createButton.style.backgroundColor = "#a1a1a1";
+      createButton.style.cursor = "not-allowed";
     } catch (err) {
       console.error("Lỗi khi gọi API:", err);
       alert("Có lỗi xảy ra. Vui lòng thử lại.");

@@ -83,7 +83,11 @@ function showBackdrop(info) {
       <img class="mu" src="../Hình ảnh/mutotnghiep.png" alt="" />
       <div class="student-photo-container">
           <img class="khungvien" src="../Hình ảnh/khungvien.png" alt="" />
-          ${info.imageBase64? `<img class="student-photo" src="${info.imageBase64}" alt="" />`: ""}      
+          ${
+            info.imageBase64
+              ? `<img class="student-photo" src="${info.imageBase64}" alt="" />`
+              : ""
+          }      
       </div>
     </div>
   `;
@@ -111,16 +115,15 @@ function exportToImage() {
   });
 }
 
-//Xem ảnh lớn
 function openBackdropZoom() {
   const backdrop = document.querySelector(".background-wrapper");
   const fullBackdrop = document.getElementById("fullBackdrop");
   const overlay = document.getElementById("imageOverlay");
 
   if (backdrop && fullBackdrop) {
-    const clone = backdrop.cloneNode(true); // clone toàn bộ node
-    fullBackdrop.innerHTML = ""; // clear cũ
-    fullBackdrop.appendChild(clone); // thêm bản sao DOM thật sự
+    const clone = backdrop.cloneNode(true);
+    fullBackdrop.innerHTML = "";
+    fullBackdrop.appendChild(clone);
 
     overlay.classList.remove("hidden");
   }
