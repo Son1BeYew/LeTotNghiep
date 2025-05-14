@@ -1,0 +1,174 @@
+.content_QLTM {
+    margin-left: 250px;
+    margin-top: 80px;
+    padding: 20px;
+    width: calc(100% - 250px);
+    min-height: calc(100vh - 80px);
+    background: #ffffff;
+}
+.form_TKTM {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.thumoiForm {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px 15px;
+    width: 100%;
+    max-width: max-content;
+    margin-bottom: 20px;
+}
+
+.thumoiForm input, .searchForm input {
+    min-width: 140px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.thumoiForm button {
+    min-width: 100px;
+    padding: 15px;
+    background-color: #258eff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.searchForm button {
+    min-width: 100px;
+    padding: 15px;
+    background-color: #258eff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 15px;
+}
+.thumoiForm button:hover {
+    background-color: #1a63b2;
+}
+
+.table-container {
+    width: 100%;
+    max-width: max-content;
+    max-height: 430px;
+    overflow-y: auto; 
+}
+
+
+.studentDS {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.studentDS thead {
+    background-color: #808080;
+    color: #fff;
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.studentDS tbody {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* Các cột */
+.studentDS th, .studentDS td {
+    border: 1px solid #333;
+    padding: 10px;
+    text-align: center;
+    word-break: break-word;
+    box-sizing: border-box;
+}
+
+/* Hover cho hàng */
+.studentDS tbody tr:hover {
+    background-color: #e0e0e0;
+}
+
+/* Nút Xóa và Sửa */
+.studentDS td button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.studentDS td button:first-child {
+    background-color: #ff4d4d;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.studentDS td button:first-child:hover {
+    background-color: #e60000;
+}
+
+.studentDS td button:last-child {
+    background-color: #4da8ff;
+    color: #fff;
+}
+
+.studentDS td button:last-child:hover {
+    background-color: #1a8cff;
+}
+
+/* Chỉnh độ rộng các cột */
+.studentDS th:nth-child(1), .studentDS td:nth-child(1) {
+    width: 40%;
+}
+.studentDS th:nth-child(2), .studentDS td:nth-child(2) {
+    width: 60%;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+    width: 200px;
+}
+
+.form-group input {
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    background-color: transparent;
+    color: #000000;
+}
+
+.form-group label {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    background: white;
+    padding: 0 5px;
+    font-size: 16px;
+    transition: 0.2s ease all;
+    pointer-events: none;
+}
+
+.form-group input + label{
+    top: -10px;
+    left: 15px;
+    font-size: 15px;
+    color: #727272; 
+}

@@ -14,6 +14,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   const filePathInput = document.getElementById("filePath");
   const createButton = document.getElementById("createButton");
   const preview = document.getElementById("image_ThuMoi");
+  const imgElement = document.getElementById("thumoi_img");  // Đối tượng ảnh
+
+  const form = document.getElementById("taothumoiForm");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+    });
+  }
+
+  // Ẩn ảnh khi chưa có tệp
+  imgElement.style.display = 'none';
 
   // Hiển thị ảnh xem trước khi chọn ảnh mới
   imageInput.addEventListener("change", () => {
@@ -25,20 +36,25 @@ document.addEventListener("DOMContentLoaded", async () => {
       reader.onload = (e) => {
         preview.innerHTML = `
           <img src="${e.target.result}" 
-               alt="Xem trước ảnh"
+               alt="Xem trước ảnh" 
                class="max-w-full h-auto mt-4 border rounded opacity-0" 
                id="thumoi_img" />
         `;
-        setTimeout(() => {
-          const img = document.getElementById("thumoi_img");
-          if (img) img.classList.remove("opacity-0");
-        }, 100);
+        // Hiển thị ảnh khi đã tải lên
+        const img = document.getElementById("thumoi_img");
+        if (img) {
+          img.style.display = 'block';  // Hiển thị ảnh khi người dùng chọn
+          img.classList.remove("opacity-0");
+        }
       };
       reader.readAsDataURL(file);
+    } else {
+      // Nếu không có ảnh, ẩn ảnh xem trước
+      imgElement.style.display = 'none';
     }
   });
 
-  // Tải thư mời nếu người dùng hiện tại đã tạo
+  // Tải thư mời nếu người dùng đã tạo
   try {
     const res = await fetch("http://localhost:5000/api/thumoi/me", {
       headers: {
@@ -57,10 +73,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                class="max-w-full h-auto mt-4 border rounded opacity-0" 
                id="thumoi_img" />
         `;
-        setTimeout(() => {
-          const img = document.getElementById("thumoi_img");
-          if (img) img.classList.remove("opacity-0");
-        }, 100);
+        const img = document.getElementById("thumoi_img");
+        if (img) {
+          img.style.display = 'block';  // Hiển thị ảnh tải lên
+          setTimeout(() => {
+            img.classList.remove("opacity-0");
+          }, 100);
+        }
 
         // Disable button nếu đã tạo rồi
         createButton.disabled = true;
@@ -82,8 +101,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     const fullname = fullnameInput.value.trim();
     const imageFile = imageInput.files[0];
 
-    if (!fullname || !imageFile) {
-      alert("Vui lòng nhập họ tên và chọn ảnh.");
+    if (!fullname) {
+      alert("Bạn cần nhập họ và tên !!!");
+      return;
+    }
+    if (!imageFile) {
+      alert("Bạn cần thêm ảnh !!!");
       return;
     }
 
@@ -116,7 +139,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       `;
       setTimeout(() => {
         const img = document.getElementById("thumoi_img");
-        if (img) img.classList.remove("opacity-0");
+        if (img) {
+          img.style.display = 'block';  // Hiển thị ảnh sau khi tạo
+          img.classList.remove("opacity-0");
+        }
       }, 100);
 
       createButton.disabled = true;

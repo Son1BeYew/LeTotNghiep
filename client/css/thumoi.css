@@ -1,13 +1,11 @@
 .form_ThuMoi {
-  width: 900px;
-  height: 530px;
+  width: 900px  ;
+  height: auto;
   padding: 20px;
   border-radius: 15px;
   margin: 20px auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
   background-color: white;
-
-  display: flex;
   flex-direction: column;
 }
 
@@ -85,7 +83,7 @@
   padding: 5px;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: auto;
+  margin-top: 20px;
 }
 .button_TaoThuMoi:hover {
   transition: 0.3s;
@@ -93,12 +91,11 @@
   color: white;
   cursor: pointer;
 }
-.image_ThuMoi {
-  display: block;
-}
+
 #image_ThuMoi img {
-  max-width: 100%;
-  height: auto;
+  width: 500px;;
+  height: 600px;
   border-radius: 8px;
+  margin: 20px auto;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }

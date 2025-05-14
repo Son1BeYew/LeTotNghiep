@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý sinh viên</title>
+    <link href="../css/QuanLyThuMoi.css" rel="stylesheet">
     <link href="../css/QuanLy.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -13,13 +14,14 @@
 
 <body>
     <header class="header">
+        <h1>QUẢN LÝ THÔNG TIN SINH VIÊN</h1>
         <div class="logout" onclick="logoutUser(event)">
             <i class="fas fa-sign-out-alt"></i>
             <span>Đăng xuất</span>
         </div>
     </header>
 
-    <div class="sidebar" id="sidebar">
+    <div class="sidebar">
         <div class="logo">
             <img src="../Hình ảnh/logo-hutech.png" alt="" />
         </div>
@@ -31,9 +33,36 @@
         <a href="#" onclick="showQLSVForm()">Quản lý thông tin sinh viên</a>
         <a href="#" onclick="showQLTMForm()">Quản lý thư mời sinh viên</a>
     </div>
-    <div class="content">
-        <div class="welcome">
-            <span>W</span><span>E</span><span>L</span><span>C</span><span>O</span><span>M</span><span>E</span>
+    <div class="content_QLTM">
+        <div class="form_TKTM">
+            <form id="thumoiForm" class="thumoiForm">
+                <div class="form-group">
+                    <input type="text" id="hovaten" name="hovaten" required />
+                    <label for="hovaten">Họ và tên</label>
+                </div>
+
+                <input type="file" id="anh" name="image" accept="image/*" />
+                <button type="submit" class="button">Cập nhật</button>
+
+                <div id="searchForm" class="searchForm">
+                    <input type="text" id="searchMSSV" placeholder="Nhập mssv để tìm kiếm" />
+                    <button type="button" id="searchButton">Tìm kiếm</button>
+                </div>
+            </form>
+
+
+            <div class="table-container">
+                <table id="studentDS" class="studentDS">
+                    <thead>
+                        <tr>
+                            <th>Họ và tên</th>
+                            <th>Ảnh</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentDSTable"></tbody>
+                </table>
+            </div>
         </div>
     </div>
     <script>
@@ -54,13 +83,13 @@
         function showQLTMForm() {
             window.location.href = "QuanLyThuMoi.html";
         }
-
         function logoutUser(event) {
             event.stopPropagation();
             localStorage.removeItem("loggedInUser");
             window.location.href = "/client/index.html";
         }
     </script>
+    <script src="../js/QuanLyThuMoi.js"></script>
 </body>
 
 </html>

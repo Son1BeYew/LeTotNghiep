@@ -110,12 +110,18 @@ function requireLogin() {
   return true;
 }
 
-document
-  .getElementById("linkDKLTN")
-  ?.addEventListener("click", function (event) {
+document.getElementById("linkDKLTN")?.addEventListener("click", function (event) {
     if (!requireLogin()) {
-      alert("Bạn cần đăng nhập để có thể đăng ký lễ tốt nghiệp!!!.");
-      window.location.href = "/client/index.html";
       event.preventDefault();
+      alert("Bạn cần đăng nhập để có thể đăng ký lễ tốt nghiệp !!!");
+      window.location.href = "/client/index.html";
+    }
+  });
+
+document.getElementById("linkTTM")?.addEventListener("click", function (event) {
+    if (!requireLogin()) {
+      event.preventDefault();
+      alert("Bạn cần đăng nhập để có thể tạo thư mời !!!");
+      window.location.href = "/client/index.html";
     }
   });

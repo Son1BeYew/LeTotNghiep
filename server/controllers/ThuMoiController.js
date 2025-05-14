@@ -21,7 +21,7 @@ const createInvitation = async (req, res) => {
       message: "Tạo thành công",
       invitation: {
         fullname: invitation.fullname,
-        imagePath: "uploads/" + req.file.filename, // hoặc: path.basename(invitation.imagePath)
+        imagePath: "uploads/" + req.file.filename, 
       },
     });
   } catch (error) {

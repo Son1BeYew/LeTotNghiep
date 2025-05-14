@@ -31,6 +31,7 @@
         <a href="#" onclick="showTrangChuForm()">Trang chủ</a>
         <a href="#" onclick="showQLTKSVForm()">Quản lý tài khoản sinh viên</a>
         <a href="#" onclick="showQLSVForm()">Quản lý thông tin sinh viên</a>
+        <a href="#" onclick="showQLTMForm()">Quản lý thư mời sinh viên</a>
     </div>
     <div class="content_QLSV">
         <div class="form_TKSV">
@@ -97,6 +98,9 @@
         }
         function showQLTKSVForm() {
             window.location.href = "QuanLyTaiKhoanSV.html";
+        }
+        function showQLTMForm() {
+            window.location.href = "QuanLyThuMoi.html";
         }
         function logoutUser(event) {
             event.stopPropagation();

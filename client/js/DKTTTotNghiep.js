@@ -1,6 +1,4 @@
-document
-  .getElementById("letotnghiepForm")
-  .addEventListener("submit", function (e) {
+document.getElementById("letotnghiepForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
     const form = e.target;

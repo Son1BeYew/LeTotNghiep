@@ -12,7 +12,7 @@ exports.login = async (req, res) => {
     });
     console.log("User :", user);
     if (!user) {
-      return res.status(400).json({ message: "Không tìm thấy người dùng" });
+      return res.status(400).json({ message: "Không tìm thấy người dùng !!!" });
     }
     if (user.password !== password) {
       return res.status(400).json({ message: "Mật khẩu không hợp lệ" });
@@ -24,7 +24,7 @@ exports.login = async (req, res) => {
     );
 
     res.status(200).json({
-      message: "Đăng nhập thành công",
+      message: "Đăng nhập thành công !!!",
       token,
       user: { id: user._id, username: user.username, role: user.role },
     });
