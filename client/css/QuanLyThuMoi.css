@@ -17,9 +17,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 5px 15px;
+    gap: 20px;
     width: 100%;
-    max-width: max-content;
+    max-width: 1000px;
     margin-bottom: 20px;
 }
 
@@ -32,7 +32,8 @@
 }
 
 .thumoiForm button {
-    min-width: 100px;
+    min-width: auto;
+    height: auto;
     padding: 15px;
     background-color: #258eff;
     color: white;
@@ -66,12 +67,12 @@
 }
 
 
-.studentDS {
+.thumoiDS {
     width: 100%;
     border-collapse: collapse;
 }
 
-.studentDS thead {
+.thumoiDS thead {
     background-color: #808080;
     color: #fff;
     display: table;
@@ -82,14 +83,14 @@
     z-index: 1;
 }
 
-.studentDS tbody {
+.thumoiDS tbody {
     display: table;
     width: 100%;
     table-layout: fixed;
 }
 
 /* Các cột */
-.studentDS th, .studentDS td {
+.thumoiDS th, .thumoiDS td {
     border: 1px solid #333;
     padding: 10px;
     text-align: center;
@@ -98,12 +99,12 @@
 }
 
 /* Hover cho hàng */
-.studentDS tbody tr:hover {
+.thumoiDS tbody tr:hover {
     background-color: #e0e0e0;
 }
 
 /* Nút Xóa và Sửa */
-.studentDS td button {
+.thumoiDS td button {
     padding: 5px 10px;
     border: none;
     border-radius: 4px;
@@ -112,33 +113,38 @@
     transition: background-color 0.2s;
 }
 
-.studentDS td button:first-child {
+.thumoiDS td button:first-child {
     background-color: #ff4d4d;
     color: #fff;
     margin-right: 5px;
 }
 
-.studentDS td button:first-child:hover {
+.thumoiDS td button:first-child:hover {
     background-color: #e60000;
 }
 
-.studentDS td button:last-child {
+.thumoiDS td button:last-child {
     background-color: #4da8ff;
     color: #fff;
 }
 
-.studentDS td button:last-child:hover {
+.thumoiDS td button:last-child:hover {
     background-color: #1a8cff;
 }
 
 /* Chỉnh độ rộng các cột */
-.studentDS th:nth-child(1), .studentDS td:nth-child(1) {
+.thumoiDS th:nth-child(1), .thumoiDS td:nth-child(1) {
+    width: 15%;
+}
+.thumoiDS th:nth-child(2), .thumoiDS td:nth-child(2) {
+    width: 30%;
+}
+.thumoiDS th:nth-child(3), .thumoiDS td:nth-child(3) {
     width: 40%;
 }
-.studentDS th:nth-child(2), .studentDS td:nth-child(2) {
-    width: 60%;
+.thumoiDS th:nth-child(4), .thumoiDS td:nth-child(4) {
+    width: 15%;
 }
-
 .form-group {
     position: relative;
     margin-bottom: 20px;

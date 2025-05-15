@@ -33,7 +33,7 @@ exports.getUser = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
-    const { username, password, email } = req.body;
+    const { username, password, email, role } = req.body; 
 
     if (!username || !password) {
       return res.status(400).json({ message: "Thiếu username hoặc password" });
@@ -51,7 +51,7 @@ exports.createUser = async (req, res) => {
       return res.status(400).json({ message: "Email đã tồn tại" });
     }
 
-    let newUser = new User({ username, password, email });
+    let newUser = new User({ username, password, email, role }); 
     await newUser.save();
     res.json(newUser);
   } catch (error) {

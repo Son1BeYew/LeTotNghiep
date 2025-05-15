@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
   console.log("DOMContentLoaded triggered");
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   if (!token) {
     alert("Bạn cần đăng nhập để tạo thư mời.");
@@ -139,8 +139,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         createButton.style.backgroundColor = "#a1a1a1";
         createButton.style.cursor = "not-allowed";
       }
-
-      alert("Tạo thư mời thành công!");
       preview.innerHTML = `
         <img src="http://localhost:5000/${data.invitation.imagePath}" 
              alt="Ảnh thư mời" 

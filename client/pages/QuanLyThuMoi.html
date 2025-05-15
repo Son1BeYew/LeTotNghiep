@@ -41,7 +41,7 @@
                     <label for="hovaten">Họ và tên</label>
                 </div>
 
-                <input type="file" id="anh" name="image" accept="image/*" />
+                <input type="file" id="image" name="image" accept="image/*" />
                 <button type="submit" class="button">Cập nhật</button>
 
                 <div id="searchForm" class="searchForm">
@@ -52,15 +52,16 @@
 
 
             <div class="table-container">
-                <table id="studentDS" class="studentDS">
+                <table id="thumoiDS" class="thumoiDS">
                     <thead>
                         <tr>
+                            <th>MSSV</th>
                             <th>Họ và tên</th>
                             <th>Ảnh</th>
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody id="studentDSTable"></tbody>
+                    <tbody id="thumoiDSTable"></tbody>
                 </table>
             </div>
         </div>
@@ -84,8 +85,16 @@
             window.location.href = "QuanLyThuMoi.html";
         }
         function logoutUser(event) {
+            event.preventDefault();
             event.stopPropagation();
-            localStorage.removeItem("loggedInUser");
+
+            sessionStorage.removeItem("loggedInUser");
+            sessionStorage.removeItem("mssv");
+            sessionStorage.removeItem("token");
+            sessionStorage.removeItem("role");
+
+            alert("Đăng xuất thành công");
+
             window.location.href = "/client/index.html";
         }
     </script>

@@ -17,9 +17,9 @@ if (
       .then((data) => {
         alert(data.message);
         if (data.token) {
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("loggedInUser", username);
-          localStorage.setItem("role", data.user.role);
+          sessionStorage.setItem("token", data.token);
+          sessionStorage.setItem("loggedInUser", username);
+          sessionStorage.setItem("role", data.user.role);
 
           showUser(username);
 
@@ -50,17 +50,23 @@ function showUser(username) {
     loginForm.style.display = "none";
   }
 }
+
 function logoutUser(event) {
   event.stopPropagation();
-  localStorage.removeItem("loggedInUser");
-  localStorage.removeItem("mssv");
+  sessionStorage.removeItem("loggedInUser");
+  sessionStorage.removeItem("mssv");
+  sessionStorage.removeItem("token");
+  sessionStorage.removeItem("role");
+  alert("Đăng xuất thành công");
   window.location.href = "/client/index.html";
 }
+
 
 window.onload = function () {
   if (!requireLogin()) return;
 
-  const loggedInUser = localStorage.getItem("loggedInUser");
+const loggedInUser = sessionStorage.getItem("loggedInUser");
+
 
   if (!loggedInUser) {
     if (!document.querySelector(".login-section")) {
@@ -102,12 +108,8 @@ document.addEventListener("click", function (event) {
 });
 
 function requireLogin() {
-  const loggedInUser = localStorage.getItem("loggedInUser");
-
-  if (!loggedInUser || loggedInUser.trim() === "") {
-    return false;
-  }
-  return true;
+  const loggedInUser = sessionStorage.getItem("loggedInUser");
+  return loggedInUser && loggedInUser.trim() !== "";
 }
 
 document.getElementById("linkDKLTN")?.addEventListener("click", function (event) {
@@ -125,3 +127,4 @@ document.getElementById("linkTTM")?.addEventListener("click", function (event) {
       window.location.href = "/client/index.html";
     }
   });
+

@@ -3,21 +3,23 @@ const router = express.Router();
 const upload = require("../middleware/uploads");
 const {
   authenticateUser,
-  authorizeRole,
 } = require("../middleware/authMiddleware");
 const {
   createInvitation,
-  getAllInvitations,
   getMyInvitation,
+  getAllInvitations,
+  updateInvitation,
+  deleteInvitation,
 } = require("../controllers/ThuMoiController");
 
 router.post("/", authenticateUser, upload.single("image"), createInvitation);
 router.get("/me", authenticateUser, getMyInvitation);
+router.put("/me", authenticateUser, upload.single("image"), updateInvitation);
+router.delete("/me", authenticateUser, deleteInvitation);
 
 router.get(
   "/all",
   authenticateUser,
-  authorizeRole(["admin"]),
   getAllInvitations
 );
 
