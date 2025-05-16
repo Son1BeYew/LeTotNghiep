@@ -22,7 +22,7 @@
       }
 
       if (editingThuMoiId) {
-          updateThuMoi(formData);
+        updateThuMoi(formData); 
       }
     });
 
@@ -92,9 +92,10 @@
         deleteBtn.textContent = "Xóa";
         deleteBtn.onclick = function () {
           if (confirm("Bạn có chắc muốn xóa thư mời này?")) {
-            deleteThuMoi(tm.invitation_id);
+            deleteThuMoi(tm.invitation.user._id);
           }
         };
+
         actionCell.appendChild(deleteBtn);
 
         const editBtn = document.createElement("button");
@@ -113,42 +114,58 @@
 }
 
 
-  function updateThuMoi(formData) {
-  fetch("http://localhost:5000/api/thumoi/me", {
+function updateThuMoi(formData) {
+  if (!editingThuMoiId) {
+    alert("Không có thư mời để cập nhật");
+    return;
+  }
+
+  fetch(`http://localhost:5000/api/thumoi/${editingThuMoiId}`, {
     method: "PUT",
     headers: {
-      "Authorization": "Bearer " + localStorage.getItem("token")
+      "Authorization": "Bearer " + sessionStorage.getItem("token"),
     },
     body: formData,
   })
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        return res.json().then(data => { throw new Error(data.message || "Lỗi cập nhật"); });
+      }
+      return res.json();
+    })
     .then((data) => {
-      alert("Cập nhật thành công!");
+      alert(data.message || "Cập nhật thành công!");
       resetForm();
       fetchThuMoi();
     })
-    .catch((err) => console.error("Lỗi khi cập nhật:", err));
+    .catch((err) => {
+      console.error("Lỗi khi cập nhật:", err);
+      alert("Cập nhật thất bại: " + err.message);
+    });
 }
 
-  function deleteThuMoi() {
-  fetch("http://localhost:5000/api/thumoi/me", {
+  function deleteThuMoi(userId) {
+  fetch(`http://localhost:5000/api/thumoi/${userId}`, {
     method: "DELETE",
     headers: {
-      "Authorization": "Bearer " + localStorage.getItem("token")
+      "Authorization": "Bearer " + sessionStorage.getItem("token")
     }
   })
-  .then((res) => res.json())
-  .then((data) => {
-    alert("Xóa thành công!");
-    fetchThuMoi();
-  })
-  .catch((err) => console.error("Lỗi khi xóa:", err));
+    .then((res) => res.json())
+    .then((data) => {
+      alert("Xóa thành công!");
+      fetchThuMoi();
+    })
+    .catch((err) => console.error("Lỗi khi xóa:", err));
 }
+
 
 
   function loadThuMoiToForm(tm) {
   document.getElementById("hovaten").value = tm.invitation.fullname;
-  editingThuMoiId = true; 
+  editingThuMoiId = typeof tm.invitation.user === "object"
+    ? tm.invitation.user._id
+    : tm.invitation.user;
 }
 
 
@@ -164,12 +181,13 @@
     return;
   }
 
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   try {
     const res = await fetch(`http://localhost:5000/api/thumoi/${me}`, {
-      headers: { Authorization: "Bearer " + token },
-    });
+        headers: { Authorization: "Bearer " + token },
+      });
+
     const data = await res.json();
 
     const tableBody = document.getElementById("thumoiDSTable");

@@ -1,27 +1,35 @@
 document.getElementById("letotnghiepForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const form = e.target;
-    const formData = new FormData(form);
-    const mssv = formData.get("MSSV");
-    fetch("http://localhost:5000/api/DKLeTotNghiep", {
-      method: "POST",
-      body: formData,
+  const form = e.target;
+  const formData = new FormData(form);
+  const mssv = formData.get("MSSV");
+
+  fetch("http://localhost:5000/api/DKLeTotNghiep", {
+    method: "POST",
+    body: formData,
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.success) {
+        alert("Đã lưu thông tin lễ tốt nghiệp!");
+
+        // Hiện 2 nút "Tải ảnh" và "Xem ảnh"
+        document.querySelector(".xemanh").style.display = "inline-block";
+        document.querySelector(".taianh").style.display = "inline-block";
+
+
+
+        fetchStudentData(mssv);
+      } else {
+        alert(data.message || "Đã xảy ra lỗi khi đăng ký.");
+      }
     })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          alert("Đã lưu thông tin lễ tốt nghiệp!");
-          fetchStudentData(mssv);
-        } else {
-          alert(data.message || "Đã xảy ra lỗi khi đăng ký.");
-        }
-      })
-      .catch((err) => {
-        console.error("Lỗi gửi form:", err);
-        alert("Lỗi khi gửi biểu mẫu!");
-      });
-  });
+    .catch((err) => {
+      console.error("Lỗi gửi form:", err);
+      alert("Lỗi khi gửi biểu mẫu!");
+    });
+});
 
 function fetchStudentData(mssv) {
   fetch(`http://localhost:5000/api/DKLeTotNghiep/${mssv}`)
@@ -97,6 +105,8 @@ window.addEventListener("load", function () {
   const mssv = mssvInput?.value;
 
   if (mssv) {
+    document.querySelector(".xemanh").style.display = "inline-block";
+    document.querySelector(".taianh").style.display = "inline-block";
     fetchStudentData(mssv);
   }
 });

@@ -9,13 +9,14 @@ const {
   getMyInvitation,
   getAllInvitations,
   updateInvitation,
-  deleteInvitation,
+  deleteInvitationByUserId,
 } = require("../controllers/ThuMoiController");
 
 router.post("/", authenticateUser, upload.single("image"), createInvitation);
 router.get("/me", authenticateUser, getMyInvitation);
-router.put("/me", authenticateUser, upload.single("image"), updateInvitation);
-router.delete("/me", authenticateUser, deleteInvitation);
+router.put("/:userId", authenticateUser, upload.single("image"), updateInvitation);
+router.delete("/:userId", authenticateUser, deleteInvitationByUserId);
+
 
 router.get(
   "/all",

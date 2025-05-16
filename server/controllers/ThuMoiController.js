@@ -73,19 +73,18 @@ const getMyInvitation = async (req, res) => {
 
 const updateInvitation = async (req, res) => {
   try {
+    const { userId } = req.params;
     const { fullname } = req.body;
-    const invitation = await Invitation.findOne({ user: req.user.id });
 
+    const invitation = await Invitation.findOne({ user: userId });
     if (!invitation) return res.status(404).json({ message: "Không tìm thấy thư mời." });
 
     if (req.file) {
-      // Xóa ảnh cũ nếu có
       if (fs.existsSync(invitation.imagePath)) {
         fs.unlinkSync(invitation.imagePath);
       }
       invitation.imagePath = req.file.path;
     }
-
     invitation.fullname = fullname || invitation.fullname;
     await invitation.save();
 
@@ -95,13 +94,14 @@ const updateInvitation = async (req, res) => {
   }
 };
 
-const deleteInvitation = async (req, res) => {
+
+const deleteInvitationByUserId = async (req, res) => {
   try {
-    const invitation = await Invitation.findOneAndDelete({ user: req.user.id });
+    const { userId } = req.params;
+    const invitation = await Invitation.findOneAndDelete({ user: userId });
 
     if (!invitation) return res.status(404).json({ message: "Không tìm thấy thư mời để xóa." });
 
-    // Xóa ảnh
     if (fs.existsSync(invitation.imagePath)) {
       fs.unlinkSync(invitation.imagePath);
     }
@@ -112,10 +112,11 @@ const deleteInvitation = async (req, res) => {
   }
 };
 
+
 module.exports = {
   createInvitation,
   getAllInvitations,
   getMyInvitation,
   updateInvitation,
-  deleteInvitation,
+  deleteInvitationByUserId,
 };
