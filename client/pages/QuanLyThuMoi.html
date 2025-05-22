@@ -35,21 +35,12 @@
     </div>
     <div class="content_QLTM">
         <div class="form_TKTM">
-            <form id="thumoiForm" class="thumoiForm">
-                <div class="form-group">
-                    <input type="text" id="hovaten" name="hovaten" required />
-                    <label for="hovaten">Họ và tên</label>
-                </div>
+            <div class="show-image"></div>
 
-                <input type="file" id="image" name="image" accept="image/*" />
-                <button type="submit" class="button">Cập nhật</button>
-
-                <div id="searchForm" class="searchForm">
-                    <input type="text" id="searchMSSV" placeholder="Nhập mssv để tìm kiếm" />
-                    <button type="button" id="searchButton">Tìm kiếm</button>
-                </div>
-            </form>
-
+            <div id="searchForm" class="searchForm">
+                <input type="text" id="searchMSSV" placeholder="Nhập mssv để tìm kiếm" />
+                <button type="button" id="searchButton">Tìm kiếm</button>
+            </div>
 
             <div class="table-container">
                 <table id="thumoiDS" class="thumoiDS">
@@ -57,7 +48,8 @@
                         <tr>
                             <th>MSSV</th>
                             <th>Họ và tên</th>
-                            <th>Ảnh</th>
+                            <th>Thời gian tạo</th>
+                            <th>Trạng thái</th>
                             <th></th>
                         </tr>
                     </thead>

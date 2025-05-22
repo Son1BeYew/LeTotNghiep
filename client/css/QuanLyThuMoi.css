@@ -13,36 +13,15 @@
     align-items: center;
 }
 
-.thumoiForm {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    width: 100%;
-    max-width: 1000px;
-    margin-bottom: 20px;
-}
 
-.thumoiForm input, .searchForm input {
-    min-width: 140px;
+.searchForm input {
+    min-width: 300px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
 }
 
-.thumoiForm button {
-    min-width: auto;
-    height: auto;
-    padding: 15px;
-    background-color: #258eff;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
 .searchForm button {
     min-width: 100px;
     padding: 15px;
@@ -55,17 +34,12 @@
     transition: background-color 0.3s;
     margin-left: 15px;
 }
-.thumoiForm button:hover {
-    background-color: #1a63b2;
-}
-
 .table-container {
     width: 100%;
     max-width: max-content;
     max-height: 430px;
     overflow-y: auto; 
 }
-
 
 .thumoiDS {
     width: 100%;
@@ -100,7 +74,7 @@
 
 /* Hover cho hàng */
 .thumoiDS tbody tr:hover {
-    background-color: #e0e0e0;
+    background-color: #ececec;
 }
 
 /* Nút Xóa và Sửa */
@@ -113,37 +87,61 @@
     transition: background-color 0.2s;
 }
 
-.thumoiDS td button:first-child {
-    background-color: #ff4d4d;
-    color: #fff;
-    margin-right: 5px;
+.thumoiDS .btn-delete {
+  background-color: #dc3545;
+  color: white;
+}
+.thumoiDS .btn-delete:hover {
+  background-color: #b02a37;
 }
 
-.thumoiDS td button:first-child:hover {
-    background-color: #e60000;
+.thumoiDS .btn-edit {
+    background-color: #8f00c8;
+    color: white;
+}
+.thumoiDS .btn-edit:hover {
+  background-color: #71009e;
 }
 
-.thumoiDS td button:last-child {
-    background-color: #4da8ff;
-    color: #fff;
+.thumoiDS .btn-show {
+  background-color: #0d6efd;
+  color: white;
+}
+.thumoiDS .btn-show:hover {
+  background-color: #0b5ed7;
 }
 
-.thumoiDS td button:last-child:hover {
-    background-color: #1a8cff;
+.thumoiDS .btn-download {
+  background-color: #198754;
+  color: white;
 }
+.thumoiDS .btn-download:hover {
+  background-color: #146c43;
+}
+.thumoiDS .btn-share{
+    background-color: rgb(255, 82, 229);
+    color: white;
+}
+.thumoiDS .btn-share:hover{
+    background-color: rgb(169, 53, 152);
+}
+
 
 /* Chỉnh độ rộng các cột */
 .thumoiDS th:nth-child(1), .thumoiDS td:nth-child(1) {
     width: 15%;
 }
 .thumoiDS th:nth-child(2), .thumoiDS td:nth-child(2) {
-    width: 30%;
+    width: 20%;
 }
 .thumoiDS th:nth-child(3), .thumoiDS td:nth-child(3) {
-    width: 40%;
+    width: 20%;
 }
 .thumoiDS th:nth-child(4), .thumoiDS td:nth-child(4) {
     width: 15%;
+}
+.thumoiDS th:nth-child(5), .thumoiDS td:nth-child(5) {
+    width: 30%;
 }
 .form-group {
     position: relative;
@@ -178,3 +176,89 @@
     font-size: 15px;
     color: #727272; 
 }
+.searchForm{
+    margin: 10px auto;
+}
+
+.backdrop-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  width: 970px;
+  height: 525px;
+  padding: 20px;
+  background-image: url('../Hình ảnh/background-xanh-1.png');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden; /* Ngăn tràn nội dung */
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.student-info{
+    position: absolute;
+    top: 50px;
+    left: 270px;
+    right: 0;
+    text-align: center;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+  .logoInBackDrop {
+    position: absolute;
+    height: 50px;
+    margin-left: 100px;
+    top: 0%;
+  }
+
+
+/* Khung ảnh */
+  .student-photo-container {
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    width: 250px;
+    height: 300px;
+  }
+  .khungvien {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2
+  }
+  .student-photo {
+    width: 185px;
+    height: 235px;
+    object-fit: cover;
+    border: 2px solid white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+    .gaubong{
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    top: 290px;
+    left: 7px;
+    transform: rotate(-20deg);
+    z-index: 3;
+  }
+  .mu{
+    position: absolute;
+    width: 190px;
+    height: 170px;
+    top: 50px;
+    left: 170px;
+    transform: rotate(35deg);
+    z-index: 3;
+  }
+
+  

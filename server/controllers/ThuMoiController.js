@@ -5,7 +5,7 @@ const User = require("../models/users");
 
 const createInvitation = async (req, res) => {
   try {
-    const { fullname } = req.body;
+    const { fullname, trangThai } = req.body;
     const imagePath = req.file.path;
 
     const existing = await Invitation.findOne({ user: req.user.id });
@@ -15,7 +15,9 @@ const createInvitation = async (req, res) => {
       fullname,
       imagePath,
       user: req.user.id,
+      trangThai: trangThai || 'Chưa đăng ký'
     });
+
     await invitation.save();
 
     res.status(201).json({
@@ -23,9 +25,11 @@ const createInvitation = async (req, res) => {
       invitation: {
         fullname: invitation.fullname,
         imagePath: "uploads/" + path.basename(invitation.imagePath),
+        trangThai: invitation.trangThai,
       },
     });
   } catch (error) {
+    console.error("Lỗi tạo thư mời:", error); // 👈 Ghi log để dễ debug
     res.status(500).json({ message: "Lỗi server", error });
   }
 };
@@ -36,21 +40,31 @@ const getAllInvitations = async (req, res) => {
     const invitations = await Invitation.find().populate("user");
 
     const result = users.map((user) => {
-  const match = invitations.find(
-    (i) => i.user && i.user._id && i.user._id.equals(user._id)
-  );
+      const match = invitations.find(
+        (inv) => inv.user && inv.user._id && inv.user._id.equals(user._id)
+      );
 
-  return {
-    username: user.username,
-    email: user.email,
-    hasInvitation: !!match,
-    invitation: match || null,
-  };
-});
-
+      return {
+        username: user.username,
+        email: user.email,
+        hasInvitation: !!match,
+        invitation: match
+          ? {
+              fullname: match.fullname,
+              imagePath: "uploads/" + path.basename(match.imagePath),
+              trangThai: match.trangThai,
+              createdAt: match.createdAt,
+              user: {
+                _id: match.user._id, 
+              },
+            }
+          : null,
+      };
+    });
 
     res.json(result);
   } catch (error) {
+    console.error("Lỗi getAllInvitations:", error);
     res.status(500).json({ message: "Lỗi server", error });
   }
 };
@@ -113,10 +127,42 @@ const deleteInvitationByUserId = async (req, res) => {
 };
 
 
+const searchInvitationByUsername = async (req, res) => {
+  try {
+    const username = req.query.username || req.params.username;
+    if (!username || typeof username !== "string") {
+      return res.status(400).json({ message: "Thiếu hoặc sai định dạng username" });
+    }
+
+
+    const user = await User.findOne({ username: username.trim() });
+    if (!user) {
+      return res.status(404).json({ message: "Không tìm thấy người dùng" });
+    }
+
+    const invitation = await Invitation.findOne({ user: user._id });
+    if (!invitation) {
+      return res.status(404).json({ message: "Không tìm thấy thư mời của người dùng này" });
+    }
+
+    res.json({
+      username: user.username,
+      email: user.email,
+      fullname: invitation.fullname,
+      imagePath: "uploads/" + path.basename(invitation.imagePath),
+      invitation: invitation, // để có thể lấy createdAt, user trong frontend
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Lỗi server", error });
+  }
+};
+
+
 module.exports = {
   createInvitation,
-  getAllInvitations,
   getMyInvitation,
+  getAllInvitations,
   updateInvitation,
   deleteInvitationByUserId,
+  searchInvitationByUsername,  // thêm hàm này xuất khẩu
 };

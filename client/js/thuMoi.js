@@ -95,60 +95,51 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   createButton.addEventListener("click", async () => {
-    if (createButton.disabled) return;
+  if (createButton.disabled) return;
 
-    const fullname = fullnameInput.value.trim();
-    const imageFile = imageInput.files[0];
+  const fullname = fullnameInput.value.trim();
+  const imageFile = imageInput.files[0];
 
-    if (!fullname) {
-      alert("Bạn cần nhập họ và tên !!!");
-      return;
-    }
-    if (!imageFile) {
-      alert("Bạn cần thêm ảnh !!!");
-      return;
-    }
+  if (!fullname) {
+    alert("Bạn cần nhập họ và tên !!!");
+    return;
+  }
+  if (!imageFile) {
+    alert("Bạn cần thêm ảnh !!!");
+    return;
+  }
 
-    const formData = new FormData();
-    formData.append("fullname", fullname);
-    formData.append("image", imageFile);
+  const formData = new FormData();
+  formData.append("fullname", fullname);
+  formData.append("image", imageFile);
+  formData.append("trangThai", "Đã đăng ký"); 
 
-    try {
-      const response = await fetch("http://localhost:5000/api/thumoi", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formData,
-      });
+  try {
+    const response = await fetch("http://localhost:5000/api/thumoi", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
 
-      const data = await response.json();
+    const data = await response.json();
 
-      if (!response.ok) {
-        alert(data.message || "Lỗi tạo thư mời.");
-      } else {
-        alert("Tạo thư mời thành công!");
-        preview.innerHTML = `<img src="http://localhost:5000/${data.invitation.imagePath}" alt="Ảnh thư mời" class="max-w-full h-auto mt-4 border rounded opacity-0" id="thumoi_img" />`;
-
-        setTimeout(() => {
-          const img = document.getElementById("thumoi_img");
-          if (img) img.classList.remove("opacity-0");
-        }, 100);
-
-        createButton.disabled = true;
-        createButton.style.backgroundColor = "#a1a1a1";
-        createButton.style.cursor = "not-allowed";
-      }
+    if (!response.ok) {
+      alert(data.message || "Lỗi tạo thư mời.");
+    } else {
+      alert("Tạo thư mời thành công!");
       preview.innerHTML = `
         <img src="http://localhost:5000/${data.invitation.imagePath}" 
              alt="Ảnh thư mời" 
              class="max-w-full h-auto mt-4 border rounded opacity-0" 
              id="thumoi_img" />
       `;
+
       setTimeout(() => {
         const img = document.getElementById("thumoi_img");
         if (img) {
-          img.style.display = 'block';  // Hiển thị ảnh sau khi tạo
+          img.style.display = 'block';
           img.classList.remove("opacity-0");
         }
       }, 100);
@@ -156,9 +147,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       createButton.disabled = true;
       createButton.style.backgroundColor = "#a1a1a1";
       createButton.style.cursor = "not-allowed";
-    } catch (err) {
-      console.error("Lỗi khi gọi API:", err);
-      alert("Có lỗi xảy ra. Vui lòng thử lại.");
     }
-  });
+  } catch (err) {
+    console.error("Lỗi khi gọi API:", err);
+    alert("Có lỗi xảy ra. Vui lòng thử lại.");
+  }
+});
+
 });
