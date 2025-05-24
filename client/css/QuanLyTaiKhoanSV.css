@@ -113,12 +113,12 @@
 }
 
 .studentDSTK td button:last-child {
-    background-color: #4da8ff;
+    background-color: #d650ff;
     color: #fff;
 }
 
 .studentDSTK td button:last-child:hover {
-    background-color: #1a8cff;
+    background-color: #b900f1;
 }
 
 /* Chỉnh độ rộng các cột */

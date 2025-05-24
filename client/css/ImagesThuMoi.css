@@ -1,0 +1,135 @@
+*.backdrop-content {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  width: 970px;
+  height: 525px;
+  padding: 20px;
+  border-radius: 5px;
+  background-image: url('../Hình ảnh/backgroundThuMoi.png');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden; 
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/*Thông tin thư mời*/
+.student-info{
+    position: absolute;
+    left: 270px;
+    right: 0;
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+.invitation-letter{
+    position: absolute;
+    top: 35px;
+    left: 25%;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+  .logoInBackDrop {
+    position: absolute;
+    height: 50px;
+    margin-left: 100px;
+    top: 0%;
+  }
+  .ThuMoi{
+    font-size: 60px;
+    font-weight: bold;
+    font-family: "Dancing Script", cursive;
+    color: #e6c300  ;
+  }
+  .HoVaTen{
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "Bricolage Grotesque", sans-serif;
+    color: #ab0000  ;
+  }
+  .DenThamDu{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    font-family: "MonteCarlo", cursive;
+    color: #4B0082;
+  }
+  .TieuDe{
+    font-size: 24px;
+    font-weight: bold;
+    color: #e6c300;
+  }
+  .Khoa{
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    color: #4B0082 ;
+    margin-bottom: 8px;
+  }
+
+  .time {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    color: #333333;
+    margin-bottom: 10px;
+  }
+  .DiaDiem {
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    color: #333333;
+  }
+
+
+/* Khung ảnh */
+  .student-photo-container {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 350px;
+    height: 500px;
+  }
+  .khungvien {
+    transform: scale(1.3);
+    top: 70px;
+    position: absolute;
+    z-index: 2;
+  }
+
+  .student-photo {
+    width: 320px; 
+    height: 330px;
+    object-fit: cover;
+    border: 0 solid white;
+    border-radius: 50%;
+    position: absolute;
+    top: 49%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+    .gaubong{
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    top: 290px;
+    left: 7px;
+    transform: rotate(-20deg);
+    z-index: 3;
+  }
+  .mu{
+    position: absolute;
+    width: 190px;
+    height: 170px;
+    top: 50px;
+    left: 170px;
+    transform: rotate(35deg);
+    z-index: 3;
+  }
+
+  

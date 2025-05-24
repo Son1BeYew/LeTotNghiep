@@ -70,6 +70,7 @@ function fetchThuMoi() {
 
         const actionCell = document.createElement("td");
 
+
         if (tm.invitation && tm.invitation.user && tm.invitation.user._id) {
           const deleteBtn = document.createElement("button");
           deleteBtn.textContent = "Xóa";
@@ -95,7 +96,13 @@ function fetchThuMoi() {
           downloadBtn.className = "btn-download";
           downloadBtn.style.marginLeft = "5px";
           downloadBtn.onclick = function () {
-            loadThuMoiToForm(tm);
+            showInvitationLetter(tm.invitation);
+
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                exportToImage();
+              });
+            });
           };
           actionCell.appendChild(downloadBtn);
 
@@ -104,9 +111,12 @@ function fetchThuMoi() {
           shareBtn.className = "btn-share";
           shareBtn.style.marginLeft = "5px";
           shareBtn.onclick = function () {
-            loadThuMoiToForm(tm);
+            shareThuMoi(tm.invitation);
           };
           actionCell.appendChild(shareBtn);
+
+          
+
         } else {
           actionCell.textContent = "—";
         }
@@ -167,25 +177,25 @@ function resetForm() {
 function showInvitationLetter(formData) {
   const backgroundWrapper = document.querySelector(".show-image");
   backgroundWrapper.innerHTML = `
-    <div class="backdrop-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 970px; height: 525px; background-image: url('../Hình ảnh/background-xanh-1.png');">
+    <div class="backdrop-content">
       <div class="student-info">
         <img src="../Hình ảnh/logo-hutech-1.png" class="logoInBackDrop" alt="Logo" />
-        <h2 class="graduation-title">🎓Chúc mừng🎓</h2>
-        <h2 class="graduation-title1">Tân cử nhân</h2>
-
-        <p><strong>Họ và tên:</strong> ${formData.fullname}</p>
-        <p><strong>Ngày tạo:</strong> ${
-          formData.createdAt
-            ? new Date(formData.createdAt).toLocaleDateString("vi-VN")
-            : "—"
-        }</p>
+        <div class="invitation-letter">
+          <h2 class="ThuMoi">Thư mời</h2>
+          <p class ="HoVaTen"> ${formData.fullname}</p>
+          <p class="DenThamDu">Đến tham dự</p>
+          <p class="TieuDe">LỄ TỐT NGHIỆP & TRAO BẰNG KỸ SƯ</p>
+          <p class="Khoa">KHOA CÔNG NGHỆ THÔNG TIN</p>
+        <div class="time">
+          <p>Thứ 4, 18/6/2025</p>
+          <p>13:00 - 16:00</p>
+        </div>  
+          <p class="DiaDiem">Địa điểm: E3-05.01, Trường Đại học Công nghệ TP.HCM (HUTECH)</p>
+        </div>
       </div>
 
-      <img class="gaubong" src="../Hình ảnh/gaubongtotnghiep.png" alt="" />
-      <img class="mu" src="../Hình ảnh/mutotnghiep.png" alt="" />
-
       <div class="student-photo-container">
-        <img class="khungvien" src="../Hình ảnh/khungvien.png" alt="" />
+        <img class="khungvien" src="../Hình ảnh/khungThuMoi.png" alt="" />
         ${
           formData.imagePath
             ? `<img class="student-photo" src="http://localhost:5000/${formData.imagePath}" alt="Ảnh sinh viên" />`
@@ -280,8 +290,15 @@ async function searchThuMoi() {
       downloadBtn.className = "btn-download";
       downloadBtn.style.marginLeft = "5px";
       downloadBtn.onclick = function () {
-        loadThuMoiToForm({ invitation: data.invitation });
+        showInvitationLetter(tm.invitation);
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            exportToImage();
+          });
+        });
       };
+
       actionCell.appendChild(downloadBtn);
 
       const shareBtn = document.createElement("button");
@@ -289,9 +306,10 @@ async function searchThuMoi() {
       shareBtn.className = "btn-share";
       shareBtn.style.marginLeft = "5px";
       shareBtn.onclick = function () {
-        loadThuMoiToForm({ invitation: data.invitation });
+        shareThuMoi(tm.invitation);
       };
       actionCell.appendChild(shareBtn);
+
 
       row.appendChild(actionCell);
       tableBody.appendChild(row);
@@ -307,3 +325,6 @@ async function searchThuMoi() {
 document.getElementById("searchButton").addEventListener("click", function () {
   searchThuMoi();
 });
+
+
+

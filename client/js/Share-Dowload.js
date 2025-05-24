@@ -1,12 +1,18 @@
-function downloadImage() {
-  const image = document.getElementById("thumoi_img");
-  if (!image || !image.src) return alert("Không có ảnh để tải");
+//Tải thư mời
+function exportToImage() {
+  const backdrop = document.querySelector(".show-image");
 
-  const link = document.createElement("a");
-  link.href = image.src;
-  link.download = "thu-moi-tot-nghiep.png";
-  link.click();
+  html2canvas(backdrop, {
+    scale: 2,
+    useCORS: true,
+  }).then((canvas) => {
+    const link = document.createElement("a");
+    link.download = "anhthumoi.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
 }
+
 async function shareImage() {
   const image = document.getElementById("thumoi_img");
   if (!image || !image.src) {
