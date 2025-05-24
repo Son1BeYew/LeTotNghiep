@@ -1,13 +1,12 @@
-  let editingThuMoiId = null;
+let editingThuMoiId = null;
 
-  document.addEventListener("DOMContentLoaded", function () {
-    fetchThuMoi();
-    const formData = new FormData();
+document.addEventListener("DOMContentLoaded", function () {
+  fetchThuMoi();
+  const formData = new FormData();
 });
 
-
 function fetchThuMoi() {
-  const token = sessionStorage.getItem("token"); 
+  const token = sessionStorage.getItem("token");
   if (!token) {
     alert("Bạn cần đăng nhập để xem danh sách thư mời!");
     return;
@@ -16,7 +15,7 @@ function fetchThuMoi() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": "Bearer " + token,
+      Authorization: "Bearer " + token,
     },
   })
     .then((res) => {
@@ -36,7 +35,6 @@ function fetchThuMoi() {
       tableBody.innerHTML = "";
 
       data.forEach((tm) => {
-        // Skip the admin user
         if (tm.username.toLowerCase() === "admin") {
           return;
         }
@@ -44,7 +42,7 @@ function fetchThuMoi() {
         const row = document.createElement("tr");
 
         const mssvCell = document.createElement("td");
-        mssvCell.textContent = tm.username || "—";  
+        mssvCell.textContent = tm.username || "—";
         row.appendChild(mssvCell);
 
         const nameCell = document.createElement("td");
@@ -61,13 +59,17 @@ function fetchThuMoi() {
         const statusCell = document.createElement("td");
         const trangThai = tm.invitation?.trangThai || "Chưa đăng ký";
         statusCell.textContent = trangThai;
-        statusCell.style.color = trangThai === "Chưa đăng ký" ? "red" : trangThai === "Đã đăng ký" ? "green" : "black";
+        statusCell.style.color =
+          trangThai === "Chưa đăng ký"
+            ? "red"
+            : trangThai === "Đã đăng ký"
+            ? "green"
+            : "black";
         statusCell.style.fontWeight = "bold";
         row.appendChild(statusCell);
 
         const actionCell = document.createElement("td");
 
-        // Only add action buttons if the user has an invitation
         if (tm.invitation && tm.invitation.user && tm.invitation.user._id) {
           const deleteBtn = document.createElement("button");
           deleteBtn.textContent = "Xóa";
@@ -106,7 +108,7 @@ function fetchThuMoi() {
           };
           actionCell.appendChild(shareBtn);
         } else {
-          actionCell.textContent = "—"; 
+          actionCell.textContent = "—";
         }
 
         row.appendChild(actionCell);
@@ -128,7 +130,7 @@ function deleteThuMoi(userId) {
   fetch(`http://localhost:5000/api/thumoi/${userId}`, {
     method: "DELETE",
     headers: {
-      "Authorization": "Bearer " + sessionStorage.getItem("token"),
+      Authorization: "Bearer " + sessionStorage.getItem("token"),
     },
   })
     .then((res) => {
@@ -149,19 +151,18 @@ function deleteThuMoi(userId) {
     });
 }
 
-  function loadThuMoiToForm(tm) {
+function loadThuMoiToForm(tm) {
   document.getElementById("hovaten").value = tm.invitation.fullname;
-  editingThuMoiId = typeof tm.invitation.user === "object"
-    ? tm.invitation.user._id
-    : tm.invitation.user;
+  editingThuMoiId =
+    typeof tm.invitation.user === "object"
+      ? tm.invitation.user._id
+      : tm.invitation.user;
 }
 
-
-  function resetForm() {
-    document.getElementById("thumoiForm").reset();
-    editingThuMoiId = null;
-  }
-
+function resetForm() {
+  document.getElementById("thumoiForm").reset();
+  editingThuMoiId = null;
+}
 
 function showInvitationLetter(formData) {
   const backgroundWrapper = document.querySelector(".show-image");
@@ -195,7 +196,6 @@ function showInvitationLetter(formData) {
   `;
 }
 
-
 async function searchThuMoi() {
   const token = sessionStorage.getItem("token");
   const keyword = document.getElementById("searchMSSV").value.trim();
@@ -206,13 +206,18 @@ async function searchThuMoi() {
   }
 
   try {
-    const response = await fetch(`http://localhost:5000/api/thumoi/search?username=${encodeURIComponent(keyword)}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + token,
-      },
-    });
+    const response = await fetch(
+      `http://localhost:5000/api/thumoi/search?username=${encodeURIComponent(
+        keyword
+      )}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
 
     const res = await response.json();
 
@@ -240,7 +245,12 @@ async function searchThuMoi() {
 
       const statusCell = document.createElement("td");
       statusCell.textContent = data.invitation?.trangThai || "—";
-      statusCell.style.color = trangThai === "Chưa đăng ký" ? "red" : trangThai === "Đã đăng ký" ? "green" : "black";
+      statusCell.style.color =
+        trangThai === "Chưa đăng ký"
+          ? "red"
+          : trangThai === "Đã đăng ký"
+          ? "green"
+          : "black";
       statusCell.style.fontWeight = "bold";
       row.appendChild(statusCell);
 

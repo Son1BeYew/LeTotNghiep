@@ -2,15 +2,20 @@
 <html lang="vi">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thư Mời Tốt Nghiệp - HUTECH</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Ho Chi Minh City University of Technology</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
     <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/thumoi.css" />
+    <link rel="stylesheet" href="../css/thongtinletotnghiep.css" />
+    <link rel="stylesheet" href="../css//thongtin.css" />
   </head>
 
   <body class="bg-gray-100">
@@ -36,6 +41,14 @@
           </div>
         </div>
         <div class="right-section">
+          <div class="login-section">
+            <label for="username" class="login-label">Tài khoản:</label>
+            <input type="text" id="username" class="login-input" />
+
+            <label for="password" class="login-label">Mật khẩu:</label>
+            <input type="password" id="password" class="login-input" />
+            <button class="login-button">Đăng nhập</button>
+          </div>
           <div class="user-info" id="userinfo" onclick="showDropDownSV()">
             <i class="fas fa-user-circle"></i>
             <span id="usernameDisplay"></span>
@@ -52,7 +65,9 @@
       <div class="nav-container">
         <a href="/client/index.html">TRANG CHỦ</a>
         <a href="/client/pages/thumoi.html" id="linkTTM">THƯ MỜI</a>
-        <a href="/client/pages/Dangkitotnghiep.html">ĐĂNG KÍ LỄ TỐT NGHIỆP</a>
+        <a href="/client/pages/Dangkitotnghiep.html" id="linkDKLTN"
+          >ĐĂNG KÍ LỄ TỐT NGHIỆP</a
+        >
         <a href="/client/pages/thongtinletotnghiep.html"
           >THÔNG TIN LỄ TỐT NGHIỆP</a
         >
@@ -74,66 +89,7 @@
         </div>
       </div>
     </nav>
-
-    <main class="form_ThuMoi">
-      <div class="thumoi-container">
-        <form
-          class="taothumoiForm"
-          id="taothumoiForm"
-          enctype="multipart/form-data"
-        >
-          <label for="fullname" class="label_fullname">Họ và Tên</label>
-          <input
-            type="text"
-            id="fullname"
-            name="fullname"
-            class="input_fullname"
-          />
-
-          <label for="image" class="label_fullname">Tải ảnh lên</label>
-          <div class="custom-file-upload">
-            <input type="text" id="filePath" name="filePath" readonly />
-            <label for="image" class="label_browse">Tải ảnh</label>
-            <input type="file" id="image" name="image" />
-          </div>
-
-          <div
-            id="image_ThuMoi"
-            class="image_ThuMoi transition-all duration-500 ease-in-out"
-          >
-            <img
-              id="thumoi_img"
-              src=""
-              alt="Ảnh thư mời"
-              style="max-width: 100%; margin-top: 10px"
-            />
-          </div>
-
-          <button id="createButton" class="button_TaoThuMoi">
-            Tạo Thư Mời
-          </button>
-        </form>
-      </div>
-      <div
-        id="action-buttons"
-        style="display: none"
-        class="mt-4 space-x-2 text-center"
-      ></div>
-    </main>
-    <button
-      onclick="downloadImage()"
-      class="bg-green-500 text-white px-4 py-2 rounded"
-    >
-      Tải xuống
-    </button>
-    <button
-      onclick="shareImage()"
-      class="bg-blue-500 text-white px-4 py-2 rounded"
-    >
-      Chia sẻ
-    </button>
+    <main class="container"></main>
     <script src="../js/login.js"></script>
-    <script src="../js/thuMoi.js"></script>
-    <script src="../js/Share-Dowload.js"></script>
   </body>
 </html>
