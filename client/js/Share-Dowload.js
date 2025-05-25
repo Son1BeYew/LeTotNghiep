@@ -14,60 +14,53 @@ function exportToImage() {
 }
 function waitForImageToLoad(selector) {
   const img = document.querySelector(selector);
-  if (!img) return Promise.resolve(); // không có ảnh thì thôi
-  if (img.complete) return Promise.resolve(); // ảnh đã tải xong
+  if (!img) return Promise.resolve();
+  if (img.complete) return Promise.resolve();
 
   return new Promise((resolve) => {
     img.onload = resolve;
-    img.onerror = resolve; // nếu lỗi vẫn resolve để tránh treo
+    img.onerror = resolve;
   });
 }
 
 async function shareThuMoi(invitationData) {
-  // Hiển thị thư mời lên DOM
   showInvitationLetter(invitationData);
 
-  // Chờ DOM render xong
-  await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  await new Promise((resolve) =>
+    requestAnimationFrame(() => requestAnimationFrame(resolve))
+  );
 
-  // Chờ ảnh sinh viên load xong (nếu có)
   await waitForImageToLoad(".student-photo");
 
-  // Lấy phần tử thư mời để render thành canvas
   const backdrop = document.querySelector(".show-image");
 
-  // Tạo ảnh từ thư mời
   const canvas = await html2canvas(backdrop, {
     scale: 1.2,
     useCORS: true,
     backgroundColor: null,
   });
 
-  // Chuyển canvas thành Blob
   canvas.toBlob(async (blob) => {
     if (!blob) {
       alert("Không thể tạo ảnh từ thư mời.");
       return;
     }
 
-    // Tạo File từ Blob để upload
     const file = new File([blob], "thu-moi.png", { type: "image/png" });
 
-    // Upload lên Cloudinary
     const cloudinaryUrl = await uploadToCloudinary(file);
     if (!cloudinaryUrl) {
       alert("Không thể upload ảnh lên Cloudinary");
       return;
     }
 
-    // Mở cửa sổ chia sẻ Facebook
-    const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(cloudinaryUrl)}`;
+    const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+      cloudinaryUrl
+    )}`;
     window.open(fbShareUrl, "facebook-share-dialog", "width=800,height=600");
-  }, "image/png"); // Đảm bảo đúng định dạng
+  }, "image/png");
 }
 
-
-//tìm kiếm thư mời
 async function searchThuMoi() {
   const token = sessionStorage.getItem("token");
   const keyword = document.getElementById("searchMSSV").value.trim();
@@ -79,7 +72,9 @@ async function searchThuMoi() {
 
   try {
     const response = await fetch(
-      `http://localhost:5000/api/thumoi/search?username=${encodeURIComponent(keyword)}`,
+      `http://localhost:5000/api/thumoi/search?username=${encodeURIComponent(
+        keyword
+      )}`,
       {
         method: "GET",
         headers: {

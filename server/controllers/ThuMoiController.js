@@ -169,7 +169,7 @@ const searchInvitationByUsername = async (req, res) => {
   }
 };
 const sendInvitationEmail = async (req, res) => {
-  const { mssv, email } = req.body;
+  const { mssv, email, imageUrl } = req.body;
 
   try {
     const transporter = nodemailer.createTransport({
@@ -189,7 +189,14 @@ const sendInvitationEmail = async (req, res) => {
         <p>Chào sinh viên MSSV: <strong>${mssv}</strong>,</p>
         <p>Bạn được mời tham dự lễ tốt nghiệp vào <strong>13:00, 18/06/2025</strong> tại HUTECH.</p>
         <p>Địa điểm: E3-05.01</p>
-        
+        <br/>
+        <img src="${imageUrl}" alt="Thư mời" style="max-width: 100%; height: auto;" />
+        <p>
+  <a href="https://www.google.com/maps/place/HUTECH+-+%C4%90%E1%BA%A1i+h%E1%BB%8Dc+C%C3%B4ng+ngh%E1%BB%87+TP.HCM+(Sai+Gon+Campus)/@10.8469089,106.7384658,14z/data=!4m20!1m13!4m12!1m4!2m2!1d106.7375271!2d10.8398881!4e1!1m6!1m2!1s0x317527c3debb5aad:0x5fb58956eb4194d0!2zxJDhuqFpIEjhu41jIEh1dGVjaCBLaHUgRSwgU29uZyBIw6BuaCBYYSBM4buZIEjDoCBO4buZaSwgSGnhu4dwIFBow7osIFRo4bunIMSQ4bupYywgSOG7kyBDaMOtIE1pbmg!2m2!1d106.785373!2d10.8550427!3m5!1s0x317528a459cb43ab:0x6c3d29d370b52a7e!8m2!3d10.8016175!4d106.7144559!16s%2Fg%2F124xvbfmg?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" style="color: purple; font-weight: bold;">
+    Chỉ đường tới lễ tốt nghiệp (Google Maps)
+  </a>
+</p>
+
       `,
     };
 
@@ -200,6 +207,7 @@ const sendInvitationEmail = async (req, res) => {
     res.status(500).json({ message: "Lỗi khi gửi email!" });
   }
 };
+
 module.exports = {
   createInvitation,
   getMyInvitation,

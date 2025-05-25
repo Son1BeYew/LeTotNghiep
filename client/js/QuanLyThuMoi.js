@@ -213,7 +213,9 @@ async function searchThuMoi() {
 
   try {
     const response = await fetch(
-      `http://localhost:5000/api/thumoi/search?username=${encodeURIComponent(keyword)}`,
+      `http://localhost:5000/api/thumoi/search?username=${encodeURIComponent(
+        keyword
+      )}`,
       {
         method: "GET",
         headers: {
@@ -348,8 +350,6 @@ async function uploadToCloudinary(file) {
 
 async function shareThuMoi(invitationData) {
   showInvitationLetter(invitationData);
-
-  // RENDER BACKDROP
   await new Promise((resolve) =>
     requestAnimationFrame(() => requestAnimationFrame(resolve))
   );
@@ -375,7 +375,33 @@ async function shareThuMoi(invitationData) {
       return;
     }
 
-    // SHARE FB
+    try {
+      const response = await fetch("http://localhost:5000/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          to: invitationData.user?.email || "email@example.com",
+          subject: "Thư mời lễ tốt nghiệp",
+          imageUrl: cloudinaryUrl,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("✅ Đã gửi thư mời qua email!");
+      } else {
+        alert("❌ Gửi email thất bại: " + result.message);
+      }
+    } catch (err) {
+      console.error("Lỗi gửi email:", err);
+      alert("❌ Gửi email thất bại.");
+    }
+
+    // 👉 Tùy chọn chia sẻ lên Facebook nếu muốn:
     const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
       cloudinaryUrl
     )}`;
