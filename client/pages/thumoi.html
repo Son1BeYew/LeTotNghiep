@@ -1,142 +1,99 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thư Mời Tốt Nghiệp - HUTECH</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/thumoi.css" />
-  </head>
 
-  <body class="bg-gray-100">
-    <header class="header">
-      <div class="header-container">
-        <div class="left-section">
-          <div class="logo-section">
-            <a href="/client/index.html">
-              <img
-                src="https://file1.hutech.edu.vn/file/editor/homepage/stories/hinh34/logo%20CMYK-01.png"
-                alt="University Logo"
-                class="logo"
-              />
-            </a>
-            <div class="title">
-              <h1 class="university-name">
-                TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÀNH PHỐ HỒ CHÍ MINH
-              </h1>
-              <h2 class="university-subtitle">
-                Ho Chi Minh City University of Technology
-              </h2>
-            </div>
-          </div>
-        </div>
-        <div class="right-section">
-          <div class="user-info" id="userinfo" onclick="showDropDownSV()">
-            <i class="fas fa-user-circle"></i>
-            <span id="usernameDisplay"></span>
-            <i class="fas fa-caret-down"></i>
-            <div class="dropdownSV" id="ID_dropdownSV">
-              <a href="#" onclick="showThongTinSV()">Thông tin sinh viên</a>
-              <a href="#" onclick="logoutUser(event)">Đăng xuất</a>
-            </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thư Mời Tốt Nghiệp - HUTECH</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/thumoi.css" />
+</head>
+
+<body class="bg-gray-100">
+  <header class="header">
+    <div class="header-container">
+      <div class="left-section">
+        <div class="logo-section">
+          <a href="/client/index.html">
+            <img src="https://file1.hutech.edu.vn/file/editor/homepage/stories/hinh34/logo%20CMYK-01.png"
+              alt="University Logo" class="logo" />
+          </a>
+          <div class="title">
+            <h1 class="university-name">
+              TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÀNH PHỐ HỒ CHÍ MINH
+            </h1>
+            <h2 class="university-subtitle">
+              Ho Chi Minh City University of Technology
+            </h2>
           </div>
         </div>
       </div>
-    </header>
-    <nav class="navigation">
-      <div class="nav-container">
-        <a href="/client/index.html">TRANG CHỦ</a>
-        <a href="/client/pages/thumoi.html" id="linkTTM">THƯ MỜI</a>
-        <a href="/client/pages/Dangkitotnghiep.html">ĐĂNG KÍ LỄ TỐT NGHIỆP</a>
-        <a href="/client/pages/thongtinletotnghiep.html"
-          >THÔNG TIN LỄ TỐT NGHIỆP</a
-        >
-        <div class="dropdown">
-          <a href="#">GIỚI THIỆU <i class="fa fa-chevron-down"></i></a>
-          <div class="dropdown-content">
-            <a href="#">Về HUTECH</a>
-            <a href="#">Khoa - Viện</a>
-            <a href="#">Cơ sở vật chất</a>
-          </div>
-        </div>
-        <div class="dropdown">
-          <a href="#">TRỢ GIÚP <i class="fa fa-chevron-down"></i></a>
-          <div class="dropdown-content">
-            <a href="#">Hỏi đáp</a>
-            <a href="#">Liên hệ</a>
-            <a href="#">Hỗ trợ kỹ thuật</a>
+      <div class="right-section">
+        <div class="user-info" id="userinfo" onclick="showDropDownSV()">
+          <i class="fas fa-user-circle"></i>
+          <span id="usernameDisplay"></span>
+          <i class="fas fa-caret-down"></i>
+          <div class="dropdownSV" id="ID_dropdownSV">
+            <a href="#" onclick="showThongTinSV()">Thông tin sinh viên</a>
+            <a href="#" onclick="logoutUser(event)">Đăng xuất</a>
           </div>
         </div>
       </div>
-    </nav>
-
-    <main class="form_ThuMoi">
-      <div class="thumoi-container">
-        <form
-          class="taothumoiForm"
-          id="taothumoiForm"
-          enctype="multipart/form-data"
-        >
-          <label for="fullname" class="label_fullname">Họ và Tên</label>
-          <input
-            type="text"
-            id="fullname"
-            name="fullname"
-            class="input_fullname"
-          />
-
-          <label for="image" class="label_fullname">Tải ảnh lên</label>
-          <div class="custom-file-upload">
-            <input type="text" id="filePath" name="filePath" readonly />
-            <label for="image" class="label_browse">Tải ảnh</label>
-            <input type="file" id="image" name="image" />
-          </div>
-
-          <div
-            id="image_ThuMoi"
-            class="image_ThuMoi transition-all duration-500 ease-in-out"
-          >
-            <img
-              id="thumoi_img"
-              src=""
-              alt="Ảnh thư mời"
-              style="max-width: 100%; margin-top: 10px"
-            />
-          </div>
-
-          <button id="createButton" class="button_TaoThuMoi">
-            Tạo Thư Mời
-          </button>
-        </form>
+    </div>
+  </header>
+  <nav class="navigation">
+    <div class="nav-container">
+      <a href="/client/index.html">TRANG CHỦ</a>
+      <a href="/client/pages/thumoi.html" id="linkTTM">THƯ MỜI</a>
+      <a href="/client/pages/Dangkitotnghiep.html">ĐĂNG KÍ LỄ TỐT NGHIỆP</a>
+      <a href="/client/pages/thongtinletotnghiep.html">THÔNG TIN LỄ TỐT NGHIỆP</a>
+      <div class="dropdown">
+        <a href="#">GIỚI THIỆU <i class="fa fa-chevron-down"></i></a>
+        <div class="dropdown-content">
+          <a href="#">Về HUTECH</a>
+          <a href="#">Khoa - Viện</a>
+          <a href="#">Cơ sở vật chất</a>
+        </div>
       </div>
-      <div
-        id="action-buttons"
-        style="display: none"
-        class="mt-4 space-x-2 text-center"
-      ></div>
-    </main>
-    <button
-      onclick="downloadImage()"
-      class="bg-green-500 text-white px-4 py-2 rounded"
-    >
-      Tải xuống
-    </button>
-    <button
-      onclick="shareImage()"
-      class="bg-blue-500 text-white px-4 py-2 rounded"
-    >
-      Chia sẻ
-    </button>
-    <button onclick="See()" class="bg-blue-500 text-white px-4 py-2 rounded">
-      Xem Thư Mời
-    </button>
-    <script src="../js/login.js"></script>
-    <script src="../js/thuMoi.js"></script>
-    <script src="../js/Share-Dowload.js"></script>
-  </body>
+      <div class="dropdown">
+        <a href="#">TRỢ GIÚP <i class="fa fa-chevron-down"></i></a>
+        <div class="dropdown-content">
+          <a href="#">Hỏi đáp</a>
+          <a href="#">Liên hệ</a>
+          <a href="#">Hỗ trợ kỹ thuật</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="form_ThuMoi">
+    <div class="thumoi-container">
+      <form class="taothumoiForm" id="taothumoiForm" enctype="multipart/form-data">
+        <label for="fullname" class="label_fullname">Họ và Tên</label>
+        <input type="text" id="fullname" name="fullname" class="input_fullname" />
+
+        <label for="image" class="label_fullname">Tải ảnh lên</label>
+        <div class="custom-file-upload">
+          <input type="text" id="filePath" name="filePath" readonly />
+          <label for="image" class="label_browse">Tải ảnh</label>
+          <input type="file" id="image" name="image" />
+        </div>
+
+        <div id="image_ThuMoi" class="image_ThuMoi transition-all duration-500 ease-in-out">
+          <img id="thumoi_img" src="" alt="Ảnh thư mời" style="max-width: 100%; margin-top: 10px" />
+        </div>
+
+        <button id="createButton" class="button_TaoThuMoi">
+          Tạo Thư Mời
+        </button>
+      </form>
+    </div>
+    <div id="action-buttons" style="display: none" class="mt-4 space-x-2 text-center"></div>
+  </main>
+  <script src="../js/login.js"></script>
+  <script src="../js/thuMoi.js"></script>
+</body>
+
 </html>
