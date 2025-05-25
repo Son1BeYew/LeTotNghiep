@@ -2,6 +2,8 @@ const path = require("path");
 const fs = require("fs");
 const Invitation = require("../models/ThuMoi");
 const User = require("../models/users");
+const { send } = require("process");
+const nodemailer = require("nodemailer");
 
 const createInvitation = async (req, res) => {
   try {
@@ -30,7 +32,7 @@ const createInvitation = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error("Lỗi tạo thư mời:", error); // 👈 Ghi log để dễ debug
+    console.error("Lỗi tạo thư mời:", error);
     res.status(500).json({ message: "Lỗi server", error });
   }
 };
@@ -162,7 +164,38 @@ const searchInvitationByUsername = async (req, res) => {
     res.status(500).json({ message: "Lỗi server", error });
   }
 };
+const sendInvitationEmail = async (req, res) => {
+  const { mssv, email } = req.body;
 
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "son111333na@gmail.com",
+        pass: "zpyd klms gcbv lpbh",
+      },
+    });
+
+    const mailOptions = {
+      from: "son111333na@gmail.com",
+      to: email,
+      subject: "Thư mời lễ tốt nghiệp",
+      html: `
+        <h3>Thư mời lễ tốt nghiệp</h3>
+        <p>Chào sinh viên MSSV: <strong>${mssv}</strong>,</p>
+        <p>Bạn được mời tham dự lễ tốt nghiệp vào <strong>13:00, 18/06/2025</strong> tại HUTECH.</p>
+        <p>Địa điểm: E3-05.01</p>
+        
+      `,
+    };
+
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: "Thư mời đã được gửi!" });
+  } catch (error) {
+    console.error("Lỗi gửi email:", error);
+    res.status(500).json({ message: "Lỗi khi gửi email!" });
+  }
+};
 module.exports = {
   createInvitation,
   getMyInvitation,
@@ -170,4 +203,5 @@ module.exports = {
   updateInvitation,
   deleteInvitationByUserId,
   searchInvitationByUsername,
+  sendInvitationEmail,
 };
