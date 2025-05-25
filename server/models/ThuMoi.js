@@ -7,11 +7,9 @@ const ThuMoi = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
   trangThai: {
     type: String,
-    enum: ['Đã đăng ký', 'Chưa đăng ký'],
-    default: 'Chưa đăng ký'
-  }
+    enum: ["Đã đăng ký", "Chưa đăng ký"],
+    default: "Chưa đăng ký",
+  },
 });
-
-
 
 module.exports = mongoose.model("ThuMoi", ThuMoi);

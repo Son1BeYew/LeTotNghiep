@@ -9,13 +9,14 @@ const createInvitation = async (req, res) => {
     const imagePath = req.file.path;
 
     const existing = await Invitation.findOne({ user: req.user.id });
-    if (existing) return res.status(400).json({ message: "Đã tạo thư mời rồi" });
+    if (existing)
+      return res.status(400).json({ message: "Đã tạo thư mời rồi" });
 
     const invitation = new Invitation({
       fullname,
       imagePath,
       user: req.user.id,
-      trangThai: trangThai || 'Chưa đăng ký'
+      trangThai: trangThai || "Chưa đăng ký",
     });
 
     await invitation.save();
@@ -55,7 +56,7 @@ const getAllInvitations = async (req, res) => {
               trangThai: match.trangThai,
               createdAt: match.createdAt,
               user: {
-                _id: match.user._id, 
+                _id: match.user._id,
               },
             }
           : null,
@@ -91,7 +92,8 @@ const updateInvitation = async (req, res) => {
     const { fullname } = req.body;
 
     const invitation = await Invitation.findOne({ user: userId });
-    if (!invitation) return res.status(404).json({ message: "Không tìm thấy thư mời." });
+    if (!invitation)
+      return res.status(404).json({ message: "Không tìm thấy thư mời." });
 
     if (req.file) {
       if (fs.existsSync(invitation.imagePath)) {
@@ -108,13 +110,15 @@ const updateInvitation = async (req, res) => {
   }
 };
 
-
 const deleteInvitationByUserId = async (req, res) => {
   try {
     const { userId } = req.params;
     const invitation = await Invitation.findOneAndDelete({ user: userId });
 
-    if (!invitation) return res.status(404).json({ message: "Không tìm thấy thư mời để xóa." });
+    if (!invitation)
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy thư mời để xóa." });
 
     if (fs.existsSync(invitation.imagePath)) {
       fs.unlinkSync(invitation.imagePath);
@@ -126,14 +130,14 @@ const deleteInvitationByUserId = async (req, res) => {
   }
 };
 
-
 const searchInvitationByUsername = async (req, res) => {
   try {
     const username = req.query.username || req.params.username;
     if (!username || typeof username !== "string") {
-      return res.status(400).json({ message: "Thiếu hoặc sai định dạng username" });
+      return res
+        .status(400)
+        .json({ message: "Thiếu hoặc sai định dạng username" });
     }
-
 
     const user = await User.findOne({ username: username.trim() });
     if (!user) {
@@ -142,7 +146,9 @@ const searchInvitationByUsername = async (req, res) => {
 
     const invitation = await Invitation.findOne({ user: user._id });
     if (!invitation) {
-      return res.status(404).json({ message: "Không tìm thấy thư mời của người dùng này" });
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy thư mời của người dùng này" });
     }
 
     res.json({
@@ -150,13 +156,12 @@ const searchInvitationByUsername = async (req, res) => {
       email: user.email,
       fullname: invitation.fullname,
       imagePath: "uploads/" + path.basename(invitation.imagePath),
-      invitation: invitation, // để có thể lấy createdAt, user trong frontend
+      invitation: invitation,
     });
   } catch (error) {
     res.status(500).json({ message: "Lỗi server", error });
   }
 };
-
 
 module.exports = {
   createInvitation,
@@ -164,5 +169,5 @@ module.exports = {
   getAllInvitations,
   updateInvitation,
   deleteInvitationByUserId,
-  searchInvitationByUsername,  // thêm hàm này xuất khẩu
+  searchInvitationByUsername,
 };

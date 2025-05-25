@@ -70,7 +70,6 @@ function fetchThuMoi() {
 
         const actionCell = document.createElement("td");
 
-
         if (tm.invitation && tm.invitation.user && tm.invitation.user._id) {
           const deleteBtn = document.createElement("button");
           deleteBtn.textContent = "Xóa";
@@ -114,9 +113,6 @@ function fetchThuMoi() {
             shareThuMoi(tm.invitation);
           };
           actionCell.appendChild(shareBtn);
-
-          
-
         } else {
           actionCell.textContent = "—";
         }
@@ -299,8 +295,6 @@ async function searchThuMoi() {
         });
       };
 
-      actionCell.appendChild(downloadBtn);
-
       const shareBtn = document.createElement("button");
       shareBtn.textContent = "Chia sẻ";
       shareBtn.className = "btn-share";
@@ -309,7 +303,6 @@ async function searchThuMoi() {
         shareThuMoi(tm.invitation);
       };
       actionCell.appendChild(shareBtn);
-
 
       row.appendChild(actionCell);
       tableBody.appendChild(row);
@@ -326,5 +319,68 @@ document.getElementById("searchButton").addEventListener("click", function () {
   searchThuMoi();
 });
 
+// UPLOAD TO SERVER
+async function uploadToCloudinary(file) {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", "SonNguyen");
 
+  try {
+    const response = await fetch(
+      "https://api.cloudinary.com/v1_1/dxarwusir/image/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
 
+    const data = await response.json();
+
+    if (response.ok) {
+      return data.secure_url; // URL của ảnh sau khi upload
+    } else {
+      console.error("Upload lỗi:", data);
+      return null;
+    }
+  } catch (err) {
+    console.error("Lỗi khi upload ảnh:", err);
+    return null;
+  }
+}
+
+async function shareThuMoi(invitationData) {
+  showInvitationLetter(invitationData);
+
+  // RENDER BACKDROP
+  await new Promise((resolve) =>
+    requestAnimationFrame(() => requestAnimationFrame(resolve))
+  );
+
+  const backdrop = document.querySelector(".show-image");
+  const canvas = await html2canvas(backdrop, {
+    scale: 2,
+    useCORS: true,
+  });
+
+  canvas.toBlob(async (blob) => {
+    if (!blob) {
+      alert("Không thể tạo ảnh từ thư mời.");
+      return;
+    }
+
+    const file = new File([blob], "thu-moi.png", { type: "image/png" });
+
+    const cloudinaryUrl = await uploadToCloudinary(file);
+
+    if (!cloudinaryUrl) {
+      alert("Không thể upload ảnh lên Cloudinary");
+      return;
+    }
+
+    // SHARE FB
+    const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+      cloudinaryUrl
+    )}`;
+    window.open(fbShareUrl, "facebook-share-dialog", "width=800,height=600");
+  });
+}

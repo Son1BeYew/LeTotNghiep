@@ -1,112 +1,125 @@
 <!DOCTYPE html>
 <html lang="vi">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản lý sinh viên</title>
-    <link href="../css/QuanLyThuMoi.css" rel="stylesheet">
-    <link href="../css/QuanLy.css" rel="stylesheet">
-    <link href="../css/ImagesThuMoi.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Satisfy&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="../css/QuanLyThuMoi.css" rel="stylesheet" />
+    <link href="../css/QuanLy.css" rel="stylesheet" />
+    <link href="../css/ImagesThuMoi.css" rel="stylesheet" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Cantora+One&display=swap"
-        rel="stylesheet">
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Satisfy&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Cantora+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-
-</head>
-
-<body>
+  <body>
     <header class="header">
-        <h1>QUẢN LÝ THÔNG TIN SINH VIÊN</h1>
-        <div class="logout" onclick="logoutUser(event)">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Đăng xuất</span>
-        </div>
+      <h1>QUẢN LÝ THÔNG TIN SINH VIÊN</h1>
+      <div class="logout" onclick="logoutUser(event)">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Đăng xuất</span>
+      </div>
     </header>
 
     <div class="sidebar">
-        <div class="logo">
-            <img src="../Hình ảnh/logo-hutech.png" alt="" />
-        </div>
-        <div class="text">
-            <span>HỆ THỐNG HUTECH</span>
-        </div>
-        <a href="#" onclick="showTrangChuForm()">Trang chủ</a>
-        <a href="#" onclick="showQLTKSVForm()">Quản lý tài khoản sinh viên</a>
-        <a href="#" onclick="showQLSVForm()">Quản lý thông tin sinh viên</a>
-        <a href="#" onclick="showQLTMForm()">Quản lý thư mời sinh viên</a>
+      <div class="logo">
+        <img src="../Hình ảnh/logo-hutech.png" alt="" />
+      </div>
+      <div class="text">
+        <span>HỆ THỐNG HUTECH</span>
+      </div>
+      <a href="#" onclick="showTrangChuForm()">Trang chủ</a>
+      <a href="#" onclick="showQLTKSVForm()">Quản lý tài khoản sinh viên</a>
+      <a href="#" onclick="showQLSVForm()">Quản lý thông tin sinh viên</a>
+      <a href="#" onclick="showQLTMForm()">Quản lý thư mời sinh viên</a>
     </div>
     <div class="content_QLTM">
-        <div class="form_TKTM">
-            <div class="show-image" id="show-image"></div>
+      <div class="form_TKTM">
+        <div class="show-image" id="show-image"></div>
 
-            <div id="searchForm" class="searchForm">
-                <input type="text" id="searchMSSV" placeholder="Nhập mssv để tìm kiếm" />
-                <button type="button" id="searchButton">Tìm kiếm</button>
-            </div>
-
-            <div class="table-container">
-                <table id="thumoiDS" class="thumoiDS">
-                    <thead>
-                        <tr>
-                            <th>MSSV</th>
-                            <th>Họ và tên</th>
-                            <th>Thời gian tạo</th>
-                            <th>Trạng thái</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody id="thumoiDSTable"></tbody>
-                </table>
-            </div>
+        <div id="searchForm" class="searchForm">
+          <input
+            type="text"
+            id="searchMSSV"
+            placeholder="Nhập mssv để tìm kiếm"
+          />
+          <button type="button" id="searchButton">Tìm kiếm</button>
         </div>
+
+        <div class="table-container">
+          <table id="thumoiDS" class="thumoiDS">
+            <thead>
+              <tr>
+                <th>MSSV</th>
+                <th>Họ và tên</th>
+                <th>Thời gian tạo</th>
+                <th>Trạng thái</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="thumoiDSTable"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
     <script>
-        function toggleSidebar() {
-            var sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('active');
-        }
+      function toggleSidebar() {
+        var sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("active");
+      }
 
-        function showTrangChuForm() {
-            window.location.href = "QuanLy.html";
-        }
-        function showQLSVForm() {
-            window.location.href = "QuanLySinhVien.html";
-        }
-        function showQLTKSVForm() {
-            window.location.href = "QuanLyTaiKhoanSV.html";
-        }
-        function showQLTMForm() {
-            window.location.href = "QuanLyThuMoi.html";
-        }
-        function logoutUser(event) {
-            event.preventDefault();
-            event.stopPropagation();
+      function showTrangChuForm() {
+        window.location.href = "QuanLy.html";
+      }
+      function showQLSVForm() {
+        window.location.href = "QuanLySinhVien.html";
+      }
+      function showQLTKSVForm() {
+        window.location.href = "QuanLyTaiKhoanSV.html";
+      }
+      function showQLTMForm() {
+        window.location.href = "QuanLyThuMoi.html";
+      }
+      function logoutUser(event) {
+        event.preventDefault();
+        event.stopPropagation();
 
-            sessionStorage.removeItem("loggedInUser");
-            sessionStorage.removeItem("mssv");
-            sessionStorage.removeItem("token");
-            sessionStorage.removeItem("role");
+        sessionStorage.removeItem("loggedInUser");
+        sessionStorage.removeItem("mssv");
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("role");
 
-            alert("Đăng xuất thành công");
+        alert("Đăng xuất thành công");
 
-            window.location.href = "/client/index.html";
-        }
+        window.location.href = "/client/index.html";
+      }
     </script>
     <script src="../js/QuanLyThuMoi.js"></script>
-    <script src="../js/Share-Dowload.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-
-</body>
-
+  </body>
 </html>
