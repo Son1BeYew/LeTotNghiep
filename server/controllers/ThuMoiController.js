@@ -147,18 +147,22 @@ const searchInvitationByUsername = async (req, res) => {
     }
 
     const invitation = await Invitation.findOne({ user: user._id });
-    if (!invitation) {
-      return res
-        .status(404)
-        .json({ message: "Không tìm thấy thư mời của người dùng này" });
-    }
 
+    // Trả về thông tin người dùng ngay cả khi không có thư mời
     res.json({
       username: user.username,
       email: user.email,
-      fullname: invitation.fullname,
-      imagePath: "uploads/" + path.basename(invitation.imagePath),
-      invitation: invitation,
+      invitation: invitation
+        ? {
+            fullname: invitation.fullname,
+            imagePath: "uploads/" + path.basename(invitation.imagePath),
+            trangThai: invitation.trangThai,
+            createdAt: invitation.createdAt,
+            user: {
+              _id: invitation.user,
+            },
+          }
+        : null,
     });
   } catch (error) {
     res.status(500).json({ message: "Lỗi server", error });

@@ -213,9 +213,7 @@ async function searchThuMoi() {
 
   try {
     const response = await fetch(
-      `http://localhost:5000/api/thumoi/search?username=${encodeURIComponent(
-        keyword
-      )}`,
+      `http://localhost:5000/api/thumoi/search?username=${encodeURIComponent(keyword)}`,
       {
         method: "GET",
         headers: {
