@@ -1,191 +1,177 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Ho Chi Minh City University of Technology</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-    <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/thongtinletotnghiep.css" />
-    <link rel="stylesheet" href="../css/thongtin.css" />
-  </head>
 
-  <body class="bg-gray-100">
-    <header class="header">
-      <div class="header-container">
-        <div class="left-section">
-          <div class="logo-section">
-            <a href="/client/index.html">
-              <img
-                src="https://file1.hutech.edu.vn/file/editor/homepage/stories/hinh34/logo%20CMYK-01.png"
-                alt="University Logo"
-                class="logo"
-              />
-            </a>
-            <div class="title">
-              <h1 class="university-name">
-                TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÀNH PHỐ HỒ CHÍ MINH
-              </h1>
-              <h2 class="university-subtitle">
-                Ho Chi Minh City University of Technology
-              </h2>
-            </div>
-          </div>
-        </div>
-        <div class="right-section">
-          <div class="login-section">
-            <label for="username" class="login-label">Tài khoản:</label>
-            <input type="text" id="username" class="login-input" />
-            <label for="password" class="login-label">Mật khẩu:</label>
-            <input type="password" id="password" class="login-input" />
-            <button class="login-button">Đăng nhập</button>
-          </div>
-          <div class="user-info" id="userinfo" onclick="showDropDownSV()">
-            <i class="fas fa-user-circle"></i>
-            <span id="usernameDisplay"></span>
-            <i class="fas fa-caret-down"></i>
-            <div class="dropdownSV" id="ID_dropdownSV">
-              <a href="#" onclick="showThongTinSV()">Thông tin sinh viên</a>
-              <a href="#" onclick="logoutUser(event)">Đăng xuất</a>
-            </div>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Ho Chi Minh City University of Technology</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/thongtinletotnghiep.css" />
+  <link rel="stylesheet" href="../css/thongtin.css" />
+</head>
+
+<body class="bg-gray-100">
+  <header class="header">
+    <div class="header-container">
+      <div class="left-section">
+        <div class="logo-section">
+          <a href="/client/index.html">
+            <img src="https://file1.hutech.edu.vn/file/editor/homepage/stories/hinh34/logo%20CMYK-01.png"
+              alt="University Logo" class="logo" />
+          </a>
+          <div class="title">
+            <h1 class="university-name">
+              TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÀNH PHỐ HỒ CHÍ MINH
+            </h1>
+            <h2 class="university-subtitle">
+              Ho Chi Minh City University of Technology
+            </h2>
           </div>
         </div>
       </div>
-    </header>
-
-    <nav class="navigation">
-      <div class="nav-container">
-        <a href="/client/index.html">TRANG CHỦ</a>
-        <a href="/client/pages/thumoi.html" id="linkTTM">THƯ MỜI</a>
-        <a href="/client/pages/Dangkitotnghiep.html" id="linkDKLTN"
-          >ĐĂNG KÍ LỄ TỐT NGHIỆP</a
-        >
-        <a href="/client/pages/thongtinletotnghiep.html"
-          >THÔNG TIN LỄ TỐT NGHIỆP</a
-        >
-        <div class="dropdown">
-          <a href="#">GIỚI THIỆU <i class="fa fa-chevron-down"></i></a>
-          <div class="dropdown-content">
-            <a href="#">Về HUTECH</a>
-            <a href="#">Khoa - Viện</a>
-            <a href="#">Cơ sở vật chất</a>
-          </div>
+      <div class="right-section">
+        <div class="login-section">
+          <label for="username" class="login-label">Tài khoản:</label>
+          <input type="text" id="username" class="login-input" />
+          <label for="password" class="login-label">Mật khẩu:</label>
+          <input type="password" id="password" class="login-input" />
+          <button class="login-button">Đăng nhập</button>
         </div>
-        <div class="dropdown">
-          <a href="#">TRỢ GIÚP <i class="fa fa-chevron-down"></i></a>
-          <div class="dropdown-content">
-            <a href="#">Hỏi đáp</a>
-            <a href="#">Liên hệ</a>
-            <a href="#">Hỗ trợ kỹ thuật</a>
+        <div class="user-info" id="userinfo" onclick="showDropDownSV()">
+          <i class="fas fa-user-circle"></i>
+          <span id="usernameDisplay"></span>
+          <i class="fas fa-caret-down"></i>
+          <div class="dropdownSV" id="ID_dropdownSV">
+            <a href="#" onclick="showThongTinSV()">Thông tin sinh viên</a>
+            <a href="#" onclick="logoutUser(event)">Đăng xuất</a>
           </div>
         </div>
       </div>
-    </nav>
+    </div>
+  </header>
 
-    <main class="container">
-      <h2 class="page-title">THÔNG TIN TỐT NGHIỆP</h2>
-
-      <div class="item" data-href="../Inform/1.html">
-        <img
-          src="https://file1.hutech.edu.vn/file/editor/homepage1/Phoi%20canh%20co%20so%20Hutech_co%20so%20DBP%20%20.jpg"
-          alt="HUTECH"
-        />
-        <div class="item-content">
-          <div class="item-title">SƠ ĐỒ CHỖ NGỒI LỄ TỐT NGHIỆP 06/04/2025</div>
-          <div class="item-desc">
-            1. Sinh viên xem sơ đồ chỗ ngồi file đính kèm bên dưới. Bảng đỏ dành
-            cho sinh viên tốt nghiệp xếp loại Giỏi. Bảng xanh dành cho sinh viên
-            tốt nghiệp xếp loại Khá và Trung bình.
-            <br />2. Cuối buổi lễ (15h30-16h30)...
-          </div>
+  <nav class="navigation">
+    <div class="nav-container">
+      <a href="/client/index.html">TRANG CHỦ</a>
+      <a href="/client/pages/thumoi.html" id="linkTTM">THƯ MỜI</a>
+      <a href="/client/pages/Dangkitotnghiep.html" id="linkDKLTN">ĐĂNG KÍ LỄ TỐT NGHIỆP</a>
+      <a href="/client/pages/thongtinletotnghiep.html">THÔNG TIN LỄ TỐT NGHIỆP</a>
+      <div class="dropdown">
+        <a href="#">GIỚI THIỆU <i class="fa fa-chevron-down"></i></a>
+        <div class="dropdown-content">
+          <a href="#">Về HUTECH</a>
+          <a href="#">Khoa - Viện</a>
+          <a href="#">Cơ sở vật chất</a>
         </div>
       </div>
-
-      <div class="item" data-href="thongbao_thamdu.html">
-        <img
-          src="https://file1.hutech.edu.vn/file/editor/homepage1/Phoi%20canh%20co%20so%20Hutech_co%20so%20DBP%20%20.jpg"
-          alt="HUTECH"
-        />
-        <div class="item-content">
-          <div class="item-title">
-            THÔNG BÁO V/v THAM DỰ LỄ PHÁT BẰNG TỐT NGHIỆP
-          </div>
-          <div class="item-desc">
-            LỄ TỐT NGHIỆP 13h00 CHIỀU CHỦ NHẬT NGÀY 06/04/2025 tại Hội trường
-            E3-05.01, Thủ Đức Campus. Trường Đại học Công nghệ TP.HCM thông báo
-            kế hoạch tổ chức Lễ trao bằng tốt nghiệp...
-          </div>
+      <div class="dropdown">
+        <a href="#">TRỢ GIÚP <i class="fa fa-chevron-down"></i></a>
+        <div class="dropdown-content">
+          <a href="#">Hỏi đáp</a>
+          <a href="#">Liên hệ</a>
+          <a href="#">Hỗ trợ kỹ thuật</a>
         </div>
       </div>
+    </div>
+  </nav>
 
-      <div class="item" data-href="thoigian_tochuc.html">
-        <img
-          src="https://file1.hutech.edu.vn/file/editor/homepage1/Phoi%20canh%20co%20so%20Hutech_co%20so%20DBP%20%20.jpg"
-          alt="HUTECH"
-        />
-        <div class="item-content">
-          <div class="item-title">
-            THÔNG BÁO về thời gian tổ chức Lễ tốt nghiệp năm 2025
-          </div>
-          <div class="item-desc">
-            Để giúp học viên - sinh viên và các đơn vị chủ động trong công tác
-            tổ chức Lễ tốt nghiệp năm 2025, Nhà trường thông tin thời gian tổ
-            chức cụ thể như sau: ...
-          </div>
+  <main class="container">
+    <h2 class="page-title">THÔNG TIN TỐT NGHIỆP</h2>
+
+    <div class="item">
+      <img
+        src="https://file1.hutech.edu.vn/file/editor/homepage1/Phoi%20canh%20co%20so%20Hutech_co%20so%20DBP%20%20.jpg"
+        alt="HUTECH" />
+      <div class="item-content">
+        <div class="item-title"
+          onclick="window.location.href='https://www.hutech.edu.vn/tienganh/thong-tin-tot-nghiep/14624241-so-do-cho-ngoi-le-tot-nghiep-06042025'">
+          SƠ ĐỒ CHỖ NGỒI LỄ TỐT NGHIỆP 06/04/2025</div>
+        <div class="item-desc">
+          1. Sinh viên xem sơ đồ chỗ ngồi file đính kèm bên dưới. Bảng đỏ dành
+          cho sinh viên tốt nghiệp xếp loại Giỏi. Bảng xanh dành cho sinh viên
+          tốt nghiệp xếp loại Khá và Trung bình.
+          <br />2. Cuối buổi lễ (15h30-16h30)...
         </div>
       </div>
+    </div>
 
-      <div class="item" data-href="sodo_1201_a.html">
-        <img
-          src="https://file1.hutech.edu.vn/file/editor/homepage1/Phoi%20canh%20co%20so%20Hutech_co%20so%20DBP%20%20.jpg"
-          alt="HUTECH"
-        />
-        <div class="item-content">
-          <div class="item-title">SƠ ĐỒ CHỖ NGỒI LỄ TỐT NGHIỆP 12/01/2025</div>
-          <div class="item-desc">
-            1. Sinh viên xem sơ đồ chỗ ngồi file đính kèm bên dưới. Bảng đỏ dành
-            cho sinh viên tốt nghiệp loại Xuất Sắc và Giỏi. Bảng xanh dành cho
-            sinh viên tốt nghiệp loại Khá và Trung bình...
-          </div>
+    <div class="item" data-href="thongbao_thamdu.html">
+      <img
+        src="https://file1.hutech.edu.vn/file/editor/homepage1/Phoi%20canh%20co%20so%20Hutech_co%20so%20DBP%20%20.jpg"
+        alt="HUTECH" />
+      <div class="item-content">
+        <div class="item-title">
+          THÔNG BÁO V/v THAM DỰ LỄ PHÁT BẰNG TỐT NGHIỆP
+        </div>
+        <div class="item-desc">
+          LỄ TỐT NGHIỆP 13h00 CHIỀU CHỦ NHẬT NGÀY 06/04/2025 tại Hội trường
+          E3-05.01, Thủ Đức Campus. Trường Đại học Công nghệ TP.HCM thông báo
+          kế hoạch tổ chức Lễ trao bằng tốt nghiệp...
         </div>
       </div>
+    </div>
 
-      <div class="item" data-href="sodo_1201_b.html">
-        <img
-          src="https://file1.hutech.edu.vn/file/editor/homepage1/Phoi%20canh%20co%20so%20Hutech_co%20so%20DBP%20%20.jpg"
-          alt="HUTECH"
-        />
-        <div class="item-content">
-          <div class="item-title">SƠ ĐỒ CHỖ NGỒI LỄ TỐT NGHIỆP 12/01/2025</div>
-          <div class="item-desc">
-            1. Sinh viên xem sơ đồ chỗ ngồi file đính kèm bên dưới. Bảng đỏ dành
-            cho sinh viên tốt nghiệp loại Xuất Sắc và Giỏi. Bảng xanh dành cho
-            sinh viên tốt nghiệp loại Khá và Trung bình...
-          </div>
+    <div class="item" data-href="thoigian_tochuc.html">
+      <img
+        src="https://file1.hutech.edu.vn/file/editor/homepage1/Phoi%20canh%20co%20so%20Hutech_co%20so%20DBP%20%20.jpg"
+        alt="HUTECH" />
+      <div class="item-content">
+        <div class="item-title">
+          THÔNG BÁO về thời gian tổ chức Lễ tốt nghiệp năm 2025
+        </div>
+        <div class="item-desc">
+          Để giúp học viên - sinh viên và các đơn vị chủ động trong công tác
+          tổ chức Lễ tốt nghiệp năm 2025, Nhà trường thông tin thời gian tổ
+          chức cụ thể như sau: ...
         </div>
       </div>
-    </main>
-    <script src="../js/login.js"></script>
-    <script>
-      document.querySelectorAll(".item").forEach((item) => {
-        item.style.cursor = "pointer";
-        item.addEventListener("click", () => {
-          const href = item.getAttribute("data-href");
-          if (href) {
-            window.location.href = href;
-          } else {
-            alert("Chưa gắn link cho mục này!");
-          }
-        });
+    </div>
+
+    <div class="item" data-href="sodo_1201_a.html">
+      <img
+        src="https://file1.hutech.edu.vn/file/editor/homepage1/Phoi%20canh%20co%20so%20Hutech_co%20so%20DBP%20%20.jpg"
+        alt="HUTECH" />
+      <div class="item-content">
+        <div class="item-title">SƠ ĐỒ CHỖ NGỒI LỄ TỐT NGHIỆP 12/01/2025</div>
+        <div class="item-desc">
+          1. Sinh viên xem sơ đồ chỗ ngồi file đính kèm bên dưới. Bảng đỏ dành
+          cho sinh viên tốt nghiệp loại Xuất Sắc và Giỏi. Bảng xanh dành cho
+          sinh viên tốt nghiệp loại Khá và Trung bình...
+        </div>
+      </div>
+    </div>
+
+    <div class="item" data-href="sodo_1201_b.html">
+      <img
+        src="https://file1.hutech.edu.vn/file/editor/homepage1/Phoi%20canh%20co%20so%20Hutech_co%20so%20DBP%20%20.jpg"
+        alt="HUTECH" />
+      <div class="item-content">
+        <div class="item-title">SƠ ĐỒ CHỖ NGỒI LỄ TỐT NGHIỆP 12/01/2025</div>
+        <div class="item-desc">
+          1. Sinh viên xem sơ đồ chỗ ngồi file đính kèm bên dưới. Bảng đỏ dành
+          cho sinh viên tốt nghiệp loại Xuất Sắc và Giỏi. Bảng xanh dành cho
+          sinh viên tốt nghiệp loại Khá và Trung bình...
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="../js/login.js"></script>
+  <script>
+    document.querySelectorAll(".item").forEach((item) => {
+      item.style.cursor = "pointer";
+      item.addEventListener("click", () => {
+        const href = item.getAttribute("data-href");
+        if (href) {
+          window.location.href = href;
+        } else {
+          alert("Chưa gắn link cho mục này!");
+        }
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
+
 </html>

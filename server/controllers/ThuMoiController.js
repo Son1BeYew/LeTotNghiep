@@ -168,45 +168,81 @@ const searchInvitationByUsername = async (req, res) => {
     res.status(500).json({ message: "Lỗi server", error });
   }
 };
-const sendInvitationEmail = async (req, res) => {
-  const { mssv, email, imageUrl } = req.body;
 
+const sendInvitationEmail = async (req, res) => {
   try {
+    const { userId, imageBase64 } = req.body;
+
+    if (!userId || !imageBase64) {
+      return res.status(400).json({ message: "Thiếu userId hoặc ảnh" });
+    }
+
+    const user = await User.findById(userId);
+    if (!user || !user.email) {
+      return res.status(404).json({ message: "Người dùng không tồn tại hoặc không có email" });
+    }
+
+    const invitation = await Invitation.findOne({ user: userId });
+    if (!invitation) {
+      return res.status(404).json({ message: "Người dùng chưa có thư mời" });
+    }
+
+    // Tạo transporter Gmail
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "son111333na@gmail.com",
-        pass: "zpyd klms gcbv lpbh",
+        user: "duongtanhuy2004@gmail.com",
+        pass: "yndt fwxi yecz xhzh",
       },
     });
 
-    const mailOptions = {
-      from: "son111333na@gmail.com",
-      to: email,
-      subject: "Thư mời lễ tốt nghiệp",
-      html: `
-        <h3>Thư mời lễ tốt nghiệp</h3>
-        <p>Chào sinh viên MSSV: <strong>${mssv}</strong>,</p>
-        <p>Bạn được mời tham dự lễ tốt nghiệp vào <strong>13:00, 18/06/2025</strong> tại HUTECH.</p>
-        <p>Địa điểm: E3-05.01</p>
-        <br/>
-        <img src="${imageUrl}" alt="Thư mời" style="max-width: 100%; height: auto;" />
-        <p>
-  <a href="https://www.google.com/maps/place/HUTECH+-+%C4%90%E1%BA%A1i+h%E1%BB%8Dc+C%C3%B4ng+ngh%E1%BB%87+TP.HCM+(Sai+Gon+Campus)/@10.8469089,106.7384658,14z/data=!4m20!1m13!4m12!1m4!2m2!1d106.7375271!2d10.8398881!4e1!1m6!1m2!1s0x317527c3debb5aad:0x5fb58956eb4194d0!2zxJDhuqFpIEjhu41jIEh1dGVjaCBLaHUgRSwgU29uZyBIw6BuaCBYYSBM4buZIEjDoCBO4buZaSwgSGnhu4dwIFBow7osIFRo4bunIMSQ4bupYywgSOG7kyBDaMOtIE1pbmg!2m2!1d106.785373!2d10.8550427!3m5!1s0x317528a459cb43ab:0x6c3d29d370b52a7e!8m2!3d10.8016175!4d106.7144559!16s%2Fg%2F124xvbfmg?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" style="color: purple; font-weight: bold;">
-    Chỉ đường tới lễ tốt nghiệp (Google Maps)
-  </a>
-</p>
+    const base64Data = imageBase64.split(";base64,").pop();
 
-      `,
-    };
+    const mailOptions = {
+  from: '"Phòng Công nghệ Thông tin HUTECH" <duongtanhuy2004@gmail.com>',
+  to: user.email,
+  subject: "Thư mời tham dự nghiệp nghiệp 2025",
+  html: `
+    <p><strong>Xin chào</strong> ${invitation.fullname} - ${user.username}</p>
+    <p>Trường Đại Học Công Nghệ TP.HCM(HUTECH) trân trọng chúc mừng bạn đã hoàn thành chương trình đào tạo và đủ điều kiện tốt nghiệp. Nhà trường trân trọng kính mời bạn tham dự lễ tốt nghiệp năm 2025. </p>
+    <p>
+      📍<strong>Địa điểm: E3-05.01, HUTECH - Thủ Đức Campus</strong><br>
+      <a 
+        href="https://www.google.com/maps/place/HUTECH+-+%C4%90%E1%BA%A1i+h%E1%BB%8Dc+C%C3%B4ng+ngh%E1%BB%87+TP.HCM+(Sai+Gon+Campus)/@10.8469089,106.7384658,14z/data=!4m20!1m13!4m12!1m4!2m2!1d106.7375271!2d10.8398881!4e1!1m6!1m2!1s0x317527c3debb5aad:0x5fb58956eb4194d0!2zxJDhuqFpIEjhu41jIEh1dGVjaCBLaHUgRSwgU29uZyBIw6BuaCBYYSBM4buZIEjDoCBO4buZaSwgSGnhu4dwIFBow7osIFRo4bunIMSQ4bupYywgSOG7kyBDaMOtIE1pbmg!2m2!1d106.785373!2d10.8550427!3m5!1s0x317528a459cb43ab:0x6c3d29d370b52a7e!8m2!3d10.8016175!4d106.7144559!16s%2Fg%2F124xvbfmg?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D"
+        target="_blank" 
+        style="color: blue; font-weight: bold; text-decoration: underline;"
+      >
+         Xem tại đây.
+      </a>
+    </p>
+    <p>Mọi thắc mắc xin vui lòng liên hệ:</p>
+        <p>📞 <strong>Phòng công tác sinh viên - SĐT</strong>: 0819 500 591 - 028 3512 0785</p>
+        <p>📧 <strong>Email</strong>: congtacsinhvien@hutech.edu.vn</p>
+
+        Một lần nữa, nhà trường xin chúc mừng bạn và mong được đón tiếp bạn trong buổi lễ quan trọng này!
+
+        <p>Trân trọng!!!</p>
+    <img src="${imageBase64}" alt="Thư mời tốt nghiệp" style="max-width: 200px; height: auto; border: 1px solid #ccc; margin-top: 10px;" />
+  `,
+  attachments: [
+    {
+      filename: "thu-moi.png",
+      content: base64Data,
+      encoding: "base64",
+    },
+  ],
+};
+
 
     await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: "Thư mời đã được gửi!" });
+
+    res.status(200).json({ message: "Đã gửi thư mời cho sinh viên!" });
   } catch (error) {
     console.error("Lỗi gửi email:", error);
     res.status(500).json({ message: "Lỗi khi gửi email!" });
   }
 };
+
 
 module.exports = {
   createInvitation,

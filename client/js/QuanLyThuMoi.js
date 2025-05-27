@@ -113,6 +113,16 @@ function fetchThuMoi() {
             shareThuMoi(tm.invitation);
           };
           actionCell.appendChild(shareBtn);
+
+          const shareEmailBtn = document.createElement("button");
+          shareEmailBtn.textContent = "Gửi email";
+          shareEmailBtn.className = "btn-share";
+          shareEmailBtn.style.marginLeft = "5px";
+          shareEmailBtn.onclick = function () {
+            sendgmail(tm.invitation);
+          };
+          actionCell.appendChild(shareEmailBtn);
+
         } else {
           actionCell.textContent = "—";
         }
@@ -175,7 +185,9 @@ function showInvitationLetter(formData) {
   backgroundWrapper.innerHTML = `
     <div class="backdrop-content">
       <div class="student-info">
-        <img src="../Hình ảnh/logo-hutech-1.png" class="logoInBackDrop" alt="Logo" />
+        <img src="../Hình ảnh/logo-hutech-1.png" class="logoInBackDrop" alt="" />
+        <img src="../Hình ảnh/logo30nam.png" class="logo30nam" alt="" />
+        <img src="../Hình ảnh/logototnghiep.png" class="logototnghiep" alt="" />
         <div class="invitation-letter">
           <h2 class="ThuMoi">Thư mời</h2>
           <p class ="HoVaTen"> ${formData.fullname}</p>
@@ -186,9 +198,10 @@ function showInvitationLetter(formData) {
           <p>Thứ 4, 18/6/2025</p>
           <p>13:00 - 16:00</p>
         </div>  
-          <p class="DiaDiem">Địa điểm: E3-05.01, Trường Đại học Công nghệ TP.HCM (HUTECH)</p>
+          <p class="DiaDiem">Địa điểm: E3-05.01, HUTECH - Thủ Đức Campus</p>
         </div>
       </div>
+      <img class="graducation" src="../Hình ảnh/graducation.png" alt=""/>
 
       <div class="student-photo-container">
         <img class="khungvien" src="../Hình ảnh/khungThuMoi.png" alt="" />
@@ -408,3 +421,5 @@ async function shareThuMoi(invitationData) {
     window.open(fbShareUrl, "facebook-share-dialog", "width=800,height=600");
   });
 }
+
+

@@ -191,3 +191,55 @@ async function searchThuMoi() {
 }
 
 document.getElementById("searchButton").addEventListener("click", searchThuMoi);
+
+
+//Gmail
+async function sendgmail(invitation) {
+  showInvitationLetter(invitation);
+
+  await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+  const backdrop = document.getElementById("show-image");
+
+  const canvas = await html2canvas(backdrop, {
+    scale: 2,
+    useCORS: true,
+  });
+
+  const base64Image = canvas.toDataURL("image/png");
+
+  // Hiển thị ảnh thư mời to luôn
+  let img = document.getElementById("preview-invitation");
+  if (!img) {
+    img = document.createElement("img");
+    img.id = "preview-invitation";
+    img.style.maxWidth = "9000px";
+    img.style.border = "1px solid #ccc";
+    img.style.marginTop = "10px";
+    document.body.appendChild(img);  // hoặc append vào 1 div cụ thể trên trang
+  }
+  img.src = base64Image;
+
+  // Lấy userId để gửi lên backend
+  const userId = invitation.user?._id;
+
+  fetch("http://localhost:5000/api/thumoi/send-invitation", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      userId: userId,
+      imageBase64: base64Image,
+    }),
+  })
+  .then(response => {
+    if (!response.ok) throw new Error("Network response not ok");
+    return response.json();
+  })
+  .then(data => {
+    console.log("Gửi thành công:", data);
+    alert("Thư mời đã được gửi thành công đến sinh viên!!!");
+  })
+  .catch(error => {
+    console.error("Lỗi gửi email:", error);
+  });
+}

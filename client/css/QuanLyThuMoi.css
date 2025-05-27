@@ -129,19 +129,19 @@
 
 /* Chỉnh độ rộng các cột */
 .thumoiDS th:nth-child(1), .thumoiDS td:nth-child(1) {
-    width: 15%;
+    width: 13%;
 }
 .thumoiDS th:nth-child(2), .thumoiDS td:nth-child(2) {
     width: 20%;
 }
 .thumoiDS th:nth-child(3), .thumoiDS td:nth-child(3) {
-    width: 20%;
+    width: 17%;
 }
 .thumoiDS th:nth-child(4), .thumoiDS td:nth-child(4) {
-    width: 15%;
+    width: 12%;
 }
 .thumoiDS th:nth-child(5), .thumoiDS td:nth-child(5) {
-    width: 30%;
+    width: 40%;
 }
 .form-group {
     position: relative;

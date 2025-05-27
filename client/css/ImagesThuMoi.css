@@ -26,7 +26,7 @@
 }
 .invitation-letter{
     position: absolute;
-    top: 35px;
+    top: 50px;
     left: 25%;
     font-size: 24px;
     font-weight: bold;
@@ -35,8 +35,20 @@
   .logoInBackDrop {
     position: absolute;
     height: 50px;
-    margin-left: 100px;
+    margin-left: 200px;
     top: 0%;
+  }
+  .logo30nam{
+    position: absolute;
+    height: 50px;
+    margin-left: 400px;
+    top: 0%;
+  }
+  .logototnghiep{
+    position: absolute;
+    height: 100px;
+    margin-left: 500px;
+    top: -25px;
   }
   .ThuMoi{
     font-size: 60px;
@@ -83,6 +95,12 @@
     font-family: "Roboto", sans-serif;
     color: #333333;
   }
+.graducation {
+    position: absolute;
+    top:-170px;
+    left: -20px;
+    transform: scale(0.5); 
+}
 
 
 /* Khung ảnh */
